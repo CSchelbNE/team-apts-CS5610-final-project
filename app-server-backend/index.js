@@ -1,4 +1,7 @@
-const express = require("express")
-const app = express()
+import searchController from "./database/search-db.js";
+import express from 'express';
 
-app.listen(4000);
+const app = express();
+app.use(express.json());
+searchController(app);
+app.listen(2000);

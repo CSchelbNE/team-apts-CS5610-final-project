@@ -1,16 +1,20 @@
-const axios = require('axios')
-
+import axios from "axios";
 const REQUEST_KEY = "&key=ycxPkCFuLfXARRPLUKtt&secret=SIroYcDpGSwKtmTfsKnOfhPPLzPtlson"
 const DISCOGS_DATABSE_API = "https://api.discogs.com/database/search"
-const VALID_QUERY_PARAMS = ["type","title","release_title","credit","artist","anv","label","genre","style","country","year","format",
+const VALID_QUERY_VALUES = ["type","title","release_title","credit","artist","anv","label","genre","style","country","year","format",
                             "catno","barcode","track","submitter","contributor", "per_page", "page"]
-const PARAMS_HASHSET = new Set(VALID_QUERY_PARAMS)
+const QUERY_HASHSET = new Set(VALID_QUERY_VALUES)
 
-const searchForArtist = async (name) => {
+
+const searchController = (app) => {
+    app.get("/api/search/:SearchParam",searchDB);
+    app.get("/api/search/artist/:artist", searchForArtist)
+}
+
+const filterDiscogsApiCall = async (qString) =>{
     return await axios.get(
-        "?q=nirvana&year=1991&artist=nirvana" + REQUEST_KEY).then(res => {
+        qString + REQUEST_KEY).then(res => {
         const uniqueTitleFilter = new Set();
-        console.log(res.data)
         return res.data.results.filter(instance => {
             if (!uniqueTitleFilter.has(instance.title)) {
                 uniqueTitleFilter.add(instance.title)
@@ -21,48 +25,52 @@ const searchForArtist = async (name) => {
 }
 
 
+const searchForArtist = async (req, res) => {
+    let qString = DISCOGS_DATABSE_API + "?q=" + req.params["artist"]+"&artist="+req.params["artist"];
+    console.log(qString)
+    const result = await filterDiscogsApiCall(qString);
+    res.json(result);
+}
+
+
+
+
 /*
 Generalized function to query the discogs API for data.
 
-Query should be a string indicating what specifically you're looking for, i.e.
-an album name or artist name.
+Be aware that param will match ANYTHING in the db not just an artist/album/etc.
+If you want to search for only a specific artist make sure to include artist="namehere"
+as part of the query.
 
-Params should be a JSON object with any number of keys from the list:
+Query elements should be an element from the list below:
 [type,title,release_title,credit,artist,anv,label,genre,style,country,year,format,
 catno,barcode,track,submitter,contributor, per_page, page]. This argument is optional.
 
 A well-formed query example would be:
-searchDB("nirvana", {artist: "nirvana", year: "1991"}).then(...dosomethingwithresults)
+http://localhost:2000/api/search/nirvana?artist=nirvana&year=1991&per_page=2
+/nirvana -> path param
+?artist=nirvana&year=1991&per_page=2 -> query
 
-
-More information on the parameters can be found at:
+More information on the query parameters can be found at:
 https://www.discogs.com/developers/#page:database,header:database-search
  */
-const searchDB = async (query, params) => {
-    if (query === undefined || query === null || query === "") {
-        console.log("Invalid query syntax. Cannot be \"\", null or undefined.")
-        console.log("searchDB will return undefined on failed call.")
-        return undefined;
-    }
-    let qString = DISCOGS_DATABSE_API + "?q=" + query;
-    for (let key in params) {
-        if (!PARAMS_HASHSET.has(key)){
-            console.log("searchDB call failed due to invalid parameter:"+key)
-            console.log("searchDB will return undefined on failed call.")
-            return undefined;
+const searchDB = async (req,res) => {
+    const param = req.params["SearchParam"];
+    const query = req.query;
+    let qString = DISCOGS_DATABSE_API + "?q=" + param;
+    for (let key in query) {
+        if (!QUERY_HASHSET.has(key) || query[key] === ""){
+            console.log("searchDB call failed due to invalid query value or value associated with: "+key)
+            res.json({error: "searchDB call failed due to invalid query value: "
+                             + "--"+key+ "--  or the value associated with this key was an empty string."})
+            return;
         }
-        qString += "&" + key + "=" + params[key]
+        qString += "&" + key + "=" + query[key]
     }
-    return await axios.get(qString + REQUEST_KEY).then( res=>
-                                                        {
-                                                            const uniqueTitleFilter = new Set();
-                                                            return res.data.results.filter(instance => {
-                                                                if (!uniqueTitleFilter.has(instance.title)) {
-                                                                    uniqueTitleFilter.add(instance.title)
-                                                                    return instance
-                                                                }
-                                                            });
-                                                        });
+
+    console.log(qString)
+    const result = await filterDiscogsApiCall(qString);
+    res.json(result);
 }
 
-export default searchDB
+export default searchController
