@@ -4,6 +4,16 @@
 
 .wd-search-scroll-div {
   overflow-y: scroll;
-  height: 150px;
+  height: fit-content;
+  max-height: 250px;
   display: block;
+}
+
+@font-face {
+  font-family: "Art Nuvo";
+  src: url("./fonts/FontsFree-Net-Art-nuvo.ttf");
+}
+
+.wd-art-nuvo {
+  font-family: "Art Nuvo", sans-serif;
 }
