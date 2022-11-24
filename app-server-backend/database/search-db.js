@@ -14,10 +14,13 @@ const searchController = (app) => {
 const filterDiscogsApiCall = async (qString) =>{
     return await axios.get(
         qString + REQUEST_KEY).then(res => {
+        const uniqueIDFilter = new Set();
         const uniqueTitleFilter = new Set();
         return res.data.results.filter(instance => {
-            if (!uniqueTitleFilter.has(instance.title)) {
-                uniqueTitleFilter.add(instance.title)
+            const title = instance.title.split("-")[0]
+            if (!uniqueIDFilter.has(instance.master_id) && !uniqueTitleFilter.has(title)) {
+                uniqueIDFilter.add(instance.master_id)
+                uniqueTitleFilter.add(title)
                 return instance
             }
         });
