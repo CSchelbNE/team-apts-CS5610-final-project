@@ -1,9 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getArtistsThunk} from "../services/discogs-thunk";
-import {Card, Tabs, Tab} from "react-bootstrap";
+import {Card, Tabs, Tab, Button} from "react-bootstrap";
 import {uuid4} from "uuid4"
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 
 function SearchBar() {
     const dispatch = useDispatch();
@@ -13,8 +14,17 @@ function SearchBar() {
     useEffect(() => {
         if(isInputChanged) {
             if (newInput!=="") {
-                setIsChanged(false);
-                dispatch(getArtistsThunk(newInput));
+
+                switch (key) {
+                    case "artist":
+                        setIsChanged(false);
+                        dispatch(getArtistsThunk(newInput));
+                    case "album":
+                        setIsChanged(false);
+                        dispatch(getArtistsThunk(newInput));
+
+                }
+
             }
         }
     }, [newInput]);
@@ -24,27 +34,30 @@ function SearchBar() {
     console.log(query.discogsQuery)
 
     return (
-        <div className="row wd-art-nuvo">
-            <input className="form-control row-cols-3" placeholder={"Search for new records here..."} value={newInput} onChange={(e) =>
-            {setNewInput(e.target.value)
-                setIsChanged(true)}}/>
-            {/*<Tabs*/}
-            {/*    id="query-tabs"*/}
-            {/*    activeKey={key}*/}
-            {/*    onSelect={(k) => setKey(k)}*/}
-            {/*    className="mb-3"*/}
-            {/*>*/}
-            {/*    <Tab eventKey={"artist"} title={"Artist"}></Tab>*/}
-            {/*    <Tab eventKey={"album"} title={"Album"}></Tab>*/}
-            {/*</Tabs>*/}
+        <div className="row wd-art-nuvo mt-3 p-0" style={{border: "1px solid lightgrey"}} >
+            <div className="p-0 position-relative">
+                <input className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}} placeholder={"Search for new records here..."} value={newInput} onChange={(e) =>
+                {
+                    setNewInput(e.target.value)
+                    setIsChanged(true)}}/>
+                <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
+            </div>
+            <div className={"d-flex flex-row p-0"} style={{borderBottom: "1px solid lightgrey"}}>
+                <Button variant={"outline-primary"} style={{borderRadius:0}}>Artist</Button>
+                <Button variant={"outline-dark"} style={{borderRadius:0}}>Album</Button>
+            </div>
             <div className="wd-search-scroll-div p-0">
                 {query.discogsQuery.map(e =>
-                    <Card style={{borderRadius: 0, height: "75px"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4 mt-1 mb-1">
+                    <Card style={{borderRadius: 0, height: "85px"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4 mb-1">
                         <img style={{height: "75px"}} src={e.thumb}/>
-                        {e.title}
+                            <div className="p-0 d-flex flex-column justify-content-center" style={{height: "75px", width: "75%"}}>
+                                <div className="p-1" style={{width: "fit-content"}}>{e.title.split("-")[0]}</div>
+                                <div className="p-1">Artist</div>
+                            </div>
                     </Card>)}
             </div>
-        </div>
+    </div>
+
     );
 }
 
