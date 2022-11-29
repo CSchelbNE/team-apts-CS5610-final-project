@@ -22,3 +22,8 @@
 .wd-art-nuvo {
   font-family: "Art Nuvo", sans-serif;
 }
+
+.wd-bgImg-format {
+  object-fit: fill;
+  height: 100vh;
+}

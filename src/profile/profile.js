@@ -1,5 +1,6 @@
 import React from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
+import ProfileComponent from "./profile-component";
 
 const ProfileScreen = () => {
     return (
@@ -10,7 +11,7 @@ const ProfileScreen = () => {
                 </div>
             </div>
             <div className="col-9">
-                <h1>ProfileScreen</h1>
+                <ProfileComponent />
             </div>
 
         </div>
