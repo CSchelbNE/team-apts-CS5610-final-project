@@ -10,7 +10,7 @@ const LoginScreen = () => {
                 </div>
             </div>
             <div className="col-9">
-                <h1>LoginScreen</h1>
+                <h1 className="bg-white">LoginScreen</h1>
             </div>
 
         </div>

@@ -8,10 +8,10 @@ const HomeScreen = () => {
                 <div className="w-100">
                     <NavigationSidebar/>
                 </div>
-                <h3 className="w-100">FollowingComponent</h3>
+                <h3 className="w-100 bg-white mt-3">FollowingComponent</h3>
             </div>
             <div className="col-9">
-                <h1>HomeScreen</h1>
+                <h1 className="bg-white">HomeScreen</h1>
             </div>
 
         </div>

@@ -10,7 +10,7 @@ const SearchScreen = () => {
                 </div>
             </div>
             <div className="col-9">
-                <h1>SearchScreen</h1>
+                <h1 className="bg-white">SearchScreen</h1>
             </div>
 
         </div>
