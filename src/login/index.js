@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk, registerThunk } from "../services/users-thunks";
 import bgImg from "../images/login-music-final.jpg";
 import './index.css';
-import { Navigate, useNavigate } from "react-router";
 import { setError } from "../reducers/users-reducer";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUserName] = useState('alice');
@@ -13,25 +13,24 @@ const Login = () => {
     const [loginPageFlag, setLoginPageFlag] = useState(true);
     const {currentUser, error} = useSelector((state) => state.users)
     const dispath = useDispatch()
+    const navigate = useNavigate();
     const handleLoginBtn = () => {
         const loginUser = {username,password};
         dispath(loginThunk(loginUser));
-        return;
     }
     const handleRegisterBtn = () => {
-        console.log("inside", password !== validatePassword, password, validatePassword)
         if (password !== validatePassword) {
             dispath(setError("Passwords must match."))
             return;
         }
         const newUser = {username,password};
         dispath(registerThunk(newUser))
-        return;
     }
-    console.log("ohoo------------->",error, currentUser)
-    if (error == null && currentUser) {
-        return (<Navigate to="/home"/>);
-    }
+    useEffect(() => {
+        if (!error && currentUser) {
+            navigate('/home');
+        }
+    }, [currentUser, error]);
     const changePageFlag = (flag) => {
         // setUserName("")
         // setPassword("")
