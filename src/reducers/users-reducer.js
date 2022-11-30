@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findAllUsersThunk, loginThunk, registerThunk } from "../services/users-thunks";
+import { findAllUsersThunk, loginThunk, logoutThunk, registerThunk } from "../services/users-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
@@ -10,21 +10,35 @@ const usersReducer = createSlice({
         error: null
     },
     reducers: {
+        setError(state, action) {
+            state.error = action.payload;
+        }
     },
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, action) => {
              state.users = action.payload;
         },
-        [registerThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload;
+        [registerThunk.fulfilled]: (state, {payload}) => {
+            state.currentUser = payload;
+            state.error = null;
         },
-        [loginThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload;
+        [registerThunk.rejected]: (state) => {
+            state.error = "Unable to register, please check the information once!";
+            state.currentUser = null;
         },
-        [registerThunk.rejected]: (state, action) => {
-            state.error = action.payload;
-        }
+        [loginThunk.fulfilled]: (state, {payload}) => {
+            state.currentUser = payload;
+            state.error = null;
+        },
+        [loginThunk.rejected]: (state) => {
+            state.error = "Unable to login, please check the username and password!";
+            state.currentUser = null;
+        },
+        [logoutThunk.fulfilled]: (state, {payload}) => {
+            state.currentUser = null;
+            state.error = null;
+        },
     }
 })
-
+export const {setError} = usersReducer.actions;
 export default usersReducer.reducer

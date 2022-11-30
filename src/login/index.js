@@ -3,36 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginThunk, registerThunk } from "../services/users-thunks";
 import bgImg from "../images/login-music-final.jpg";
 import './index.css';
+import { Navigate, useNavigate } from "react-router";
+import { setError } from "../reducers/users-reducer";
 
 const Login = () => {
     const [username, setUserName] = useState('alice');
     const [password, setPassword] = useState('alice123');
     const [validatePassword, setValidatePassword] = useState('alice123');
     const [loginPageFlag, setLoginPageFlag] = useState(true);
-    const [isDataValidFlag, setIsDataValidFlag] = useState(true);
-    const [error, setError] = useState(null);
-    const {currentUser} = useSelector((state) => state.users)
+    const {currentUser, error} = useSelector((state) => state.users)
     const dispath = useDispatch()
     const handleLoginBtn = () => {
-        setError(null);
         const loginUser = {username,password};
         dispath(loginThunk(loginUser));
-    }
-    const changePageFlag = (flag) => {
-        setLoginPageFlag(flag)
-        setUserName("")
-        setPassword("")
-        setValidatePassword("")
-        setIsDataValidFlag(true)
+        return;
     }
     const handleRegisterBtn = () => {
+        console.log("inside", password !== validatePassword, password, validatePassword)
         if (password !== validatePassword) {
-            setError("Password must match");
+            dispath(setError("Passwords must match."))
             return;
         }
-        setError(null);
         const newUser = {username,password};
         dispath(registerThunk(newUser))
+        return;
+    }
+    console.log("ohoo------------->",error, currentUser)
+    if (error == null && currentUser) {
+        return (<Navigate to="/home"/>);
+    }
+    const changePageFlag = (flag) => {
+        // setUserName("")
+        // setPassword("")
+        // setValidatePassword("")
+        setLoginPageFlag(flag)
     }
     return (
         <>
@@ -44,6 +48,13 @@ const Login = () => {
                                 <div className="row g-0">
                                     <div className="d-flex align-items-center col-lg-7 col-md-6">
                                         <div className="card-body p-4 p-lg-5">
+                                                {
+                                                    !error 
+                                                    ? 
+                                                        <></>
+                                                     :
+                                                    <div className="alert alert-danger" role="alert">{error}</div>
+                                                }
                                             <form>
                                                      {
                                                         loginPageFlag == true ? 
@@ -51,17 +62,11 @@ const Login = () => {
                                                                 <h4 className="fw-bold mb-3 pb-3">Sign into your account</h4>
                                                                 <div className="form-group pb-4">
                                                                     <label className="form-label" htmlFor="username">Username:</label>
-                                                                    <input type="email" id="username" onChange={e => setUserName(e.target.value)} defaultValue={username} className={`form-control form-control-lg${isDataValidFlag ? '' : 'is-invalid'}`} aria-describedby="validateusername"/>
-                                                                    <div id="validateusername" className="invalid-feedback">
-                                                                        Please enter correct username.
-                                                                    </div>
+                                                                    <input type="email" id="username" onChange={e => setUserName(e.target.value)} defaultValue={username} className="form-control form-control-lg"/>
                                                                 </div>
                                                                 <div className="form-group pb-4">
                                                                     <label className="form-label" htmlFor="password">Password:</label>
-                                                                    <input type="text" id="password" onChange={e => setPassword(e.target.value)} defaultValue={password} className={`form-control form-control-lg${isDataValidFlag ? '' : 'is-invalid'}`} aria-describedby="validatepassword"/>
-                                                                    <div id="validatepassword" className="invalid-feedback">
-                                                                        Please enter correct password.
-                                                                    </div>
+                                                                    <input type="text" id="password" onChange={e => setPassword(e.target.value)} defaultValue={password} className="form-control form-control-lg"/>
                                                                 </div>
                                                                 <div className="form-group pt-1 d-flex justify-content-center pb-4">
                                                                     <button type="button" className="btn btn-lg btn-primary rounded-pill w-100" onClick={() => handleLoginBtn()} >Login</button>

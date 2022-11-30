@@ -5,6 +5,7 @@ import HomeScreen from "./home-screen";
 import SearchScreen from "../search/search-screen";
 import ProfileScreen from "../profile/profile";
 import LoginScreen from "../login/index.js";
+import LogoutScreen from "../login/logout.js"
 
 function VinylShop() {
     return (
@@ -14,6 +15,7 @@ function VinylShop() {
                 <Route path="/search" element={<SearchScreen/>}/>
                 <Route path="/profile" element={<ProfileScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
+                <Route path="/logout" element={<LogoutScreen/>}/>
             </Routes>
     );
 }

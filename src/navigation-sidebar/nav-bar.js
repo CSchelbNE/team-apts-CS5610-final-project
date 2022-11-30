@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useLocation} from "react-router-dom";
-import {FaHome, FaSearch, FaSignInAlt, FaUser} from "react-icons/fa";
+import {FaHome, FaSearch, FaSignInAlt, FaSignOutAlt, FaUser} from "react-icons/fa";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -25,6 +25,10 @@ const NavigationSidebar = () => {
             <Link to="/login" className={`list-group-item ${active === 'login'?'active':''}`}>
                 <FaSignInAlt/>
                 <span className="d-none d-lg-inline-block ms-2">Login</span>
+            </Link>
+            <Link to="/logout" className={`list-group-item ${active === 'logout'?'active':''}`}>
+                <FaSignOutAlt/>
+                <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link>
         </div>
     );

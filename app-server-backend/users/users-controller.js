@@ -33,22 +33,21 @@ const UserController = async (app) => {
             res.sendStatus(403);
             return
         }
-        console.log("user----->", user)
-        const actualUser = await dao.createUser(user)
-        currentUser = actualUser
-        res.json(actualUser)
+        const currentUser = await dao.createUser(user)
+        req.session['currentUser'] = currentUser
+        res.json(currentUser)
     }
 
     const login = async (req, res) => {
         const credentials = req.body;
         const exisitingUser = await dao.findByCredentials(credentials.username, credentials.password)
         console.log(exisitingUser)
-        if (!exisitingUser) {
-            res.sendStatus(403);
+        if (exisitingUser) {
+            req.session["currentUser"] = exisitingUser;
+            res.json(exisitingUser);
             return
         }
-        currentUser = exisitingUser;
-        res.json(exisitingUser);
+        res.sendStatus(403);
     }
 
     const profile = async (reqm, res) => {

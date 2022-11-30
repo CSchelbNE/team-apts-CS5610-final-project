@@ -4,9 +4,10 @@ const BASE_URL = 'http://localhost:2000';
 // const API_BASE = process.env.REACT_APP_API_BASE;
 // const TUITS_API = `${API_BASE}/tuits`;
 
-export const createUser = async() => {
+const api = axios.create({withCredentials: true});
+// export const createUser = async() => {
 
-}
+// }
 
 export const findAllUsers = async() => {
     const response = await axios.get(`${BASE_URL}/users`)
@@ -14,12 +15,17 @@ export const findAllUsers = async() => {
 }
 
 export const register = async(user) => {
-    const response = await axios.post(`${BASE_URL}/register`, user)
+    const response = await api.post(`${BASE_URL}/register`, user)
     return response.data;
 }
 
 export const login = async(user) => {
-    const response = await axios.post(`${BASE_URL}/login`, user)
+    const response = await api.post(`${BASE_URL}/login`, user)
+    return response.data;
+}
+
+export const logout = async(user) => {
+    const response = await axios.post(`${BASE_URL}/logout`, user)
     return response.data;
 }
 
