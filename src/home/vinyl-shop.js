@@ -4,7 +4,7 @@ import {Routes, Route, Navigate} from "react-router";
 import HomeScreen from "./home-screen";
 import SearchScreen from "../search/search-screen";
 import ProfileScreen from "../profile/profile";
-import LoginScreen from "../login/login-screen";
+import LoginScreen from "../login/index.js";
 
 function VinylShop() {
     return (

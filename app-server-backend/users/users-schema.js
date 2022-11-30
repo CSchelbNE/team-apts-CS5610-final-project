@@ -7,7 +7,6 @@ const userSchema = mongoose.Schema({
     lastName: String,
     email: String,
     dob: Date,
-    type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN']}, 
+    type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN']}
 }, {collection: "users"})
-
-export default userSchema
+export default userSchema;

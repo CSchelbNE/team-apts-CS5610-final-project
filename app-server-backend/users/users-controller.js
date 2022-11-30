@@ -1,10 +1,9 @@
-import { application } from 'express';
-import { findByCredentials, findByUsername } from './users-dao';
+import { findByCredentials, findByUsername } from './users-dao.js';
 import * as dao from "./users-dao.js"
 
 let currentUser = null
-const UserController = (app) => {
-    
+const UserController = async (app) => {
+
     const createUser = async (req, res) => {
         const user = req.body;
         const actualUser = await dao.createUser(user);
@@ -16,7 +15,7 @@ const UserController = (app) => {
         res.json(users);
     }
 
-    const deleteUser = async (req, res)  => {
+    const deleteUser = async (req, res) => {
         const uid = req.params.uid;
         const status = await dao.deleteUser(uid);
         res.json(status);
@@ -31,19 +30,21 @@ const UserController = (app) => {
         const user = req.body;
         const exisitingUser = await findByUsername(user.username);
         if (exisitingUser) {
-            res.sendStatuts(403);
+            res.sendStatus(403);
             return
         }
-        const actualUser = await dao.creatUser(user)
+        console.log("user----->", user)
+        const actualUser = await dao.createUser(user)
         currentUser = actualUser
         res.json(actualUser)
     }
 
     const login = async (req, res) => {
         const credentials = req.body;
-        const exisitingUser = await findByCredentials(credentials.username, credentials.password)
+        const exisitingUser = await dao.findByCredentials(credentials.username, credentials.password)
+        console.log(exisitingUser)
         if (!exisitingUser) {
-            res.sendStatuts(403);
+            res.sendStatus(403);
             return
         }
         currentUser = exisitingUser;
@@ -55,12 +56,12 @@ const UserController = (app) => {
             res.json(currentUser)
             return;
         }
-        res.sendStatuts(403)
+        res.sendStatus(403)
     }
 
     const logout = (req, res) => {
         currentUser = null
-        res.sendStatuts(200)
+        res.sendStatus(200)
     };
 
     app.post("/users", createUser);
@@ -73,6 +74,5 @@ const UserController = (app) => {
     app.post("/profile", profile)
     app.post("/logout", logout)
 }
- 
 
-export default UserController
+export default UserController;
