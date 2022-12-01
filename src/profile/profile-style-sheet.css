@@ -1,11 +1,41 @@
 .wd-text-margins {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 .wd-banner-format {
     object-fit: cover;
     max-height: 500px;
 }
 .wd-ep-button-format {
-    background: #fd7e14;
+    background-color: #fd7e14;
+}
+#edit-profile-btn:hover {
+    color: #0c63e4 !important;
+}
+.wd-profile-avatar-format {
+    width: 150px;
+    height: 150px;
+}
+.wd-profile-avatar-margins {
+    bottom: -85px;
+    left: 45px;
+}
+.wd-leave-extra-space-below-avatar {
+    margin-top: 95px;
+}
+.wd-map-vector-icon-format {
+    width: 15px;
+    height: 15px;
+}
+.wd-cake-icon-format {
+    width: 20px;
+    height: 20px;
+}
+.wd-calendar-icon-format {
+    width: 18px;
+    height: 18px;
+}
+.wd-horizontal-scroll {
+    overflow-y: scroll;
+    height: 96vh;
 }
