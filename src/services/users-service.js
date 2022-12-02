@@ -5,9 +5,6 @@ const BASE_URL = 'http://localhost:2000';
 // const TUITS_API = `${API_BASE}/tuits`;
 
 const api = axios.create({withCredentials: true});
-// export const createUser = async() => {
-
-// }
 
 export const findAllUsers = async() => {
     const response = await axios.get(`${BASE_URL}/users`)
