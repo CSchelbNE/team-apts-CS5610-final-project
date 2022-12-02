@@ -39,7 +39,7 @@ function SearchBar() {
     return (
         <div className="row wd-art-nuvo mt-3 p-0" style={{border: "1px solid lightgrey"}} >
             <div className="p-0 position-relative">
-                <input onFocus={()=> setTimeout(()=> setVisibility("p-0 d-block"),100)} className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}} placeholder={"Search for new records here..."} value={newInput} onChange={(e) =>
+                <input onBlur={() => setVisibility("p-0 d-none")} onFocus={()=> setTimeout(()=> setVisibility("p-0 d-block"),100)} className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}} placeholder={"Search for new records here..."} value={newInput} onChange={(e) =>
                 {
                     if (e.target.value === ""){
                         setVisibility("d-none");

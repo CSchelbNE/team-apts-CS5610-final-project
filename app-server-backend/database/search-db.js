@@ -36,6 +36,13 @@ const searchForArtist = async (req, res) => {
 }
 
 
+const searchForAlbum = async (req, res) => {
+    let qString = DISCOGS_DATABSE_API + "?q=" + req.params["release"]+"&release_title="+req.params["release"];
+    console.log(qString);
+    const result = await filterDiscogsApiCall(qString);
+    res.json(result)
+}
+
 
 
 /*
