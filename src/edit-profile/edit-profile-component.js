@@ -6,9 +6,9 @@ import bigXImage from "../images/big_x.png";
 import cameraImage from "../images/camera_icon_1.jpg";
 
 const EditProfileComponent = () => {
-    let user = {_id: "1", firstName: "Lucian", lastName: "Tisdale", status: "Buyer",
+    let user = {_id: "1", firstName: "Lucian", lastName: "Tisdale", type: "Buyer",
         bio: "Vinyl enthusiast and computer nerd. Life ambition: to have a record collection that covers the entire wall. Blah, blah, blah, blah, blah, blah, blah, blah.",
-        location: "Boston, MA", dob: "2022-01-01", dateJoined: "2022-11-01", numReviews: 2, numWishList: 3,
+        location: "Boston, MA", dob: "2022-01-01", dateJoined: "2022-11-01", numOfReviews: 2, numOfWishlist: 3,
         email: "tisdale.lucian@gmail.com",
         bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png",
         profilePic: "https://user-images.githubusercontent.com/53150782/204596506-f2e2dd98-58d2-4b7d-a1ea-e25467dcf261.PNG"};
