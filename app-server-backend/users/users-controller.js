@@ -55,7 +55,7 @@ const UserController = async (app) => {
             res.json(currentUser)
             return;
         }
-        res.sendStatus(403)
+        res.sendStatus(403);
     }
 
     const logout = (req, res) => {
