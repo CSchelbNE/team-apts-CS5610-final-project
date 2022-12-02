@@ -26,7 +26,7 @@ const Login = () => {
     }
     const handleRegisterBtn = () => {
         if (password !== validatePassword) {
-            dispath(setError("Passwords must match."))
+            dispath(setError("Passwords must match!"))
             return;
         }
         const dateJoined = new Date().toLocaleDateString();
