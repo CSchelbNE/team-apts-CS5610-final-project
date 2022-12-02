@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {getArtistsThunk} from "../services/discogs-thunk";
+import {createSlice} from "@reduxjs/toolkit";
+import {getAlbumsThunk, getArtistsThunk} from "../services/discogs-thunk";
 
 const initialState = {
     discogsQuery: [],
-    loading: false
+    loading: false,
+    albumOrArtist: ""
 }
 
 
@@ -11,16 +12,16 @@ const discogsSlice = createSlice({
     name: "discogs",
     initialState,
     extraReducers: {
-        [getArtistsThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.discogsQuery = []
+        [getAlbumsThunk.fulfilled]:
+            (state, {payload}) => {
+                state.loading = false;
+                state.discogsQuery = JSON.parse(JSON.stringify(payload.data));
+
             },
         [getArtistsThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                const json = JSON.parse(JSON.stringify(payload.data));
-                state.discogsQuery = json;
+                state.discogsQuery = JSON.parse(JSON.stringify(payload.data));
             },
         [getArtistsThunk.rejected]:
             (state) => {

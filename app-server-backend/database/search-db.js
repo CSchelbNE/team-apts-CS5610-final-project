@@ -9,6 +9,7 @@ const QUERY_HASHSET = new Set(VALID_QUERY_VALUES)
 const searchController = (app) => {
     app.get("/api/search/:SearchParam",searchDB);
     app.get("/api/search/artist/:artist", searchForArtist)
+    app.get("api/search/album/:album", searchForAlbum);
 }
 
 const filterDiscogsApiCall = async (qString) =>{
@@ -35,6 +36,13 @@ const searchForArtist = async (req, res) => {
     res.json(result);
 }
 
+
+const searchForAlbum = async (req, res) => {
+    let qString = DISCOGS_DATABSE_API + "?q=" + req.params["release"]+"&release_title="+req.params["release"];
+    console.log(qString);
+    const result = await filterDiscogsApiCall(qString);
+    res.json(result)
+}
 
 
 
