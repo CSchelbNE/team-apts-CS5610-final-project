@@ -5,13 +5,13 @@ import {Link} from "react-router-dom";
 const ProfileComponent = () => {
     let loggedIn = true;
     let loggedInUser = {_id: "1"};
-    let user = {_id: "1", firstName: "Lucian", lastName: "Tisdale", status: "Buyer",
+    let user = {_id: "1", firstName: "Lucian", lastName: "Tisdale", type: "Buyer",
         bio: "Vinyl enthusiast and computer nerd. Life ambition: to have a record collection that covers the entire wall. Blah, blah, blah, blah, blah, blah, blah, blah.",
-        location: "Boston, MA", dateOfBirth: "2022-01-01", dateJoined: "2022-11-01", numReviews: 2, numWishList: 3,
+        location: "Boston, MA", dob: "2022-01-01", dateJoined: "2022-11-01", numOfReviews: 2, numOfWishlist: 3,
         email: "tisdale.lucian@gmail.com", phone: "(720) 207-8150"};
 
     const formatBirthDate = () => {
-        const dateArr = user.dateOfBirth.split("-")
+        const dateArr = user.dob.split("-")
         const year = dateArr[0];
         const month = dateArr[1];
         const day = dateArr[2];
@@ -53,7 +53,7 @@ const ProfileComponent = () => {
                     <div className="wd-leave-extra-space-below-avatar">
                         <div className="row">
                             <h5 className="fw-bold m-0">{user.firstName} {user.lastName}</h5>
-                            <div className="text-secondary">{user.status}</div>
+                            <div className="text-secondary">{user.type}</div>
                         </div>
                         <div className="text-black mt-2">{user.bio}</div>
                         { loggedIn && user._id === loggedInUser._id &&
@@ -61,11 +61,7 @@ const ProfileComponent = () => {
                                 <div>Email:</div>
                                 <div>{user.email}</div>
                             </div> }
-                        { loggedIn && user._id === loggedInUser._id &&
-                            <div className="row mt-2">
-                                <div>Phone:</div>
-                                <div>{user.phone}</div>
-                            </div>}
+
                         <div className="row mt-2">
                             <div className="d-inline-block text-secondary w-auto">
                                 <img src={require("../images/map-pin-vector.png")}
@@ -85,11 +81,11 @@ const ProfileComponent = () => {
                     </div>
                     <div className="row mt-2">
                         <div className="d-inline-block text-secondary w-auto">
-                            <span>{user.numReviews}</span>&nbsp;
+                            <span>{user.numOfReviews}</span>&nbsp;
                             <span>Reviews</span>
                         </div>
                         <div className="d-inline-block text-secondary w-auto">
-                            <span>{user.numWishList}</span>&nbsp;
+                            <span>{user.numOfWishlist}</span>&nbsp;
                             <span>in Wish List</span>
                         </div>
                     </div>
