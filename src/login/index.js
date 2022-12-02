@@ -7,12 +7,18 @@ import { setError } from "../reducers/users-reducer";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const [username, setUserName] = useState('alice');
-    const [password, setPassword] = useState('alice123');
-    const [validatePassword, setValidatePassword] = useState('alice123');
+    const [email, setEmail] = useState('');
+    const [username, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+    const [validatePassword, setValidatePassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [location, setLocation] = useState('');
+    const [dob, setDob] = useState("");
+    const [bio, setBio] = useState('');
     const [loginPageFlag, setLoginPageFlag] = useState(true);
-    const {currentUser, error} = useSelector((state) => state.users)
-    const dispath = useDispatch()
+    const {currentUser, error} = useSelector((state) => state.users);
+    const dispath = useDispatch();
     const navigate = useNavigate();
     const handleLoginBtn = () => {
         const loginUser = {username,password};
@@ -23,7 +29,11 @@ const Login = () => {
             dispath(setError("Passwords must match."))
             return;
         }
-        const newUser = {username,password};
+        const dateJoined = new Date().toLocaleDateString();
+        const numOfReviews = 0;
+        const numOfWhishlist = 0;
+        const userType = "BUYER"
+        const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWhishlist, userType};
         dispath(registerThunk(newUser))
     }
     useEffect(() => {
@@ -32,9 +42,9 @@ const Login = () => {
         }
     }, [currentUser, error]);
     const changePageFlag = (flag) => {
-        // setUserName("")
-        // setPassword("")
-        // setValidatePassword("")
+        setUserName("")
+        setPassword("")
+        setValidatePassword("")
         setLoginPageFlag(flag)
     }
     return (
@@ -54,50 +64,74 @@ const Login = () => {
                                                      :
                                                     <div className="alert alert-danger" role="alert">{error}</div>
                                                 }
-                                            <form>
+                                            
                                                      {
                                                         loginPageFlag == true ? 
-                                                            <>
-                                                                <h4 className="fw-bold mb-3 pb-3">Sign into your account</h4>
-                                                                <div className="form-group pb-4">
-                                                                    <label className="form-label" htmlFor="username">Username:</label>
-                                                                    <input type="email" id="username" onChange={e => setUserName(e.target.value)} defaultValue={username} className="form-control form-control-lg"/>
-                                                                </div>
-                                                                <div className="form-group pb-4">
-                                                                    <label className="form-label" htmlFor="password">Password:</label>
-                                                                    <input type="text" id="password" onChange={e => setPassword(e.target.value)} defaultValue={password} className="form-control form-control-lg"/>
-                                                                </div>
-                                                                <div className="form-group pt-1 d-flex justify-content-center pb-4">
-                                                                    <button type="button" className="btn btn-lg btn-primary rounded-pill w-100" onClick={() => handleLoginBtn()} >Login</button>
-                                                                </div>
-                                                                <div className="form-group d-flex justify-content-center">
-                                                                    <span>New to the site? <a onClick={() => changePageFlag(false)} className="cursor-pointer text-primary text-decoration-none">Register here</a></span>
-                                                                </div>
-                                                            </>
+
+                                                               <form>
+                                                                    <h4 className="fw-bold mb-3 pb-3">Sign into your account</h4>
+                                                                    <div className="form-group pb-4">
+                                                                        <label className="form-label" htmlFor="login-username">Username:</label>
+                                                                        <input type="email" id="login-username" name="login-username" onChange={e => setUserName(e.target.value)} value={username} className="form-control form-control-lg" placeholder="e.g. alice"/>
+                                                                    </div>
+                                                                    <div className="form-group pb-4">
+                                                                        <label className="form-label" htmlFor="login-password">Password:</label>
+                                                                        <input type="text" id="login-password" name="login-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-lg" placeholder="e.g. alice1234"/>
+                                                                    </div>
+                                                                    <div className="form-group pt-1 d-flex justify-content-center pb-4">
+                                                                        <button type="button" className="btn btn-lg btn-primary rounded-pill w-100" onClick={() => handleLoginBtn()} >Login</button>
+                                                                    </div>
+                                                                    <div className="form-group d-flex justify-content-center">
+                                                                        <span>New to the site? <a onClick={() => changePageFlag(false)} className="cursor-pointer text-primary text-decoration-none">Register here</a></span>
+                                                                    </div>
+                                                                </form>
                                                         : 
-                                                         <>
-                                                            <h4 className="fw-bold mb-3 pb-3">New User Registration</h4>
-                                                                <div className="form-group pb-4">
-                                                                    <label className="form-label" htmlFor="username">Username:</label>
-                                                                    <input type="email" id="username" onChange={e => setUserName(e.target.value)} defaultValue={username} className="form-control form-control-lg" />
+                                                         <form>
+                                                            <h4 className="fw-bold mb-3">New User Registration</h4>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="register-email">Email:</label>
+                                                                    <input type="email" id="register-email"  name="register-email" onChange={e => setEmail(e.target.value)} value={email} className="form-control form-control-md" placeholder="e.g. hello@gmail.com"/>
                                                                 </div>
-                                                                <div className="form-group pb-4">
-                                                                    <label className="form-label" htmlFor="password">Password:</label>
-                                                                    <input type="text" id="password" onChange={e => setPassword(e.target.value)} defaultValue={password} className="form-control form-control-lg" />
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="register-username">Username:</label>
+                                                                    <input type="text" id="register-username" name="register-username" onChange={e => setUserName(e.target.value)} value={username} className="form-control form-control-md" placeholder="e.g. alice"/>
                                                                 </div>
-                                                                <div className="form-group pb-4">
-                                                                    <label className="form-label" htmlFor="re-enter-password">Re-enter Password:</label>
-                                                                    <input type="text" id="re-enter-password" onChange={e => setValidatePassword(e.target.value)} defaultValue={validatePassword} className="form-control form-control-lg" />
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="register-password">Password:</label>
+                                                                    <input type="text" id="register-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-md" placeholder="e.g. alice1234"/>
                                                                 </div>
-                                                                <div className="form-group pt-1 d-flex justify-content-center pb-4">
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="edit-password">Re-enter password:</label>
+                                                                    <input type="text" id="edit-password" onChange={e => setValidatePassword(e.target.value)} defaultValue={validatePassword} className="form-control form-control-md" placeholder="e.g. alice1234"/>
+                                                                </div>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="first-name">First Name:</label>
+                                                                    <input type="text" id="first-name" onChange={e => setFirstName(e.target.value)} defaultValue={firstName} className="form-control form-control-md" placeholder="e.g. Jhon"/>
+                                                                </div>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="last-name">Last Name:</label>
+                                                                    <input type="text" id="last-name" onChange={e => setLastName(e.target.value)} defaultValue={lastName} className="form-control form-control-md" placeholder="e.g. Doe"/>
+                                                                </div>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="location">Location:</label>
+                                                                    <input type="text" id="location" onChange={e => setLocation(e.target.value)} defaultValue={location} className="form-control form-control-md" placeholder="e.g. Boston, MA"/>
+                                                                </div>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="bio">Bio:</label>
+                                                                    <input type="text" id="bio" onChange={e => setBio(e.target.value)} defaultValue={bio} className="form-control form-control-md" placeholder="e.g. Software developer, speaker"/>
+                                                                </div>
+                                                                <div className="form-group pb-2">
+                                                                    <label className="form-label" htmlFor="dob">Date of Birth:</label>
+                                                                    <input type="date" id="dob" name="Date-of-birth" onChange={e => setDob(e.target.value)} defaultValue={dob} className="form-control form-control-md"/>
+                                                                </div>
+                                                                <div className="form-group pt-1 d-flex justify-content-center pb-2">
                                                                     <button type="button" className="btn btn-lg btn-primary rounded-pill w-100"  onClick={() => handleRegisterBtn()}>Register</button>
                                                                 </div>
                                                                 <div className="form-group d-flex justify-content-center">
                                                                     <span>Already have an account? <a onClick={() => changePageFlag(true)} className="cursor-pointer text-primary text-decoration-none">Login here</a></span>
                                                                 </div>
-                                                         </>
+                                                         </form>
                                                     }
-                                            </form>
                                         </div>
                                     </div>
                                     <div className="col-md-6 col-lg-5 d-none d-md-block">
