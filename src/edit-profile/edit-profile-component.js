@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./edit-profile-style.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import bigXImage from "../images/big_x.png";
 import cameraImage from "../images/camera_icon_1.jpg";
-import {updateUserThunk} from "../services/users-thunks";
+import {updateUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
 
 const EditProfileComponent = () => {
         // bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png"
@@ -21,6 +21,9 @@ const EditProfileComponent = () => {
     const [email, setEmail] = useState({email: `${currentUser.email}`});
     const [bannerPic, setBannerPic] = useState({bannerPic: `${currentUser.bannerPic}`});
     const [profilePic, setProfilePic] = useState({profilePic: `${currentUser.profilePic}`});
+    const [edited, setEdited] = useState(false);
+
+
 
     const bannerTextChangeHandler = (event) => {
         const bpValue = event.target.value;
@@ -98,10 +101,12 @@ const EditProfileComponent = () => {
         const newLocation = location.location.trim();
         const newBirthdate = birthdate.birthdate;
         const newEmail = email.email.trim();
-        const userUpdates = {"username": username, "bannerPic": newBannerPic, "profilePic": newProfilePic, "firstName": newFirstName, "lastname": newLastName,
+        const userUpdates = {"username": username, "bannerPic": newBannerPic, "profilePic": newProfilePic, "firstName": newFirstName, "lastName": newLastName,
             "bio": newBio, "location": newLocation, "dob": newBirthdate, "email": newEmail};
-        dispatch(updateUserThunk(username, userUpdates));
+        dispatch(updateUserThunk(userUpdates));
+        setEdited(true);
     }
+
 
     return (
         <div className="wd-horizontal-scroll">

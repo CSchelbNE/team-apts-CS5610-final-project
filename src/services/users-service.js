@@ -36,8 +36,7 @@ export const findUserByUsername = async(username) => {
     return response.data;
 }
 
-export const updateUser = async(username, userUpdates) => {
-    console.log("updateUser", userUpdates);
-    const response = await axios.put(`${BASE_URL}/users/${username}`, userUpdates);
+export const updateUser = async(userUpdates) => {
+    const response = await axios.put(`${BASE_URL}/users/${userUpdates.username}`, {...userUpdates});
     return response.data;
 }

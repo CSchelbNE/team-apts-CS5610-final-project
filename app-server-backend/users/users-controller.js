@@ -41,7 +41,6 @@ const UserController = async (app) => {
     const login = async (req, res) => {
         const credentials = req.body;
         const exisitingUser = await dao.findByCredentials(credentials.username, credentials.password)
-        console.log(exisitingUser)
         if (exisitingUser) {
             req.session["currentUser"] = exisitingUser;
             currentUser = exisitingUser
@@ -61,9 +60,7 @@ const UserController = async (app) => {
 
     const findUserByUsername = async (req, res) =>{
         const username = req.params.username;
-        console.log("usere", username)
         const user = await dao.findByUsername(username)
-        console.log(user)
         if (user) {
             res.json(user);
             return;
@@ -80,6 +77,7 @@ const UserController = async (app) => {
     app.get('/users', findAllUsers);
     app.delete('/users/:uid', deleteUser);
     app.put('/users/:uid', updateUser);
+    // "http://localhost:2000/users/:uid"
 
     app.post('/register', register)
     app.post('/login', login)

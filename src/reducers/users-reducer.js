@@ -55,12 +55,11 @@ const usersReducer = createSlice({
         },
         [updateUserThunk.fulfilled]: (state, {payload}) => {
             const userNdx = state.users.findIndex((u) => u.username === payload.username);
-            console.log(payload);
-            state.users[userNdx] = {
-                ...state.users[userNdx],
-                ...payload
-            };
-            state.currentUser = state.users[userNdx];
+            const leftSlice = state.users.slice(0,userNdx);
+            const rightSlice = state.users.slice(userNdx+1);
+            state.users = [...leftSlice, payload, ...rightSlice];
+            state.currentUser = payload;
+            state.profileUser = payload;
             state.error = null;
         },
     }

@@ -11,9 +11,10 @@ const ProfileComponent = () => {
         let url_parts = uid.split("/").filter(part => part);
         uid = url_parts[url_parts.length - 1];
     }
+
     const dispatch = useDispatch();
     useEffect(() => {
-        if (uid == "profile") {
+        if (uid === "profile") {
             dispatch(findUserThunk())
         } else {
             dispatch(findUserByUsernameThunk(uid))
