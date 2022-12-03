@@ -13,7 +13,6 @@ const ProfileScreen = () => {
             <div className="col-9">
                 <ProfileComponent />
             </div>
-
         </div>
     );
 }
