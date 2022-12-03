@@ -30,7 +30,7 @@ const ProfileComponent = () => {
     }
 
     return (
-        <div className="wd-horizontal-scroll">
+        <div class="container">
             <div className="rounded-2 bg-white">
                 <h1 className="wd-text-margins pt-2">Profile</h1>
                 {/*banner image*/}
