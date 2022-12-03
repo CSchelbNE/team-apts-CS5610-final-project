@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     dob: Date,
     dateJoined: Date,
     numOfReviews: Number,
-    numOfWhishlist: Number,
+    numOfWishlist: Number,
+    requestToBeSeller: Boolean,
     type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN']}
 }, {collection: "users"})
 export default userSchema;

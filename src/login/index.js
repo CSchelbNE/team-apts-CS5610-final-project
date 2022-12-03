@@ -31,9 +31,10 @@ const Login = () => {
         }
         const dateJoined = new Date().toLocaleDateString();
         const numOfReviews = 0;
-        const numOfWhishlist = 0;
+        const numOfWishlist = 0;
         const userType = "BUYER"
-        const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWhishlist, userType};
+        const requestToBeSeller = false;
+        const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller, userType};
         dispath(registerThunk(newUser))
     }
     useEffect(() => {
