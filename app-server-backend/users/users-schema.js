@@ -13,6 +13,8 @@ const userSchema = mongoose.Schema({
     numOfReviews: Number,
     numOfWishlist: Number,
     requestToBeSeller: Boolean,
+    bannerPic: String,
+    profilePic: String,
     type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN']}
 }, {collection: "users"})
 export default userSchema;

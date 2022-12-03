@@ -44,18 +44,31 @@ const UserController = async (app) => {
         console.log(exisitingUser)
         if (exisitingUser) {
             req.session["currentUser"] = exisitingUser;
+            currentUser = exisitingUser
             res.json(exisitingUser);
             return
         }
         res.sendStatus(403);
     }
 
-    const profile = async (reqm, res) => {
+    const profile = async (req, res) => {
         if (currentUser) {
             res.json(currentUser)
             return;
         }
         res.sendStatus(403);
+    }
+
+    const findUserByUsername = async (req, res) =>{
+        const username = req.params.username;
+        console.log("usere", username)
+        const user = await dao.findByUsername(username)
+        console.log(user)
+        if (user) {
+            res.json(user);
+            return;
+        }
+        res.sendStatus(403)
     }
 
     const logout = (req, res) => {
@@ -70,7 +83,8 @@ const UserController = async (app) => {
 
     app.post('/register', register)
     app.post('/login', login)
-    app.post("/profile", profile)
+    app.get("/api/profile", profile)
+    app.get("/api/profile/:username", findUserByUsername)
     app.post("/logout", logout)
 }
 

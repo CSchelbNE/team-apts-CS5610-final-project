@@ -34,7 +34,10 @@ const Login = () => {
         const numOfWishlist = 0;
         const userType = "BUYER"
         const requestToBeSeller = false;
-        const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller, userType};
+        const bannerPic = "https://c4.wallpaperflare.com/wallpaper/276/510/467/vinyl-retro-records-wallpaper-preview.jpg";
+        const profilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+        const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller,
+            bannerPic, profilePic, userType};
         dispath(registerThunk(newUser))
     }
     useEffect(() => {

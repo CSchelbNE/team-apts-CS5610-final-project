@@ -26,9 +26,18 @@ export const logout = async(user) => {
     return response.data;
 }
 
-export const deleteUser = async(uid) => {
-    
+export const findUser = async() => {
+    const response = await axios.get(`${BASE_URL}/api/profile`);
+    return response.data;
 }
-export const updateUser = async(uid, userUpdates) => {
-    
+
+export const findUserByUsername = async(username) => {
+    const response = await axios.get(`${BASE_URL}/api/profile/${username}`);
+    return response.data;
+}
+
+export const updateUser = async(username, userUpdates) => {
+    console.log("updateUser", userUpdates);
+    const response = await axios.put(`${BASE_URL}/users/${username}`, userUpdates);
+    return response.data;
 }
