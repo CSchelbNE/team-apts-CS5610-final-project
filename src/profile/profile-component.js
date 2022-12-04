@@ -1,9 +1,8 @@
-import React, {useEffect, useState, useLayoutEffect} from "react";
+import React, { useEffect } from "react";
 import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
-import useComponentWillMount from "component-will-mount-hook/es6/useComponentWillMount";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
