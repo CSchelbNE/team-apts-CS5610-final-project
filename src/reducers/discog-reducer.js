@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getArtistsThunk} from "../services/discogs-thunk";
+import {getAlbumsThunk, getArtistsThunk} from "../services/discogs-thunk";
 
 const initialState = {
     discogsQuery: [],
+    discogsAlbumQuery: [],
     loading: false
 }
 
@@ -26,6 +27,13 @@ const discogsSlice = createSlice({
             (state) => {
                 state.loading = false
             },
+        [getAlbumsThunk.fulfilled]:
+            (state, {payload}) => {
+                state.loading = false;
+                const json = JSON.parse(JSON.stringify(payload.data));
+                console.log(json)
+                state.discogsAlbumQuery = json;
+            }
     }
 });
 
