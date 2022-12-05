@@ -1,10 +1,18 @@
-import {pushListingToDB} from "./listing-dao.js";
+import {pullAllListingByID, pushListingToDB} from "./listing-dao.js";
 
-const ListingsController = (app) => {
-    app.post();
+export const ListingsController = (app) => {
+    app.post("/listings/create", createListing);
+    app.get("/listings/find-all/:id", findListingsById);
 }
 
-const createListing = async (res, req) => {
+const createListing = async (req, res) => {
     const newListing = req.body;
-    const returnedValue = await pushListingToDB(listing);
+    const returnedValue = await pushListingToDB(newListing);
+    return res.json(returnedValue);
+}
+
+const findListingsById = async (req, res) => {
+    const listingId = req.params.discogs_id;
+    const listings = await pullAllListingByID(listingId);
+    return res.json(listings);
 }

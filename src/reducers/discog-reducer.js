@@ -12,21 +12,6 @@ const discogsSlice = createSlice({
     name: "discogs",
     initialState,
     extraReducers: {
-        [getArtistsThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.discogsQuery = []
-            },
-        [getArtistsThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                const json = JSON.parse(JSON.stringify(payload.data));
-                state.discogsQuery = json;
-            },
-        [getArtistsThunk.rejected]:
-            (state) => {
-                state.loading = false
-            },
         [getAlbumsThunk.fulfilled]:
             (state, {payload}) => {
                 state.loading = false;

@@ -4,6 +4,7 @@ import express from 'express';
 import cors from "cors";
 import mongoose from "mongoose";
 import session from "express-session"
+import {ListingsController} from "./listings/listings-controller.js";
 
 const app = express();
 app.use(express.json());
@@ -31,5 +32,6 @@ app.use(session({
     cookie: {secure: false}
 }))
 searchController(app);
-UserController(app)
+UserController(app);
+ListingsController(app);
 app.listen(2000);
