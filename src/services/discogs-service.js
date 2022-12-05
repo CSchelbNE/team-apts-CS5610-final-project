@@ -13,8 +13,9 @@ export const createAlbumListing = async (listing) => {
     return await api.post(API_LISTINGS_PATH+"create", listing);
 }
 
-export const getAllListingsById = async (discogId) => {
-    return await api.post(API_LISTINGS_PATH+"find-all/"+discogId.toString());
+export const findAllListingsById = async (discogId) => {
+    console.log(API_LISTINGS_PATH+"find-all/"+discogId.toString());
+    return await api.get(API_LISTINGS_PATH+"find-all/"+discogId.toString());
 }
 
 

@@ -1,27 +1,22 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {createAlbumListingThunk, getAlbumsThunk} from "../services/discogs-thunk";
+import {
+    createAlbumListingThunk,
+    findAllListingsThunk,
+    getAlbumsThunk,
+} from "../services/discogs-thunk";
 import {Card, Button} from "react-bootstrap";
 import {uuid4} from "uuid4"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
-  //
-  // record_name: String,
-  //   record_artist: String,
-  //   record_genre: {type: Array, "default": []},
-  //   record_year: Number,
-  //   record_price: Number,
-  //   record_quantity: Number,
-  //   record_image: String,
-  //   record_vendor: Number
-
-
+import {useNavigate} from "react-router-dom";
 
 function SearchBar(isHidden) {
     const dispatch = useDispatch();
+    const navigation = useNavigate();
     const [newInput, setNewInput] = useState("");
     const [isInputChanged, setIsChanged] = useState(false);
-    const [visibility, setVisibility] = useState("d-none p-0")
+    const [visibility, setVisibility] = useState("d-none p-0");
     const createNewListing = (listing) => (event) => {
         const newListing = {
             // These values are from the discogs api
@@ -38,6 +33,11 @@ function SearchBar(isHidden) {
         }
         dispatch(createAlbumListingThunk(newListing));
     }
+
+    const findListings = (id) => (event) => {
+        navigation("/search/"+id);
+    }
+
     useEffect(() => {
         // TIMEOUT ADDED TO PREVENT DISCOGS API FROM RATE-LIMITING DUE TO TOO MANY API CALLS
         const delayedGetRequest = setTimeout(() => {
@@ -76,7 +76,7 @@ function SearchBar(isHidden) {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
                         { if (e.title.split("-").length === 2){
-                        return <Card onClick={createNewListing(e)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4">
+                        return <Card onClick={findListings(e.id)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4">
                             <img style={{height: "100px"}} src={e.thumb}/>
                                 <div className="p-0 d-flex flex-column justify-content-center"
                                      style={{height: "100px", width: "75%"}}>

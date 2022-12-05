@@ -12,7 +12,8 @@ const createListing = async (req, res) => {
 }
 
 const findListingsById = async (req, res) => {
-    const listingId = req.params.discogs_id;
+    const listingId = parseInt(req.params.id);
     const listings = await pullAllListingByID(listingId);
     return res.json(listings);
 }
+
