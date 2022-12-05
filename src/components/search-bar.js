@@ -35,6 +35,7 @@ function SearchBar(isHidden) {
     }
 
     const findListings = (id) => (event) => {
+        dispatch(findAllListingsThunk(id));
         navigation("/search/"+id);
     }
 
@@ -75,7 +76,8 @@ function SearchBar(isHidden) {
                     {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
-                        { if (e.title.split("-").length === 2){
+                        {
+                            if (e.title.split("-").length === 2){
                         return <Card onClick={findListings(e.id)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4">
                             <img style={{height: "100px"}} src={e.thumb}/>
                                 <div className="p-0 d-flex flex-column justify-content-center"

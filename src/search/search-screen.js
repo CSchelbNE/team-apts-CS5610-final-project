@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
@@ -6,18 +6,17 @@ import {findAllListingsThunk} from "../services/discogs-thunk";
 const SearchScreen = () => {
     const dispatch = useDispatch();
     const listings = useSelector(state => state.discogs.listings);
-
+    const [uri, setUri] = useState(window.location.href.split("/").slice(-1)[0]);
+    if (window.location.href.split("/").slice(-1)[0] !== uri){
+        setUri(window.location.href.split("/").slice(-1)[0]);
+    }
     useEffect( () => {
         // Find the listing based on the url
-        dispatch(findAllListingsThunk(window.location.href.split("/").slice(-1)[0]));
-    },[]);
-
-    setTimeout(() => {
-
-    }, 2000);
+        dispatch(findAllListingsThunk(uri));
+    },[uri]);
     return (
     <>
-        {!listings ?
+        {!listings.length ?
             <div>
             <div>
                 <div className="w-100">
@@ -38,7 +37,8 @@ const SearchScreen = () => {
             </div>
             <div>
                 <h1 className="bg-white">SearchScreen</h1>
-                {listings.map((e) => e.record_name)}
+                {listings.map((e) =>
+                    e.record_name+"\n")}
             </div>
         </div>
     }

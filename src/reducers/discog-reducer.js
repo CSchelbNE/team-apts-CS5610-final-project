@@ -25,7 +25,6 @@ const discogsSlice = createSlice({
         [findAllListingsThunk.fulfilled]:
             (state, {payload}) => {
                 state.listings = payload.data;
-                console.log(state.listings);
             }
     }
 });
