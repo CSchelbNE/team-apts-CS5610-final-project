@@ -31,7 +31,6 @@ const discogsSlice = createSlice({
             (state, {payload}) => {
                 state.loading = false;
                 const json = JSON.parse(JSON.stringify(payload.data));
-                console.log(json)
                 state.discogsAlbumQuery = json;
             }
     }

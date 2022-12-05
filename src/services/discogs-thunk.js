@@ -9,7 +9,16 @@ export const getArtistsThunk = createAsyncThunk(
 
 export const getAlbumsThunk = createAsyncThunk(
     "discogs/getalbums", async (album) => {
-        console.log(album)
         return await getAlbums(album);
     }
 )
+
+export const searchMongoDBForAlbumThunk = createAsyncThunk(
+    "discogs/getAlbumFromMongo", async (albumName) => {
+    }
+)
+
+export const createAlbumListingThunk = createAsyncThunk(
+    "discogs/createListingThunk", async (albumName) => {
+    }
+);

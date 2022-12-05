@@ -68,7 +68,7 @@
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   .wd-search-bar-absolute-pos {
     position: absolute;
-    right: 22%;
+    right: 18%;
     top: -8px;
     z-index: 9999;
     width: 32%;
@@ -79,7 +79,7 @@
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
   .wd-search-bar-absolute-pos {
     position: absolute;
-    right: 22%;
+    right: 16%;
     top: -8px;
     z-index: 9999;
     width: 32%;
@@ -90,7 +90,7 @@
 @media screen and (min-width: 1400px) {
   .wd-search-bar-absolute-pos {
     position: absolute;
-    right: 15%;
+    right: 13%;
     top: -8px;
     z-index: 9999;
     width: 32%;

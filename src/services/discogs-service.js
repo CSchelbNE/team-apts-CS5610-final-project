@@ -15,5 +15,9 @@ export const getAlbums = async (album) => {
     return await axios.get(API_ALBUM_PATH+album);
 }
 
+export const createAlbumListing = async (listing) => {
+    return await axios.post()
+}
+
 
 
