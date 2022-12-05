@@ -1,11 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findAllUsersThunk, loginThunk, logoutThunk, registerThunk } from "../services/users-thunks";
+import {
+    findAllUsersThunk,
+    findUserThunk,
+    loginThunk,
+    logoutThunk,
+    registerThunk,
+    updateUserThunk,
+    findUserByUsernameThunk
+} from "../services/users-thunks";
 
 const usersReducer = createSlice({
     name: 'users',
     initialState: {
         loading: false,
         users:[],
+        profileUser: null,
         currentUser: null,
         error: null
     },
@@ -17,6 +26,12 @@ const usersReducer = createSlice({
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, action) => {
              state.users = action.payload;
+        },
+        [findUserThunk.fulfilled]: (state, {payload}) => {
+            state.profileUser = payload;
+        },
+        [findUserByUsernameThunk.fulfilled]: (state, {payload}) => {
+            state.profileUser = payload;
         },
         [registerThunk.fulfilled]: (state, {payload}) => {
             state.currentUser = payload;
@@ -36,6 +51,15 @@ const usersReducer = createSlice({
         },
         [logoutThunk.fulfilled]: (state, {payload}) => {
             state.currentUser = null;
+            state.error = null;
+        },
+        [updateUserThunk.fulfilled]: (state, {payload}) => {
+            const userNdx = state.users.findIndex((u) => u.username === payload.username);
+            const leftSlice = state.users.slice(0,userNdx);
+            const rightSlice = state.users.slice(userNdx+1);
+            state.users = [...leftSlice, payload, ...rightSlice];
+            state.currentUser = payload;
+            state.profileUser = payload;
             state.error = null;
         },
     }
