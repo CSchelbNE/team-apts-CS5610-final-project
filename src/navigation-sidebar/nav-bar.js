@@ -15,7 +15,7 @@ const NavigationSidebar = () => {
     const paths = pathname.split('/');
     const active = paths[1];
     return(
-        <div>
+        <div className="position-relative">
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>
@@ -37,7 +37,9 @@ const NavigationSidebar = () => {
                 <FaSignOutAlt/>
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
-
+            <div className="wd-search-bar-absolute-pos">
+                <SearchBar/>
+            </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#">Logo</Navbar.Brand>
@@ -47,10 +49,9 @@ const NavigationSidebar = () => {
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="#">Profile</Nav.Link>
                     </Nav>
+
                     <Nav>
-                        <Form className="d-flex">
-                            <SearchBar/>
-                        </Form>
+
                         <NavDropdown title="Profile" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#">Login</NavDropdown.Item>
                             <NavDropdown.Item href="#">Profile</NavDropdown.Item>
