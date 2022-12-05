@@ -53,7 +53,7 @@ const ProfileComponent = () => {
                                  className="w-100 wd-banner-format"/>
                         </div>
                         {/*edit profile button*/}
-                        { currentUser && profileUser._id === currentUser._id &&
+                        { currentUser && profileUser.username === currentUser.username &&
                             <Link to="/edit-profile" className="float-end me-2 wd-ep-button-format rounded-pill">
                                 <button id="edit-profile-btn" className="btn text-white">Edit profile</button>
                             </Link>}
@@ -70,7 +70,7 @@ const ProfileComponent = () => {
                                     <div className="text-secondary">{profileUser.type}</div>
                                 </div>
                                 <div className="text-black mt-2">{profileUser.bio}</div>
-                                { currentUser && profileUser._id === currentUser._id &&
+                                { currentUser && profileUser.username === currentUser.username &&
                                     <div className="row mt-2">
                                         <div>Email:</div>
                                         <div>{profileUser.email}</div>
@@ -82,7 +82,7 @@ const ProfileComponent = () => {
                                              className="wd-map-vector-icon-format my-auto"/>&nbsp;
                                         <span className="">{profileUser.location}</span>
                                     </div>
-                                    { currentUser && profileUser._id === currentUser._id &&
+                                    { currentUser && profileUser.username === currentUser.username &&
                                         <div className="d-inline-block text-secondary w-auto">
                                             <img src={require("../images/birthday-cake.png")}
                                                  className="wd-cake-icon-format my-auto"></img>&nbsp;
