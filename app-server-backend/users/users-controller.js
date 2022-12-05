@@ -9,7 +9,7 @@ const UserController = async (app) => {
         const actualUser = await dao.createUser(user);
         res.json(actualUser);
     }
-    
+
     const findAllUsers = async (req , res) => {
         const users = await dao.findAllUsers()
         res.json(users);
@@ -41,21 +41,31 @@ const UserController = async (app) => {
     const login = async (req, res) => {
         const credentials = req.body;
         const exisitingUser = await dao.findByCredentials(credentials.username, credentials.password)
-        console.log(exisitingUser)
         if (exisitingUser) {
             req.session["currentUser"] = exisitingUser;
+            currentUser = exisitingUser
             res.json(exisitingUser);
             return
         }
         res.sendStatus(403);
     }
 
-    const profile = async (reqm, res) => {
+    const profile = async (req, res) => {
         if (currentUser) {
             res.json(currentUser)
             return;
         }
         res.sendStatus(403);
+    }
+
+    const findUserByUsername = async (req, res) =>{
+        const username = req.params.username;
+        const user = await dao.findByUsername(username)
+        if (user) {
+            res.json(user);
+            return;
+        }
+        res.sendStatus(403)
     }
 
     const logout = (req, res) => {
@@ -67,10 +77,12 @@ const UserController = async (app) => {
     app.get('/users', findAllUsers);
     app.delete('/users/:uid', deleteUser);
     app.put('/users/:uid', updateUser);
+    // "http://localhost:2000/users/:uid"
 
     app.post('/register', register)
     app.post('/login', login)
-    app.post("/profile", profile)
+    app.get("/api/profile", profile)
+    app.get("/api/profile/:username", findUserByUsername)
     app.post("/logout", logout)
 }
 

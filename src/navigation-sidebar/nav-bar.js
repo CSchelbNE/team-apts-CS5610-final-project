@@ -47,14 +47,14 @@ const NavigationSidebar = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="#">Profile</Nav.Link>
+                        <Nav.Link href="/profile">Profile</Nav.Link>
                     </Nav>
                     <Nav>
                         <NavDropdown title="Profile" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#">Login</NavDropdown.Item>
-                            <NavDropdown.Item href="#">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#">Logout</NavDropdown.Item>
+                            <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     </Navbar.Collapse>

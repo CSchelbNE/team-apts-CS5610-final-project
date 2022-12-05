@@ -6,7 +6,9 @@ const ProfileScreen = () => {
     return (
         <div className="">
                 <NavigationSidebar/>
+            <div className="container">
                 <ProfileComponent />
+            </div>
         </div>
     );
 }
