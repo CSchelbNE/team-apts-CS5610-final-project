@@ -76,6 +76,7 @@ const EditProfileComponent = () => {
     }
 
     return (
+        <div className="container mt-2">
         <div className="wd-horizontal-scroll">
             <div className="border wd-border-light-gray rounded-2">
                 <div className="row">
@@ -148,6 +149,7 @@ const EditProfileComponent = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }
