@@ -11,7 +11,9 @@ const EditProfileScreen = () => {
                 {/*  </div> */}
             {/*  </div> */}
             {/*  <div className=""> */}
+            <div className="container">
                     <EditProfileComponent />
+            </div>
             {/*  </div> */}
 
         </div>
