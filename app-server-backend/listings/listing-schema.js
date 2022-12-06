@@ -11,5 +11,4 @@ const listingSchema = mongoose.Schema({
     record_image: String,
     record_vendor: String
 }, {collection: "records"})
-
 export default listingSchema;

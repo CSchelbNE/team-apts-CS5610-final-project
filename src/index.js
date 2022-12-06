@@ -8,11 +8,12 @@ import {configureStore} from "@reduxjs/toolkit";
 import discogsReducer from "./reducers/discog-reducer";
 import usersReducer from "./reducers/users-reducer";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import reviewsReducer from "./reducers/reviews-reducer";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = configureStore({
-    reducer: {discogs: discogsReducer, users: usersReducer}
+    reducer: {discogs: discogsReducer, users: usersReducer, reviews: reviewsReducer}
 });
 
 root.render(
