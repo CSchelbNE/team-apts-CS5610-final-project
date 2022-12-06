@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import session from "express-session"
 import {ListingsController} from "./listings/listings-controller.js";
 import {ReviewController} from "./reviews/review-controller.js";
+import {WishlistController} from "./wishlist/wishlist-controller.js";
 
 const app = express();
 app.use(express.json());
@@ -36,4 +37,5 @@ searchController(app);
 UserController(app);
 ListingsController(app);
 ReviewController(app);
+WishlistController(app);
 app.listen(2000);
