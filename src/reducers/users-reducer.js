@@ -29,6 +29,9 @@ const usersReducer = createSlice({
         },
         [findUserThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;
+            state.currentUser = payload;
+            console.log("profileUser info Thunk.fulfilled");
+            console.log(payload);
         },
         [findUserByUsernameThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;
@@ -43,6 +46,8 @@ const usersReducer = createSlice({
         },
         [loginThunk.fulfilled]: (state, {payload}) => {
             state.currentUser = payload;
+            console.log("loginThunk.fulfilled currentUser");
+            console.log(payload);
             state.error = null;
         },
         [loginThunk.rejected]: (state) => {

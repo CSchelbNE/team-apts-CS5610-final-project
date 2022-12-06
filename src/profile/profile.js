@@ -6,16 +6,11 @@ import {useSelector} from "react-redux";
 const ProfileScreen = () => {
 
     return (
-        <div className="row mt-3">
-            <div className="col-3">
-                <div className="w-100">
-                    <NavigationSidebar/>
-                </div>
-            </div>
-            <div className="col-9">
+        <div className="">
+                <NavigationSidebar/>
+            <div className="container">
                 <ProfileComponent />
             </div>
-
         </div>
     );
 }

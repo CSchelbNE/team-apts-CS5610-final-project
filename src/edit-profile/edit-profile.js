@@ -4,15 +4,17 @@ import EditProfileComponent from "./edit-profile-component";
 
 const EditProfileScreen = () => {
     return (
-        <div className="row mt-3">
-            <div className="col-3">
-                <div className="w-100">
+        <div className="">
+            {/*  <div className="col-3"> */}
+                {/* <div className="w-100"> */}
                     <NavigationSidebar/>
-                </div>
+                {/*  </div> */}
+            {/*  </div> */}
+            {/*  <div className=""> */}
+            <div className="container">
+                    <EditProfileComponent />
             </div>
-            <div className="col-9">
-                <EditProfileComponent />
-            </div>
+            {/*  </div> */}
 
         </div>
     );

@@ -7,10 +7,10 @@ import cameraImage from "../images/camera_icon_1.jpg";
 import {updateUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
 
 const EditProfileComponent = () => {
-        // bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png"
-        // profilePic: "https://user-images.githubusercontent.com/53150782/204596506-f2e2dd98-58d2-4b7d-a1ea-e25467dcf261.PNG"
-        // banner default https://c4.wallpaperflare.com/wallpaper/276/510/467/vinyl-retro-records-wallpaper-preview.jpg
-        // default profile pic: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
+    // bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png"
+    // profilePic: "https://user-images.githubusercontent.com/53150782/204596506-f2e2dd98-58d2-4b7d-a1ea-e25467dcf261.PNG"
+    // banner default https://c4.wallpaperflare.com/wallpaper/276/510/467/vinyl-retro-records-wallpaper-preview.jpg
+    // default profile pic: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
     const {currentUser} = useSelector(state => state.users);
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState({firstName: `${currentUser.firstName}`});
@@ -117,9 +117,9 @@ const EditProfileComponent = () => {
                     </Link>
                     <h4 className="d-inline-block my-auto w-auto">Edit profile</h4>
                     <div className="col my-auto">
-                            <Link className="wd-orange-button rounded-pill d-inline-block float-end my-auto me-2 mt-2 mb-2" to="/profile">
-                                <button id="save-prof-1" className="btn text-white" onClick={saveProfile}>Save Profile</button>
-                            </Link>
+                        <Link className="wd-orange-button rounded-pill d-inline-block float-end my-auto me-2 mt-2 mb-2" to="/profile">
+                            <button id="save-prof-1" className="btn text-white" onClick={saveProfile}>Save Profile</button>
+                        </Link>
                     </div>
                 </div>
                 {/*banner and avatar*/}
@@ -132,9 +132,9 @@ const EditProfileComponent = () => {
                 <div className="position-relative">
                     <div className="position-absolute wd-profile-avatar-margins">
                         <img src={profilePic.profilePic} className="wd-profile-avatar-format rounded-circle"/>
-                            <div className="position-absolute wd-center-avatar">
-                                <img src={cameraImage} className = "wd-camera-img-format rounded-circle"/>
-                            </div>
+                        <div className="position-absolute wd-center-avatar">
+                            <img src={cameraImage} className = "wd-camera-img-format rounded-circle"/>
+                        </div>
                     </div>
                 </div>
                 {/*textareas*/}

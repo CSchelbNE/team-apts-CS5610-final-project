@@ -1,7 +1,8 @@
 import axios from "axios";
 const REQUEST_KEY = "&key=ycxPkCFuLfXARRPLUKtt&secret=SIroYcDpGSwKtmTfsKnOfhPPLzPtlson"
 const DISCOGS_DATABSE_API = "https://api.discogs.com/database/search"
-const VALID_QUERY_VALUES = ["type","title","release_title","credit","artist","anv","label","genre","style","country","year","format",
+const VALID_QUERY_VALUES = ["type","title","release_title","credit","artist","anv","label","genre",
+                            "style","country","year","format",
                             "catno","barcode","track","submitter","contributor", "per_page", "page"]
 const QUERY_HASHSET = new Set(VALID_QUERY_VALUES)
 
@@ -9,6 +10,7 @@ const QUERY_HASHSET = new Set(VALID_QUERY_VALUES)
 const searchController = (app) => {
     app.get("/api/search/:SearchParam",searchDB);
     app.get("/api/search/artist/:artist", searchForArtist)
+    app.get("/api/search/album/:album", searchForAlbum)
 }
 
 const filterDiscogsApiCall = async (qString) =>{
@@ -28,6 +30,21 @@ const filterDiscogsApiCall = async (qString) =>{
 }
 
 
+const filterAlbums = async (qString) =>{
+    return await axios.get(
+        qString + REQUEST_KEY).then(res => {
+        const uniqueTitleFilter = new Set();
+        return res.data.results.filter(instance => {
+            const title = instance.title.split("-")[0]
+            if (!uniqueTitleFilter.has(title)) {
+                uniqueTitleFilter.add(title)
+                return instance
+            }
+        });
+    })
+}
+
+
 const searchForArtist = async (req, res) => {
     let qString = DISCOGS_DATABSE_API + "?q=" + req.params["artist"]+"&artist="+req.params["artist"];
     console.log(qString)
@@ -35,6 +52,12 @@ const searchForArtist = async (req, res) => {
     res.json(result);
 }
 
+
+const searchForAlbum = async (req, res) => {
+    let qString = DISCOGS_DATABSE_API + "?q=" + req.params["album"]+"&release_title="+req.params["album"];
+    const result = await filterAlbums(qString);
+    res.json(result)
+}
 
 
 

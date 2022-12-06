@@ -9,7 +9,7 @@ const UserController = async (app) => {
         const actualUser = await dao.createUser(user);
         res.json(actualUser);
     }
-    
+
     const findAllUsers = async (req , res) => {
         const users = await dao.findAllUsers()
         res.json(users);
@@ -33,7 +33,7 @@ const UserController = async (app) => {
             res.sendStatus(403);
             return
         }
-        const currentUser = await dao.createUser(user)
+        currentUser = await dao.createUser(user)
         req.session['currentUser'] = currentUser
         res.json(currentUser)
     }
