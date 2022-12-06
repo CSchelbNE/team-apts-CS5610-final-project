@@ -9,7 +9,7 @@ const listingSchema = mongoose.Schema({
     record_price: Number,
     record_quantity: Number,
     record_image: String,
-    record_vendor: Number
+    record_vendor: String
 }, {collection: "records"})
 
 export default listingSchema;

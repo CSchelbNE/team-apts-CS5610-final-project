@@ -1,11 +1,12 @@
 import {Modal, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import SearchBarCreate from "../components/search-bar-create";
+import SearchBarCreate from "./search-bar-create";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createAlbumListingThunk} from "../services/discogs-thunk";
 
 const CreateListingModal = (props) => {
+    const currentUser = useSelector(state => state.users.currentUser);
     const dispatch = useDispatch();
     const [artist, setArtist] = useState("");
     const [album, setAlbum] = useState("");
@@ -28,7 +29,7 @@ const CreateListingModal = (props) => {
             record_price: price,
             record_quantity: quantity,
             // NEED VENDOR ID PASSED IN
-            record_vendor: 5
+            "record_vendor" : currentUser.username
         }
         dispatch(createAlbumListingThunk(newListing));
         setAlbum("");
@@ -48,7 +49,7 @@ const CreateListingModal = (props) => {
         setArtist(data.record_artist);
         setGenre(data.record_genre);
         setYear(data.record_year);
-        setId(data.id);
+        setId(data.discogs_id);
         setThumbnail(data.record_image);
     }
     return (
