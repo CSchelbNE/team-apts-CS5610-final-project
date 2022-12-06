@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {getAlbumsThunk, getArtistsThunk} from "../services/discogs-thunk";
+import {findAllListingsThunk, getAlbumsThunk} from "../services/discogs-thunk";
 
 const initialState = {
     discogsQuery: [],
     discogsAlbumQuery: [],
+    listings: [],
     loading: false
 }
 
@@ -11,28 +12,19 @@ const initialState = {
 const discogsSlice = createSlice({
     name: "discogs",
     initialState,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+    }),
     extraReducers: {
-        [getArtistsThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.discogsQuery = []
-            },
-        [getArtistsThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                const json = JSON.parse(JSON.stringify(payload.data));
-                state.discogsQuery = json;
-            },
-        [getArtistsThunk.rejected]:
-            (state) => {
-                state.loading = false
-            },
         [getAlbumsThunk.fulfilled]:
             (state, {payload}) => {
                 state.loading = false;
                 const json = JSON.parse(JSON.stringify(payload.data));
-                console.log(json)
                 state.discogsAlbumQuery = json;
+            },
+        [findAllListingsThunk.fulfilled]:
+            (state, {payload}) => {
+                state.listings = payload.data;
             }
     }
 });

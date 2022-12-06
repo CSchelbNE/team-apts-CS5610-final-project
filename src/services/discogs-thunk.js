@@ -1,15 +1,21 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAlbums, getArtist} from "./discogs-service";
+import {createAlbumListing, getAlbums, findAllListingsById} from "./discogs-service";
 
-
-export const getArtistsThunk = createAsyncThunk(
-    "discogs/get", async (artist) => {
-        return await getArtist(artist);
-    });
 
 export const getAlbumsThunk = createAsyncThunk(
     "discogs/getalbums", async (album) => {
-        console.log(album)
         return await getAlbums(album);
     }
 )
+
+export const findAllListingsThunk = createAsyncThunk(
+    "discogs/getAlbumFromMongo", async (discogsId) => {
+        return await findAllListingsById(discogsId);
+    }
+)
+
+export const createAlbumListingThunk = createAsyncThunk(
+    "discogs/createListingThunk", async (listing) => {
+        return await createAlbumListing(listing);
+    }
+);
