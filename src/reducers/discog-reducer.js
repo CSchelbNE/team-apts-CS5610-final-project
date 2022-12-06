@@ -19,12 +19,12 @@ const discogsSlice = createSlice({
         [getAlbumsThunk.fulfilled]:
             (state, {payload}) => {
                 state.loading = false;
-                const json = JSON.parse(JSON.stringify(payload.data));
+                const json = JSON.parse(JSON.stringify(payload));
                 state.discogsAlbumQuery = json;
             },
         [findAllListingsThunk.fulfilled]:
             (state, {payload}) => {
-                state.listings = payload.data;
+                state.listings = payload;
             }
     }
 });

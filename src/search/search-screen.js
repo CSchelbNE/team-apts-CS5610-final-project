@@ -3,8 +3,7 @@ import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
 import SearchItem from "./search-item";
-import {createReviewThunk, getAllReviewsByAlbumIdThunk, getAllReviewsByUsernameThunk} from "../services/review-thunk";
-import {getWishlistByUsernameThunk} from "../services/wishlist-thunk";
+
 
 const SearchScreen = () => {
     const dispatch = useDispatch();
@@ -14,9 +13,7 @@ const SearchScreen = () => {
         setUri(window.location.href.split("/").slice(-1)[0]);
     }
     useEffect( () => {
-        // Find the listing based on the url
-        dispatch(findAllListingsThunk(uri));
-        dispatch(getWishlistByUsernameThunk("Chris"))
+        // LOOK AT PAST COMMIT FOR THIS DISPATCH
     },[uri]);
     return (
     <>

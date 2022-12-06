@@ -29,8 +29,6 @@ const getWishlistByUsername = async (req, res) => {
 const deleteItemFromWishlist = async (req, res) => {
     const albumId = req.query.id;
     const username = req.query.username;
-    console.log(albumId);
-    console.log(username);
     const result = await dao.deleteItemFromWishlist(albumId, username);
     res.json(result);
 }

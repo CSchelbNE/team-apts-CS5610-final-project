@@ -15,15 +15,17 @@ const reviewSlice = createSlice({
     extraReducers: {
         [getAllReviewsByUsernameThunk.fulfilled]:
             (state, {payload}) => {
-                state.reviews = payload.data;
+                state.reviews = payload;
 
             },
         [getAllReviewsByAlbumIdThunk.fulfilled]:
             (state, {payload}) => {
-                state.reviews = payload.data;
+                state.reviews = payload;
             },
         [createReviewThunk.fulfilled] :
         (state, {payload}) => {
+            state.reviews.push(payload);
+            console.log(state.reviews);
         }
     }
 });

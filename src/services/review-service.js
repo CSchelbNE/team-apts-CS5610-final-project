@@ -5,15 +5,18 @@ const api = axios.create({withCredentials: true});
 
 // Expects a fully formed review document object
 export const createReview = async (review) => {
-    return await api.post(API_REVIEWS_PATH+"create", review);
+    const result = await api.post(API_REVIEWS_PATH+"create", review);
+    return result.data;
 }
 
 // Expects currentUser.username
 export const getAllReviewsByUsername = async (username) => {
-    return await api.get(API_REVIEWS_PATH+"get-all/"+username.toString());
+    const result = await api.get(API_REVIEWS_PATH+"get-all/"+username.toString());
+    return result.data;
 }
 
 // Expects the discogs_id field
 export const getAllReviewsByAlbumId = async (albumId) => {
-    return await api.get(API_REVIEWS_PATH+"album/get-all/"+albumId.toString());
+    const result = await api.get(API_REVIEWS_PATH+"album/get-all/"+albumId.toString());
+    return result.data;
 }

@@ -18,5 +18,6 @@ export const getWishlistByUsername = (username) => {
 export const deleteItemFromWishlist = async (albumId, username) => {
     const previousList = await wishlistModel.findOne({username: username});
     const result = {username: previousList.username, wishlist_records: previousList.wishlist_records.filter(e => e.discogs_id !== parseInt(albumId))};
-    return wishlistModel.updateOne({username: username}, {$set: result});
+    await wishlistModel.updateOne({username: username}, {$set: result});
+    return result;
 }

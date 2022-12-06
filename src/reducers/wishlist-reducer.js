@@ -21,24 +21,28 @@ const wishlistSlice = createSlice({
     extraReducers: {
         [createEmptyWishlistThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
                 state = payload;
+                console.log(state);
+
+
             },
         [postToWishlistThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
                 state = payload;
+                console.log(state);
 
             },
         [getWishlistByUsernameThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
                 state = payload;
+
+                console.log(state);
             }
             ,
         [deleteItemFromWishlistThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
+                state = payload;
+                console.log(state);
             }
     }
 });
