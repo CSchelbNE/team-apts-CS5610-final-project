@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import session from "express-session"
 import {ListingsController} from "./listings/listings-controller.js";
+import {ReviewController} from "./reviews/review-controller.js";
 
 const app = express();
 app.use(express.json());
@@ -34,4 +35,5 @@ app.use(session({
 searchController(app);
 UserController(app);
 ListingsController(app);
+ReviewController(app);
 app.listen(2000);

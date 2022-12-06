@@ -8,7 +8,7 @@ export const ListingsController = (app) => {
 const createListing = async (req, res) => {
     const newListing = req.body;
     const returnedValue = await pushListingToDB(newListing);
-    return res.json(returnedValue);
+    return res.json(returnedValue)
 }
 
 const findListingsById = async (req, res) => {
