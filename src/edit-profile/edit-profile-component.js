@@ -21,6 +21,7 @@ const EditProfileComponent = () => {
     const [email, setEmail] = useState({email: `${currentUser.email}`});
     const [bannerPic, setBannerPic] = useState({bannerPic: `${currentUser.bannerPic}`});
     const [profilePic, setProfilePic] = useState({profilePic: `${currentUser.profilePic}`});
+    const [requestToBeSeller, setRequestToBeSeller] = useState({requestToBeSeller: currentUser.requestToBeSeller});
     const [edited, setEdited] = useState(false);
 
 
@@ -81,14 +82,24 @@ const EditProfileComponent = () => {
         };
         setEmail(newEmail);
     }
-    const switchChangeHandler = (event) => {
+    const switchChangeHandler = async (event) => {
+        console.log("switchChangeHandler");
         const label1 = document.getElementById("switch-flag-label");
+        // const button1 = document.getElementById("switch-flag");
         if (event.target.checked) {
-            label1.innerHTML = "Vendor Status Requested";
+            console.log("target.checked");
+            label1.innerHTML = "Seller Status Requested";
+            await setRequestToBeSeller({requestToBeSeller: false});
+            await console.log(requestToBeSeller.requestToBeSeller);
+
+        } else {
+            console.log("target.not-checked");
+            label1.innerHTML = "Request \"Seller\" status";
+            await setRequestToBeSeller({requestToBeSeller: true});
+            await console.log(requestToBeSeller.requestToBeSeller);
+
         }
-        else {
-            label1.innerHTML = "Request \"Vendor\" status";
-        }
+
     }
 
     const saveProfile = () => {
@@ -101,8 +112,11 @@ const EditProfileComponent = () => {
         const newLocation = location.location.trim();
         const newBirthdate = birthdate.birthdate;
         const newEmail = email.email.trim();
+        const newRequestToBeSeller = requestToBeSeller.requestToBeSeller;
+        console.log("saveProfile");
+        console.log(newRequestToBeSeller);
         const userUpdates = {"username": username, "bannerPic": newBannerPic, "profilePic": newProfilePic, "firstName": newFirstName, "lastName": newLastName,
-            "bio": newBio, "location": newLocation, "dob": newBirthdate, "email": newEmail};
+            "bio": newBio, "location": newLocation, "dob": newBirthdate, "email": newEmail, "requestToBeSeller": newRequestToBeSeller};
         dispatch(updateUserThunk(userUpdates));
         setEdited(true);
     }
@@ -178,9 +192,9 @@ const EditProfileComponent = () => {
                     <div className="form-check form-switch ms-2 mt-3">
                         <input className="form-check-input"
                                type="checkbox"
-                               id="switch-flag" onClick={switchChangeHandler}/>
+                               id="switch-flag" onChange={switchChangeHandler}  defaultChecked={requestToBeSeller.requestToBeSeller}/>
                         <label className="form-check-label" id="switch-flag-label"
-                               htmlFor="switch-flag">Request "Vendor" status</label>
+                               htmlFor="switch-flag">{requestToBeSeller.requestToBeSeller ? 'Seller Status Requested':'Request "Seller" Status'}</label>
                     </div>
                     <div className="mt-3 mb-3 text-center">
                         <Link className="wd-orange-button rounded-pill d-inline-block" to="/profile">
