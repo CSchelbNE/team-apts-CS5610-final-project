@@ -82,21 +82,23 @@ const EditProfileComponent = () => {
         };
         setEmail(newEmail);
     }
-    const switchChangeHandler = async (event) => {
+    const switchChangeHandler =  (event) => {
         console.log("switchChangeHandler");
         const label1 = document.getElementById("switch-flag-label");
         // const button1 = document.getElementById("switch-flag");
         if (event.target.checked) {
             console.log("target.checked");
+            console.log(event.target.checked);
             label1.innerHTML = "Seller Status Requested";
-            await setRequestToBeSeller({requestToBeSeller: false});
-            await console.log(requestToBeSeller.requestToBeSeller);
+            setRequestToBeSeller({requestToBeSeller: true});
+            console.log(requestToBeSeller.requestToBeSeller);
 
         } else {
             console.log("target.not-checked");
+            console.log(event.target.checked);
             label1.innerHTML = "Request \"Seller\" status";
-            await setRequestToBeSeller({requestToBeSeller: true});
-            await console.log(requestToBeSeller.requestToBeSeller);
+            setRequestToBeSeller({requestToBeSeller: false});
+            console.log(requestToBeSeller.requestToBeSeller);
 
         }
 
