@@ -38,7 +38,7 @@ const NavigationSidebar = () => {
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
             <div className="wd-search-bar-absolute-pos">
-                <SearchBar/>
+                <SearchBar noBlur={false}/>
             </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>

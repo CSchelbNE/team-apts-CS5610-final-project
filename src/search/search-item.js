@@ -1,8 +1,7 @@
 const SearchItem = ({listing}) => {
-
     return (
-        <div>
-
+        <div style={{height: "100px"}} className="border-1">
+            {listing.record_name +" : " + listing.record_artist}
         </div>
     )
 };

@@ -10,6 +10,15 @@
   border-radius: 0;
 }
 
+
+.wd-create-search-div {
+  overflow-y: scroll;
+  height:  35vh;
+  max-height: 100%;
+  display: block;
+  border-radius: 0;
+}
+
 .wd-search-bar-input:focus {
   outline: none;
 }
