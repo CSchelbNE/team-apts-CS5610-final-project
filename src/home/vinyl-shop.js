@@ -14,7 +14,7 @@ function VinylShop() {
                 <Route path="/" element={<Navigate to="home"/>}/>
                 <Route path="/home" element={<HomeScreen/>}/>
                 <Route path="/search" element={<SearchScreen/>}/>
-                <Route path="/profile" element={<ProfileScreen/>}/>
+                <Route path="/profile/*" element={<ProfileScreen/>}/>
                 <Route path="/edit-profile" element={<EditProfileScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
                 <Route path="/logout" element={<LogoutScreen/>}/>
