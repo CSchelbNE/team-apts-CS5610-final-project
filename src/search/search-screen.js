@@ -3,6 +3,7 @@ import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
 import SearchItem from "./search-item";
+import {postToWishlistThunk} from "../services/wishlist-thunk";
 
 
 const SearchScreen = () => {

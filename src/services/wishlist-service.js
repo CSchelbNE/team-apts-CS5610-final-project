@@ -16,8 +16,7 @@ export const getWishlistByUsername = async (username) => {
     return result.data;
 }
 
-// Example query
-//
+
 export const deleteItemFromWishlist = async ({username, albumId}) => {
     const result = await axios.delete(API_REVIEWS_PATH+"delete?id="+albumId.toString()+"&username="+username.toString());
     return {...result.data, discogs_id: albumId};

@@ -2,7 +2,8 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {createEmptyWishlist, postToWishlist, deleteItemFromWishlist, getWishlistByUsername} from "./wishlist-service";
 
 export const createEmptyWishlistThunk = createAsyncThunk(
-    "/wishlist/createEmptyWishlist", async (username) => await createEmptyWishlist(username)
+    "/wishlist/createEmptyWishlist", async (username) =>
+        await createEmptyWishlist(username)
 );
 
 // Example query
@@ -17,10 +18,12 @@ export const createEmptyWishlistThunk = createAsyncThunk(
 //             "record_vendor": "Vendor2"
 //         }}));
 export const postToWishlistThunk = createAsyncThunk(
-    "/wishlist/postToWishlist", async ({username, album}) => await postToWishlist({username, album})
+    "/wishlist/postToWishlist", async ({username, album}) =>
+        await postToWishlist({username, album})
 )
 
 
+// Example query: {username: "Chris", albumId: 2}
 export const deleteItemFromWishlistThunk = createAsyncThunk(
     "/wishlist/delete", async ({username, albumId}) => await deleteItemFromWishlist({username, albumId})
 )

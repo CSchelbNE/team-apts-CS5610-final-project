@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const wishlistSchema = mongoose.Schema({
-    username: String,
+    username: {type: String, required: true, unique: true},
     wishlist_records: {type: Array, "default": []}
 }, {collection: "wishlists"})
 

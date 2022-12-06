@@ -6,6 +6,7 @@ const UserController = async (app) => {
 
     const createUser = async (req, res) => {
         const user = req.body;
+        console.log(user);
         const actualUser = await dao.createUser(user);
         res.json(actualUser);
     }

@@ -15,6 +15,6 @@ const userSchema = mongoose.Schema({
     requestToBeSeller: Boolean,
     bannerPic: String,
     profilePic: String,
-    type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN']}
+    type: {type: String, enum: ['BUYER', 'SELLER', 'ADMIN'], default: "BUYER"}
 }, {collection: "users"})
 export default userSchema;

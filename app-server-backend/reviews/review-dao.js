@@ -1,4 +1,5 @@
 import reviewModel from "./review-model.js";
+
 export const pushReviewToDB = (review) => {
     return reviewModel.create(review);
 }
