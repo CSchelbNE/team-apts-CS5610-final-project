@@ -29,6 +29,7 @@ const usersReducer = createSlice({
         },
         [findUserThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;
+            state.currentUser = payload;
             console.log("profileUser info Thunk.fulfilled");
             console.log(payload);
         },
