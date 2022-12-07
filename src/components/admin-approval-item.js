@@ -24,7 +24,7 @@ const AdminApprovalItem = ({approval}) => {
 
             </div>
             <div className="p-0 d-flex flex-row justify-content-center align-content-center">
-                <FontAwesomeIcon onClick={approve} className="ms-3 me-3 wd-font-awesome-hover" fontSize="2.75rem" icon={faCheckSquare} color="darkgreen"/>
+                <FontAwesomeIcon id="green" onClick={approve} className="ms-3 me-3 wd-font-awesome-hover" fontSize="2.75rem" icon={faCheckSquare} color="darkgreen"/>
                 <FontAwesomeIcon onClick={deny} className="wd-font-awesome-hover" fontSize="2.75rem" icon={faXmarkSquare} color="red"/>
             </div>
         </div>

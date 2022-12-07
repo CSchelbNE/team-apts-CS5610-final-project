@@ -54,8 +54,8 @@ const CreateListingModal = (props) => {
                         <span>{"Showing Approvals "+(lowerIndex+1)+" to "+ (upperIndex)}</span>
                     </div>
                     <div className="p-0 d-flex flex-row align-items-center">
-                        <FontAwesomeIcon onClick={decrement} className="wd-font-awesome-hover me-3" fontSize="1.5rem" icon={faCircleArrowLeft}/>
-                        <FontAwesomeIcon  onClick={increment} className="wd-font-awesome-hover me-3" fontSize="1.5rem" icon={faCircleArrowRight}/>
+                        <FontAwesomeIcon onClick={decrement} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowLeft}/>
+                        <FontAwesomeIcon  onClick={increment} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowRight}/>
                         <Button className="ms-3 bg-dark" onClick={props.onHide}>Close</Button>
                     </div>
                 </Modal.Footer>

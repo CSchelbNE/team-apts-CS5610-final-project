@@ -21,6 +21,18 @@
 .wd-font-awesome-hover:hover {
   cursor: pointer;
 }
+.wd-font-awesome-hover-dark:active{
+  color:#454545;
+}
+
+.wd-font-awesome-hover#green:hover{
+  color: #0c4128;
+}
+
+
+.wd-font-awesome-hover#green:active{
+  color:#0c4190;;
+}
 
 .wd-create-search-div {
   overflow-y: scroll;

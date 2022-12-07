@@ -56,7 +56,7 @@ function SearchBar(noBlur) {
         state.discogs
     )
     return (
-        <div  className="wd-art-nuvo row mt-3 p-0" style={{border: "1px solid lightgrey"}} >
+        <div  className="row mt-3 p-0" style={{border: "1px solid lightgrey"}} >
             <div className="p-0 row-12 position-relative">
                 <input  onBlur={()=> setTimeout(() => setVisibility("p-0 d-none"),200)} onFocus={()=> setTimeout(()=> setVisibility("p-0 d-block"),100)}
                        className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}}
@@ -72,7 +72,7 @@ function SearchBar(noBlur) {
                 <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
             </div>
             <div className={visibility}>
-                <div className="wd-search-scroll-div p-0">
+                <div className="wd-search-scroll-div wd-art-nuvo  p-0">
                     {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
