@@ -6,6 +6,8 @@ import AdminPanelModal from "./admin-panel-modal";
 const ModalWrapperButton = ({props}) => {
     const [modalShow, setModalShow] = useState(false);
 
+    // PASS IN "ADMIN" OR ANY STRING AS PROPS TO MAKE THE ADMIN MODAL APPEAR,
+    // OTHERWISE DEFAULTS TO THE CREATE LISTINGS MODAL
     return (
         <div>
             <Button className="bg-dark" onClick={() => setModalShow(true)}>
