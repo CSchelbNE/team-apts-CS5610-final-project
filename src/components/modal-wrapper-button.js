@@ -1,16 +1,21 @@
 import Button from "react-bootstrap/Button";
 import CreateListingModal from "./create-listing-modal";
 import {useState} from "react";
+import AdminPanelModal from "./admin-panel-modal";
 
-const ModalWrapperButton = () => {
+const ModalWrapperButton = ({props}) => {
     const [modalShow, setModalShow] = useState(false);
+
     return (
         <div>
             <Button onClick={() => setModalShow(true)}>
-                Create Listing
+                {!props ?  "Create Listing": "Open Approvals"}
             </Button>
-            <CreateListingModal  show={modalShow}
-                                     onHide={() => setModalShow(false)}/>
+            {!props ? <CreateListingModal show={modalShow}
+                                    onHide={() => setModalShow(false)}/> :
+                <AdminPanelModal show ={modalShow} onHide={()=> setModalShow(false)}/>
+
+            }
         </div>
 
     );

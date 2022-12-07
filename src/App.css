@@ -5,11 +5,18 @@
 .wd-search-scroll-div {
   overflow-y: scroll;
   height: fit-content;
-  max-height: 250px;
+  max-height: 350px;
   display: block;
   border-radius: 0;
 }
 
+.wd-on-hover:hover {
+  background-color: #F5F5F5;
+}
+
+.wd-on-hover:active {
+  background-color: lightgray;
+}
 
 .wd-create-search-div {
   overflow-y: scroll;

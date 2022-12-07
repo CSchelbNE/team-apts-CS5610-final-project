@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
 import SearchItem from "./search-item";
 import {postToWishlistThunk} from "../services/wishlist-thunk";
+import ModalWrapperButton from "../components/modal-wrapper-button";
 
 
 const SearchScreen = () => {
@@ -13,6 +14,7 @@ const SearchScreen = () => {
     if (window.location.href.split("/").slice(-1)[0] !== uri){
         setUri(window.location.href.split("/").slice(-1)[0]);
     }
+
     useEffect( () => {
         // LOOK AT PAST COMMIT FOR THIS DISPATCH
     },[uri]);
@@ -40,6 +42,7 @@ const SearchScreen = () => {
             <div>
                 <h1 className="bg-white">Search Results</h1>
                 <h6>{listings.length + " results were found for" + listings[0].record_name}</h6>
+                <ModalWrapperButton props={"ADMIN"}/>
                 {listings.map((e) => <SearchItem listing={e}/>)}
             </div>
         </div>
