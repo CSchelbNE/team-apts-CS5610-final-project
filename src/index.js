@@ -9,11 +9,12 @@ import discogsReducer from "./reducers/discog-reducer";
 import usersReducer from "./reducers/users-reducer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reviewsReducer from "./reducers/reviews-reducer";
+import recordsReducer from "./details/records-reducer";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = configureStore({
-    reducer: {discogs: discogsReducer, users: usersReducer, reviews: reviewsReducer}
+    reducer: {discogs: discogsReducer, users: usersReducer, reviews: reviewsReducer, recData: recordsReducer}
 });
 
 root.render(
