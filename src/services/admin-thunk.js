@@ -6,6 +6,6 @@ export const getAllOpenApprovalsThunk = createAsyncThunk("admin/getApprovals", a
 })
 
 export const closeApprovalThunk = createAsyncThunk("admin/closeApproval",
-    async ({username, decision}) => {
-    return closeApproval({username, decision});
+    async ({user, decision}) => {
+    return closeApproval({user, decision});
 })

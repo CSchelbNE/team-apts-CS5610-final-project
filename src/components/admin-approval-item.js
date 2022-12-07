@@ -7,11 +7,12 @@ import {closeApprovalThunk} from "../services/admin-thunk";
 const AdminApprovalItem = ({approval}) => {
     const dispatch = useDispatch();
     const approve = () => {
-        const decision = {username: approval.username, decision: "APPROVE"}
+        const decision = {user: {...approval, requestToBeSeller: false}, decision: "APPROVE"}
         dispatch(closeApprovalThunk(decision))
     }
     const deny = () => {
-        const decision = {username: approval.username, decision: "DENY"}
+        const decision = {user: {...approval, requestToBeSeller: false}, decision: "DENIED"}
+        // const decision = {username: approval.username, decision: "DENIED"}
         dispatch(closeApprovalThunk(decision))
     }
     return (

@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {uuid4} from "uuid4";
+import AdminNoApprovalsMsg from "./admin-no-approvals-msg";
 
 const CreateListingModal = (props) => {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const CreateListingModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="p-2 pb-2">
-                    {openApprovals === [] ? "There are currently no requests pending approval" :
+                    {openApprovals.length === 0 ? <AdminNoApprovalsMsg/> :
                         openApprovals.slice(lowerIndex,upperIndex).map((e) => <AdminApprovalItem key={uuid4()} approval={e}/>)}
                     {/*    openApprovals.map((e) =>*/}
                     {/*<AdminApprovalItem key={uuid4()} approval={e}/>)}*/}

@@ -7,7 +7,7 @@ export const getAllOpenApprovals = async () => {
     return result.data;
 }
 
-export const closeApproval = async ({username, decision}) => {
-    const result = await axios.put(API_LISTINGS_PATH+"approvals/close?decision="+decision+"&username="+username);
+export const closeApproval = async ({user, decision}) => {
+    const result = await axios.put(API_LISTINGS_PATH+"approvals/close?decision="+decision+"&username="+user.username);
     return result.data;
 }

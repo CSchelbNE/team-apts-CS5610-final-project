@@ -12,16 +12,15 @@ export const findByCredentials = (username, password) => userModel.findOne({user
 
 export const deleteUser = (uid) => userModel.deleteOne({username : uid});
 
-export const getUsersRequestingVendorApprovals = () => userModel.find({requestToBeSeller: true});
+export const getUsersRequestingVendorApprovals = () => userModel.find({requestToBeSeller: true, type: "BUYER"});
 
-export const closeApproval = (username, decision) => {
-    if (decision === "APPROVED") {
-        userModel.updateOne({username: username}, {$set: {type: "SELLER", requestToBeSeller: false}})
-        return {status: "APPROVED", username: username}
+export const closeApproval = async (username, decision) => {
+    if (decision === "APPROVE") {
+        await userModel.updateOne({username: username}, {$set: {requestToBeSeller: false, type:"SELLER"}});
     } else {
-        userModel.updateOne({username: username}, {$set: {requestToBeSeller: false}});
-        return {status: "DENIED", username: username}
+        await userModel.updateOne({username: username}, {$set: {requestToBeSeller: false}});
     }
+    return {username:username};
 }
 
 export const updateUser = async (uid, userUpdates) => {
