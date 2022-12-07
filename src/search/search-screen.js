@@ -5,10 +5,14 @@ import {findAllListingsThunk} from "../services/discogs-thunk";
 import SearchItem from "./search-item";
 import {postToWishlistThunk} from "../services/wishlist-thunk";
 import ModalWrapperButton from "../components/modal-wrapper-button";
+import {getAllOpenApprovalsThunk} from "../services/admin-thunk";
 
 
 const SearchScreen = () => {
     const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(getAllOpenApprovalsThunk());
+    // })
     const listings = useSelector(state => state.discogs.listings);
     const [uri, setUri] = useState(window.location.href.split("/").slice(-1)[0]);
     if (window.location.href.split("/").slice(-1)[0] !== uri){
@@ -30,6 +34,7 @@ const SearchScreen = () => {
             <div>
                 <h1 className="bg-white">Search Results</h1>
                 Sorry! No listing for this record were found!
+                <ModalWrapperButton props={"ADMIN"}/>
             </div>
         </div>
             :
@@ -38,11 +43,11 @@ const SearchScreen = () => {
                 <div className="w-100">
                     <NavigationSidebar/>
                 </div>
+
             </div>
             <div>
                 <h1 className="bg-white">Search Results</h1>
                 <h6>{listings.length + " results were found for" + listings[0].record_name}</h6>
-                <ModalWrapperButton props={"ADMIN"}/>
                 {listings.map((e) => <SearchItem listing={e}/>)}
             </div>
         </div>

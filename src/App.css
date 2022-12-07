@@ -18,6 +18,10 @@
   background-color: lightgray;
 }
 
+.wd-font-awesome-hover:hover {
+  cursor: pointer;
+}
+
 .wd-create-search-div {
   overflow-y: scroll;
   height:  35vh;
