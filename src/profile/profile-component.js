@@ -3,12 +3,9 @@ import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
-<<<<<<< HEAD
 import ModalWrapperButton from "../components/modal-wrapper-button";
-=======
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
->>>>>>> temp-master
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
