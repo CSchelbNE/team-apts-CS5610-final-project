@@ -26,7 +26,7 @@
 }
 .wd-banner-format {
     object-fit: cover;
-    max-height: 500px;
+    height: 500px;
 }
 .wd-camera-img-format {
     width: 50px;
