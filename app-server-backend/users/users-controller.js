@@ -74,12 +74,27 @@ const UserController = async (app) => {
         res.sendStatus(200)
     };
 
+    const getUsersRequestingVendorApprovals = async (req, res) => {
+        const result = await dao.getUsersRequestingVendorApprovals();
+        res.json(result);
+    }
+
+    const closeApproval = async (req, res) => {
+        const decision = req.query.decision;
+        const username = req.query.username;
+        const result = await dao.closeApproval(username, decision);
+        res.json(result);
+    }
+
+
+
     app.post("/users", createUser);
     app.get('/users', findAllUsers);
     app.delete('/users/:uid', deleteUser);
     app.put('/users/:uid', updateUser);
     // "http://localhost:2000/users/:uid"
-
+    app.get("/users/approvals", getUsersRequestingVendorApprovals)
+    app.put("/users/approvals/close", closeApproval)
     app.post('/register', register)
     app.post('/login', login)
     app.get("/api/profile", profile)

@@ -3,7 +3,7 @@ import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
 import SearchItem from "./search-item";
-import {postToWishlistThunk} from "../services/wishlist-thunk";
+import ModalWrapperButton from "../components/modal-wrapper-button";
 
 
 const SearchScreen = () => {
@@ -13,6 +13,7 @@ const SearchScreen = () => {
     if (window.location.href.split("/").slice(-1)[0] !== uri){
         setUri(window.location.href.split("/").slice(-1)[0]);
     }
+
     useEffect( () => {
         // LOOK AT PAST COMMIT FOR THIS DISPATCH
     },[uri]);
@@ -36,6 +37,7 @@ const SearchScreen = () => {
                 <div className="w-100">
                     <NavigationSidebar/>
                 </div>
+
             </div>
             <div>
                 <h1 className="bg-white">Search Results</h1>

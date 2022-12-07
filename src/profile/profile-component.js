@@ -3,7 +3,12 @@ import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
+<<<<<<< HEAD
 import ModalWrapperButton from "../components/modal-wrapper-button";
+=======
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+>>>>>>> temp-master
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
@@ -75,7 +80,12 @@ const ProfileComponent = () => {
                             <div className="wd-leave-extra-space-below-avatar">
                                 <div className="row">
                                     <h5 className="fw-bold m-0">{profileUser.firstName} {profileUser.lastName}</h5>
-                                    <div className="text-secondary">{profileUser.type}</div>
+                                    <div className="text-secondary">{profileUser.type === "BUYER" ? "Buyer" :
+                                        <div>
+                                            Seller
+                                            <FontAwesomeIcon className="ms-1" icon={faCircleCheck} />
+                                        </div>
+                                    }</div>
                                 </div>
                                 <div className="text-black mt-2">{profileUser.bio}</div>
                                 { currentUser && profileUser.username === currentUser.username &&

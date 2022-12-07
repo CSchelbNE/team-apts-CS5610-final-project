@@ -81,7 +81,7 @@ const Login = () => {
                                                                     </div>
                                                                     <div className="form-group pb-4">
                                                                         <label className="form-label" htmlFor="login-password">Password:</label>
-                                                                        <input type="text" id="login-password" name="login-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-lg" placeholder="e.g. alice1234"/>
+                                                                        <input type="password" id="login-password" name="login-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-lg" placeholder="e.g. alice1234"/>
                                                                     </div>
                                                                     <div className="form-group pt-1 d-flex justify-content-center pb-4">
                                                                         <button type="button" className="btn btn-lg btn-primary rounded-pill w-100" onClick={() => handleLoginBtn()} >Login</button>
@@ -103,11 +103,11 @@ const Login = () => {
                                                                 </div>
                                                                 <div className="form-group pb-2">
                                                                     <label className="form-label" htmlFor="register-password">Password:</label>
-                                                                    <input type="text" id="register-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-md" placeholder="e.g. alice1234"/>
+                                                                    <input type="password" id="register-password" onChange={e => setPassword(e.target.value)} value={password} className="form-control form-control-md" placeholder="e.g. alice1234"/>
                                                                 </div>
                                                                 <div className="form-group pb-2">
                                                                     <label className="form-label" htmlFor="edit-password">Re-enter password:</label>
-                                                                    <input type="text" id="edit-password" onChange={e => setValidatePassword(e.target.value)} defaultValue={validatePassword} className="form-control form-control-md" placeholder="e.g. alice1234"/>
+                                                                    <input type="password" id="edit-password" onChange={e => setValidatePassword(e.target.value)} defaultValue={validatePassword} className="form-control form-control-md" placeholder="e.g. alice1234"/>
                                                                 </div>
                                                                 <div className="form-group pb-2">
                                                                     <label className="form-label" htmlFor="first-name">First Name:</label>

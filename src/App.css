@@ -5,11 +5,34 @@
 .wd-search-scroll-div {
   overflow-y: scroll;
   height: fit-content;
-  max-height: 250px;
+  max-height: 350px;
   display: block;
   border-radius: 0;
 }
 
+.wd-on-hover:hover {
+  background-color: #F5F5F5;
+}
+
+.wd-on-hover:active {
+  background-color: lightgray;
+}
+
+.wd-font-awesome-hover:hover {
+  cursor: pointer;
+}
+.wd-font-awesome-hover-dark:active{
+  color:#454545;
+}
+
+.wd-font-awesome-hover#green:hover{
+  color: #0c4128;
+}
+
+
+.wd-font-awesome-hover#green:active{
+  color:#0c4190;;
+}
 
 .wd-create-search-div {
   overflow-y: scroll;

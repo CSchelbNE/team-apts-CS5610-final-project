@@ -9,7 +9,7 @@ import {Card, Button} from "react-bootstrap";
 import {uuid4} from "uuid4"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function SearchBar(noBlur) {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function SearchBar(noBlur) {
 
     const findListings = (id) => (event) => {
         dispatch(findAllListingsThunk(id));
-        navigation("/search/"+id);
+        // navigation("/search/"+id);
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ function SearchBar(noBlur) {
         state.discogs
     )
     return (
-        <div  className="wd-art-nuvo row mt-3 p-0" style={{border: "1px solid lightgrey"}} >
+        <div  className="row mt-3 p-0" style={{border: "1px solid lightgrey"}} >
             <div className="p-0 row-12 position-relative">
                 <input  onBlur={()=> setTimeout(() => setVisibility("p-0 d-none"),200)} onFocus={()=> setTimeout(()=> setVisibility("p-0 d-block"),100)}
                        className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}}
@@ -72,19 +72,21 @@ function SearchBar(noBlur) {
                 <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
             </div>
             <div className={visibility}>
-                <div className="wd-search-scroll-div p-0">
+                <div className="wd-search-scroll-div wd-art-nuvo  p-0">
                     {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
                         {
                             if (e.title.split("-").length === 2){
-                        return <Card onClick={findListings(e.id)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="border-1 d-flex flex-row row-cols-4">
-                            <img style={{height: "100px"}} src={e.thumb}/>
-                                <div className="p-0 d-flex flex-column justify-content-center"
+                        return <Card onClick={findListings(e.id)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="wd-on-hover border-1 d-flex flex-row ">
+                            <Link className="text-dark text-decoration-none w-100 p-0 m-0 d-flex flex-row" to={"/search/"+e.id}>
+                            <img style={{height: "100px", width: "100px"}} src={e.thumb}/>
+                                <div className="p-0 ms-3 d-flex flex-column justify-content-center"
                                      style={{height: "100px", width: "75%"}}>
                                     <div className="p-1" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
                                     <div className="p-1">{e.title.split("-")[0]}</div>
                                 </div>
+                            </Link>
                         </Card>
                         }
                         })
