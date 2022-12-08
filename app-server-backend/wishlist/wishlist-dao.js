@@ -11,7 +11,7 @@ export const createEmptyWishlist = async (username) => {
     const res = await wishlistModel.findOne({username: username}).lean(true);
     if (!res) {
         return await wishlistModel.create({username: username});
-    } else return {}
+    } else return {username: "DUPLICATE USERNAME: ERROR", wishlist_records: "DUPLICATE KEY: ERROR"}
 }
 
 export const getWishlistByUsername = (username) => {
