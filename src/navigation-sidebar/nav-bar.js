@@ -1,7 +1,5 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect } from "react";
 import {useLocation} from "react-router-dom";
-import {FaHome, FaSearch, FaSignInAlt, FaSignOutAlt, FaUser} from "react-icons/fa";
 import "./index.css"
 import SearchBar from "../components/search-bar";
 import Container from 'react-bootstrap/Container';
@@ -10,14 +8,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {useState} from "react";
-import {useSelector} from "react-redux";
-
+import {useSelector, useDispatch} from "react-redux";
+import {findUserThunk} from "../services/users-thunks";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
     const [modalShow, setModalShow] = useState(false);
+    const dispath = useDispatch();
+    useEffect(() => {
+        dispath(findUserThunk());
+    }, []);
     const currentUser = useSelector(state => state.users.currentUser)
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
@@ -56,16 +58,25 @@ const NavigationSidebar = () => {
                         <Nav.Link href="/profile">Profile</Nav.Link>
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Profile" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                        <NavDropdown title="user" id="collasible-nav-dropdown">
+                            {currentUser ? 
+                               <>
+                                <NavDropdown.Item>
+                                        <span><i className="bi bi-person-fill mr-10 fs-19"></i>{currentUser.username}</span>
+                                </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                               </>
+                            :
+                             <></>
+                            }
+                            <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>
                                 <ModalWrapperButton props={"ADMIN"}/>
                                 {/*Admin*/}
                                 {/*<AdminPanelModal show ={modalShow} onHide={()=> setModalShow(false)}/>*/}
                             </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
+                            <NavDropdown.Item href="/logout" className="text-danger logout-btn">Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     </Navbar.Collapse>
