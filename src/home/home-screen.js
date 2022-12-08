@@ -3,7 +3,8 @@ import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import "./index.css";
 import SuggestedComponent from "./suggested-component";
 
-
+// http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
+// https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
     return (
         <div className="">
@@ -12,7 +13,8 @@ const HomeScreen = () => {
 
             <div className="container mt-2">
                 <div className="position-relative">
-                    <img src={"https://townsquare.media/site/295/files/2021/01/psych.jpg"} className="w-100 wd-banner-image-format"/>
+
+                    <img src={"http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg"} className="w-100 wd-banner-image-format"/>
 
                     <div className="wd-title-format">
                         Vintage Vinyl
@@ -21,7 +23,7 @@ const HomeScreen = () => {
                         Review Your Favorite Albums
                     </div>
                     <div className="wd-title3-format">
-                        Buy / Sell
+                        Buy & Sell
                     </div>
                 </div>
                
