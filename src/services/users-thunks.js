@@ -18,7 +18,7 @@ export const logoutThunk = createAsyncThunk(
 
 export const updateUserThunk = createAsyncThunk(
     'users/updateUser', async (userUpdates) => {
-        console.log("HERE")
+
         return await updateUser(userUpdates);
     }
 )

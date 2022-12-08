@@ -17,19 +17,14 @@ const ProfileComponent = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (uid === "profile") {
-            console.log("findUserThunk");
             dispatch(findUserThunk())
         } else {
-            console.log("findUserByUsernameThunk");
             dispatch(findUserByUsernameThunk(uid))
         }
     }, [])
 
     const {currentUser, profileUser} = useSelector((state) => state.users);
-    console.log("currentUser");
-    console.log(currentUser);
-    console.log("profileUser");
-    console.log(profileUser);
+
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
         const year = dateArr[0];

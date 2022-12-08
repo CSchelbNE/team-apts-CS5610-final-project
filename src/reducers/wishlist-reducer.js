@@ -34,9 +34,8 @@ const wishlistSlice = createSlice({
             },
         [getWishlistByUsernameThunk.fulfilled]:
             (state, {payload}) => {
-                state = payload;
+                state.wishlist_records = payload.wishlist_records;
 
-                console.log(state);
             }
             ,
         [deleteItemFromWishlistThunk.fulfilled]:

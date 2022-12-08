@@ -14,19 +14,6 @@ const UsersListComponent = () => {
     }, []);
 
     const {users} = useSelector(state => state.users);
-    // const [userArray, setUserArray] = useState([]);
-
-    // if (users.length >= 3 && once) {
-    //     let newArray = [];
-    //     for (let i = 0; i < 3; i++) {
-    //         newArray.push(users[users.length - 1 - i]);
-    //     }
-    //     console.log(newArray);
-    //     setUserArray(newArray);
-    //     once = false;
-    // }
-    // console.log("userArray");
-    // console.log(userArray);
 
     return(
         <>

@@ -100,6 +100,7 @@ const UserController = async (app) => {
     app.get("/api/profile", profile)
     app.get("/api/profile/:username", findUserByUsername)
     app.post("/logout", logout)
+
 }
 
 export default UserController;
