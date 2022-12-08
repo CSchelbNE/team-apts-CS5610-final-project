@@ -24,8 +24,8 @@ const usersReducer = createSlice({
         }
     },
     extraReducers: {
-        [findAllUsersThunk.fulfilled]: (state, action) => {
-             state.users = action.payload;
+        [findAllUsersThunk.fulfilled]: (state, {payload}) => {
+             state.users = payload;
         },
         [findUserThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;

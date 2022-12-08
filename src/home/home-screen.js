@@ -2,6 +2,7 @@ import React from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import "./index.css";
 import SuggestedComponent from "./suggested-component";
+import UsersListComponent from "../users/users-list";
 
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
@@ -36,6 +37,9 @@ const HomeScreen = () => {
                 </div>
                 <div>
                     <h1>Recent Users</h1>
+                    <div className="border border-2 border-secondary p-2 m-2">
+                        <UsersListComponent/>
+                    </div>
                 </div>
                 <div>
                     <h1>Wish List (LoggedIn Content)</h1>

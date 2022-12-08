@@ -4,7 +4,7 @@
 }
 .wd-banner-format {
     object-fit: cover;
-    max-height: 500px;
+    height: 500px;
 }
 .wd-ep-button-format {
     background-color: #fd7e14;
