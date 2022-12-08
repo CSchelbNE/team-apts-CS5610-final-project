@@ -8,12 +8,18 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import ModalWrapperButton from "../components/modal-wrapper-button";
+import {useState} from "react";
+import {useSelector} from "react-redux";
+
+
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
+    const [modalShow, setModalShow] = useState(false);
+    const currentUser = useSelector(state => state.users.currentUser)
+    const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
         <div className="position-relative">
             {/* <a className="list-group-item">Vinyl Shop</a>
@@ -53,6 +59,11 @@ const NavigationSidebar = () => {
                         <NavDropdown title="Profile" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item className={adminVisibility}>
+                                <ModalWrapperButton props={"ADMIN"}/>
+                                {/*Admin*/}
+                                {/*<AdminPanelModal show ={modalShow} onHide={()=> setModalShow(false)}/>*/}
+                            </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                         </NavDropdown>

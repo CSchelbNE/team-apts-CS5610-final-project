@@ -10,9 +10,14 @@ const ModalWrapperButton = ({props}) => {
     // OTHERWISE DEFAULTS TO THE CREATE LISTINGS MODAL
     return (
         <div>
-            <Button className="bg-dark" onClick={() => setModalShow(true)}>
-                {!props ?  "Create Listing": "Open Approvals"}
-            </Button>
+            {!props ?
+                <Button className="bg-dark" onClick={() => setModalShow(true)}>
+                    Create Listing
+                </Button> :
+                <div onClick={() => setModalShow(true)} className="p-0">
+                    Admin
+                </div>
+            }
             {!props ? <CreateListingModal show={modalShow}
                                     onHide={() => setModalShow(false)}/> :
                 <AdminPanelModal show ={modalShow} onHide={()=> setModalShow(false)}/>
