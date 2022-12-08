@@ -12,7 +12,7 @@ const Logout = () => {
         }, 1000);
       });
       if (!error && !currentUser) {
-        return (<Navigate to="/login" />);
+        return (<Navigate to="/home" />);
       }
     return (
         <>
