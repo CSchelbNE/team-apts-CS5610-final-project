@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 
 const RecordGridItem = ({record}) => {
+
     return(
         <>
             <div className="d-inline-flex ms-3 mt-2 mb-2 p-2 border fs-3 flex-nowrap">
