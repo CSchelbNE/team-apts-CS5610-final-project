@@ -28,8 +28,6 @@ export const logout = async(user) => {
 
 export const findUser = async() => {
     const response = await axios.get(`${BASE_URL}/api/profile`);
-    console.log("response.data");
-    console.log(response.data);
     return response.data;
 }
 

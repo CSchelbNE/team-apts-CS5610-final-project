@@ -1,12 +1,22 @@
-import React from "react";
+import React, {useEffect} from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import "./index.css";
 import SuggestedComponent from "./suggested-component";
 import UsersListComponent from "../users/users-list";
+import {useDispatch, useSelector} from "react-redux";
+import WishListComponent from "../wish-list/wish-list-component";
+import {findUserThunk} from "../services/users-thunks";
 
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(findUserThunk());
+    }, []);
+    const {currentUser} = useSelector(state => state.users);
+
+
     return (
         <div className="">
 
@@ -42,7 +52,15 @@ const HomeScreen = () => {
                     </div>
                 </div>
                 <div>
-                    <h1>Wish List (LoggedIn Content)</h1>
+                    {
+                        currentUser &&
+                        <div>
+                            <h1>Wish List</h1>
+                            <div className="border border-2 border-secondary p-2 m-2">
+                                <WishListComponent key={currentUser._id} currentUser={currentUser}/>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

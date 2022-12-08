@@ -56,5 +56,52 @@ const suggestedArray = [
     "ben",
     "__v":
     0},
+  {
+  "_id":
+  "6391f78d82c8a274c2b2459a",
+  "discogs_id":
+  902479,
+  "record_name":
+  "Fania All Stars Live In Japan 1976",
+  "record_artist":
+  "Fania All Stars",
+  "record_genre":
+  "Latin",
+  "record_year":
+  "1986",
+  "record_price":
+  14.99,
+  "record_quantity":
+  1,
+  "record_image":
+  "https://i.discogs.com/JV_mlZ37726Pzzr8MaMnRfKIOZO8xeKyIiXsJEQdYik/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTE1Nzk0/LTE2MDE1NjI5OTAt/MzA0NS5qcGVn.jpeg",
+  "record_vendor":
+  "bob",
+  "__v":
+  0},
+  {
+    "_id":
+    "6391fbe482c8a274c2b245a2",
+    "discogs_id":
+    900516,
+    "record_name":
+    "Lester Young With The Oscar Peterson Trio #1",
+    "record_artist":
+    "Lester Young With The Oscar Peterson Trio",
+    "record_genre":
+    "Jazz",
+    "record_year":
+    "1954",
+    "record_price":
+    21.99,
+    "record_quantity":
+    1,
+    "record_image":
+    "https://i.discogs.com/-KpD0plbK9R2khpMFzu651R6tygR2BRmVvJYTptX968/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzODU1/NDctMTQxNzk1Mzk3/OS0xMDAzLmpwZWc.jpeg",
+    "record_vendor":
+    "bob",
+    "__v":
+    0
+  },
 ]
 export default suggestedArray;
