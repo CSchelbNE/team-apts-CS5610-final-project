@@ -1,0 +1,55 @@
+.wd-title-format {
+    font-size: 9vw;
+    font-family: "Art Nuvo";
+    display: flex;
+    position: absolute;
+    top: 13%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    color: purple;
+    -webkit-text-stroke: 2px yellow;
+    opacity: 100%;
+
+}
+.wd-banner-image-format {
+    object-fit: cover;
+    max-height: 500px;
+
+
+}
+.wd-record-image-format {
+    width: 100px;
+}
+.wd-title2-format {
+    font-size: 5vw;
+    font-family: "Art Nuvo";
+    display: flex;
+    position: absolute;
+    top: 45%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    color: yellow;
+    -webkit-text-stroke: 2px purple;
+    opacity: 100%;
+}
+.wd-title3-format {
+    font-size: 6vw;
+    font-family: "Art Nuvo";
+    display: flex;
+    position: absolute;
+    top: 58%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    color: yellow;
+    -webkit-text-stroke: 2px purple;
+    opacity: 100%;
+}
+.wd-flex-box-format {
+    justify-content: space-between;
+}

@@ -21,7 +21,7 @@ const discogsSlice = createSlice({
                 state.loading = false;
                 const json = JSON.parse(JSON.stringify(payload));
                 state.discogsAlbumQuery = json;
-                console.log(state.discogsAlbumQuery)
+                console.log(state.discogsAlbumQuery);
             },
         [findAllListingsThunk.fulfilled]:
             (state, {payload}) => {

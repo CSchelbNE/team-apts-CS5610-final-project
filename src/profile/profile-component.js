@@ -3,6 +3,7 @@ import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
+import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 
@@ -47,6 +48,7 @@ const ProfileComponent = () => {
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
     }
+
 
     return (
         <>
@@ -115,6 +117,9 @@ const ProfileComponent = () => {
                                         <span>{profileUser.numOfWishlist}</span>&nbsp;
                                         <span>in Wish List</span>
                                     </div>
+                                </div>
+                                <div className="mt-2">
+                                    <ModalWrapperButton/>
                                 </div>
                             </div>
                         </div>
