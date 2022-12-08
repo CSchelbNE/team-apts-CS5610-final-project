@@ -43,6 +43,7 @@ const SearchScreen = () => {
                 <h1 className="bg-white">Search Results</h1>
                 <h6>{listings.length + " results were found for" + listings[0].record_name}</h6>
                 {listings.map((e) => <SearchItem listing={e}/>)}
+                <ModalWrapperButton/>
             </div>
         </div>
     }

@@ -7,8 +7,11 @@ export const postToWishlist = async (album, username) => {
 
 }
 
-export const createEmptyWishlist = (username) => {
-    return wishlistModel.create({username: username});
+export const createEmptyWishlist = async (username) => {
+    const res = await wishlistModel.findOne({username: username}).lean(true);
+    if (!res) {
+        return await wishlistModel.create({username: username});
+    } else return {}
 }
 
 export const getWishlistByUsername = (username) => {
