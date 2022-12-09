@@ -22,8 +22,7 @@ const EditProfileComponent = () => {
     if (!currentUser) {
         currentUser = new Object();
     }
-    console.log("currentUser");
-    console.log(currentUser);
+
 
     const [firstName, setFirstName] = useState({firstName: `${currentUser.firstName}`});
     const [lastName, setLastName] = useState({lastName: `${currentUser.lastName}`});
@@ -36,8 +35,6 @@ const EditProfileComponent = () => {
     const [requestToBeSeller, setRequestToBeSeller] = useState({requestToBeSeller: currentUser.requestToBeSeller});
     const [edited, setEdited] = useState(false);
 
-    console.log("birthdate");
-    console.log(birthdate);
 
     const bannerTextChangeHandler = (event) => {
         const bpValue = event.target.value;
