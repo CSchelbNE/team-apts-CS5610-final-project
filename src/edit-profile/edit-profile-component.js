@@ -137,7 +137,7 @@ const EditProfileComponent = () => {
         <>
             {Object.keys(currentUser).length===0 ? <h1>Please Log In</h1>
                 :
-        <div className="wd-horizontal-scroll">
+        <div className="">
             <div className="border wd-border-light-gray rounded-2">
                 <div className="row">
                     <Link className="d-inline-block float-start w-auto my-auto ms-2" to="/profile">

@@ -6,6 +6,7 @@ import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+import WishListComponent from "../wish-list/wish-list-component";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
@@ -47,10 +48,13 @@ const ProfileComponent = () => {
 
     return (
         <>
-            {!profileUser ? <></>
+            {!profileUser ?
+                <>
+                    <h3>Please log in</h3>
+                </>
                 :
-                <div className="wd-horizontal-scroll">
-                    <div className="rounded-2 bg-white">
+                <div className="">
+                    <div className="rounded-2 bg-white border">
                         <h1 className="wd-text-margins pt-2">Profile</h1>
                         {/*banner image*/}
                         <div className="p-2">
@@ -113,9 +117,24 @@ const ProfileComponent = () => {
                                         <span>in Wish List</span>
                                     </div>
                                 </div>
-                                <div className="mt-2">
-                                    <ModalWrapperButton/>
-                                </div>
+                                {
+                                    currentUser && profileUser.username === currentUser.username && profileUser.type === "SELLER" &&
+                                    <>
+                                        <h2 className="mt-3">Click here to create a listing</h2>
+                                        <div className="mt-2">
+                                            <ModalWrapperButton/>
+                                        </div>
+                                    </>
+                                }
+                                {
+                                    currentUser && profileUser.username === currentUser.username &&
+                                    <>
+                                        <h1 className="mt-3">Wish List</h1>
+                                        <div className="border border-2 border-secondary p-2 m-2">
+                                            <WishListComponent key={profileUser._id} currentUser={profileUser}/>
+                                        </div>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>
