@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reviewsReducer from "./reducers/reviews-reducer";
 import wishlistReducer from "./reducers/wishlist-reducer";
 import adminReducer from "./reducers/admin-reducer";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
