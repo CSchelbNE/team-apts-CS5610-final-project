@@ -38,14 +38,14 @@ const HomeScreen = () => {
                     </div>
                 </div>
                
-                <div>
+                <div className="mt-3">
                     <h1>Suggested Albums</h1>
                     <div className="border border-2 border-secondary p-2 m-2">
                         <SuggestedComponent/>
                     </div>
 
                 </div>
-                <div>
+                <div className="mt-3">
                     <h1>Recent Users</h1>
                     <div className="border border-2 border-secondary p-2 m-2">
                         <UsersListComponent/>
@@ -54,7 +54,7 @@ const HomeScreen = () => {
                 <div>
                     {
                         currentUser &&
-                        <div>
+                        <div className="mt-3">
                             <h1>Wish List</h1>
                             <div className="border border-2 border-secondary p-2 m-2">
                                 <WishListComponent key={currentUser._id} currentUser={currentUser}/>

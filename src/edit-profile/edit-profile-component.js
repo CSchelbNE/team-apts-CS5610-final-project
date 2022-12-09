@@ -22,19 +22,22 @@ const EditProfileComponent = () => {
     if (!currentUser) {
         currentUser = new Object();
     }
+    console.log("currentUser");
+    console.log(currentUser);
 
     const [firstName, setFirstName] = useState({firstName: `${currentUser.firstName}`});
     const [lastName, setLastName] = useState({lastName: `${currentUser.lastName}`});
     const [bio, setBio] = useState({bio: `${currentUser.bio}`});
     const [location, setLocation] = useState({location: `${currentUser.location}`});
-    const [birthdate, setBirthdate] = useState({birthdate: `${currentUser.dob}`});
+    const [birthdate, setBirthdate] = useState(currentUser.dob);
     const [email, setEmail] = useState({email: `${currentUser.email}`});
     const [bannerPic, setBannerPic] = useState({bannerPic: `${currentUser.bannerPic}`});
     const [profilePic, setProfilePic] = useState({profilePic: `${currentUser.profilePic}`});
     const [requestToBeSeller, setRequestToBeSeller] = useState({requestToBeSeller: currentUser.requestToBeSeller});
     const [edited, setEdited] = useState(false);
 
-
+    console.log("birthdate");
+    console.log(birthdate);
 
     const bannerTextChangeHandler = (event) => {
         const bpValue = event.target.value;
@@ -78,13 +81,33 @@ const EditProfileComponent = () => {
         };
         setLocation(newLocation);
     }
-    const birthdateChangeHandler = (event) => {
-        const bdValue = event.target.value;
-        const newBD = {
-            birthdate: bdValue
-        };
-        setBirthdate(newBD);
-    }
+    // const birthdateChangeHandler = (event) => {
+    //     const bdValue = event.target.value;
+    //     if (bdValue.includes('-')) {
+    //         setBirthdate(bdValue);
+    //         return;
+    //     }
+    //     const dateArr = bdValue.split('/');
+    //     let y = dateArr[2];
+    //     let m = dateArr[0];
+    //     console.log("m=" + m);
+    //     let d = dateArr[1];
+    //     if (m.length === 1) m = "0" + m;
+    //     if (d.length === 1) d = "0" + d;
+    //     const dateStr = y + "-" + m + "-" + d;
+    //     setBirthdate(dateStr);
+    //     console.log("dateStr in birthdateChangeHandler");
+    //     console.log(dateStr);
+    //     // const newDate = new Date(bdValue);
+    //     // const timeDiff = newDate.getTimezoneOffset() * 60000;
+    //     // const adjustedDate = new Date(newDate.valueOf() + timeDiff).toLocaleDateString();
+    //     // const bdDate = {
+    //     //     birthdate: adjustedDate
+    //     // };
+    //     // console.log("bdDate");
+    //     // console.log(bdDate);
+    //     // setBirthdate(bdDate);
+    // }
     const emailChangeHandler = (event) => {
         const emailValue = event.target.value;
         const newEmail = {
@@ -113,6 +136,11 @@ const EditProfileComponent = () => {
         }
 
     }
+    const formatBirthdate = () => {
+        console.log("formatBirthdate called");
+        console.log(birthdate.birthdate.split('T')[0]);
+        return birthdate.birthdate.split('T')[0];
+    }
 
     const saveProfile = () => {
         const username = currentUser.username;
@@ -122,7 +150,7 @@ const EditProfileComponent = () => {
         const newLastName = lastName.lastName.trim();
         const newBio = bio.bio.trim();
         const newLocation = location.location.trim();
-        const newBirthdate = birthdate.birthdate;
+        const newBirthdate = birthdate;
         const newEmail = email.email.trim();
         const newRequestToBeSeller = requestToBeSeller.requestToBeSeller;
         console.log("saveProfile");
@@ -135,7 +163,7 @@ const EditProfileComponent = () => {
 
     return (
         <>
-            {Object.keys(currentUser).length===0 ? <h1>Please Log In</h1>
+            {Object.keys(currentUser).length < 2 ? <h1>Please Log In</h1>
                 :
         <div className="">
             <div className="border wd-border-light-gray rounded-2">
@@ -168,41 +196,46 @@ const EditProfileComponent = () => {
                 {/*textareas*/}
                 <div className="wd-leave-extra-space-below-avatar">
                     <div className="form-floating position-relative p-2">
-                        <input type="text" id="banner-textarea"  className="form-control w-100 ps-2" onChange={bannerTextChangeHandler} value={`${bannerPic.bannerPic}`}/>
+                        <input type="text" id="banner-textarea"  className="form-control w-100 ps-2" placeholder="https://<bannerPic>.jpg" onChange={bannerTextChangeHandler} value={`${bannerPic.bannerPic}`}/>
                         <label className="text-secondary" htmlFor="banner-textarea">URL for banner picture</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <input type="text" id="avatar-textarea"  className="form-control w-100 ps-2" onChange={avatarTextChangeHandler} value={`${profilePic.profilePic}`}/>
+                        <input type="text" id="avatar-textarea"  className="form-control w-100 ps-2" placeholder="https://<profilePic>.png" onChange={avatarTextChangeHandler} value={`${profilePic.profilePic}`}/>
                         <label className="text-secondary" htmlFor="avatar-textarea">URL for avatar picture</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <input type="text" id="first-name-textarea"  className="form-control w-100 ps-2" onChange={firstNameChangeHandler} value={`${firstName.firstName}`}/>
+                        <input type="text" id="first-name-textarea"  className="form-control w-100 ps-2" placeholder="John" onChange={firstNameChangeHandler} value={`${firstName.firstName}`}/>
                         <label className="text-secondary" htmlFor="first-name-textarea">First name</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <input type="text" id="last-name-textarea"  className="form-control w-100 ps-2" onChange={lastNameChangeHandler} value={`${lastName.lastName}`}/>
+                        <input type="text" id="last-name-textarea"  className="form-control w-100 ps-2" placeholder="Doe" onChange={lastNameChangeHandler} value={`${lastName.lastName}`}/>
                         <label className="text-secondary" htmlFor="last-name-textarea">Last Name</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <textarea type="text" id="bio-textarea"  className="form-control w-100 h-100 ps-2 " onChange={bioChangeHandler} value={`${bio.bio}`}/>
+                        <textarea type="text" id="bio-textarea"  className="form-control w-100 h-100 ps-2 " placeholder="Tell us about yourself." onChange={bioChangeHandler} value={`${bio.bio}`}/>
                         <label className="text-secondary" htmlFor="bio-textarea">Bio</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <input  type="text" id="location-textarea" className="form-control w-100 ps-2" onChange={locationChangeHandler}
+                        <input  type="text" id="location-textarea" className="form-control w-100 ps-2" placeholder="City, State" onChange={locationChangeHandler}
                                 value={`${location.location}`}/>
                         <label className="text-secondary"
                                htmlFor="location-textarea">Location</label>
                     </div>
                     <div className="form-floating position-relative p-2">
-                        <input  type="email" id="email-textarea" className="form-control w-100 ps-2" onChange={emailChangeHandler}
+                        <input  type="email" id="email-textarea" className="form-control w-100 ps-2" placeholder="john.doe@gmail.com" onChange={emailChangeHandler}
                                 value={`${email.email}`}/>
                         <label className="text-secondary"
                                htmlFor="email-textarea">Email</label>
                     </div>
-                    <div className="p-2 position-relative">
-                        <label htmlFor="birth-date-textarea">Birth date &nbsp;&#x2022;&nbsp;<span className="text-primary">Edit</span></label>
-                        <input id="birth-date-textarea" type="date" className="w-100 h-100 ps-2 form-control" value={`${birthdate.birthdate}`} onChange={birthdateChangeHandler}></input>
+                    <div className="p-2 position-relative form-group">
+                        <label className="form-label" htmlFor="birth-date-textarea">Birth date &nbsp;&#x2022;&nbsp;<span className="text-primary">Edit</span></label>
+                        <input id="birth-date-textarea" type="date" className="w-100 h-100 ps-2 form-control form-control-md"
+                               defaultValue={birthdate} onChange={e => setBirthdate(e.target.value)}></input>
                     </div>
+                    {/*<div className="form-group pb-2">*/}
+                    {/*    <label className="form-label" htmlFor="dob">Date of Birth:</label>*/}
+                    {/*    <input type="date" id="dob" name="Date-of-birth" onChange={e => setDob(e.target.value)} defaultValue={dob} className="form-control form-control-md"/>*/}
+                    {/*</div>*/}
                     <div className="form-check form-switch ms-2 mt-3">
                         <input className="form-check-input"
                                type="checkbox"
