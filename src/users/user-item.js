@@ -2,6 +2,7 @@ import React from "react";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import checkCircleImg from "../images/check-circle.png";
 import "./index.css";
+import {Link} from "react-router-dom";
 
 const UserItem = ({user}) => {
     const formatJoined = () => {
@@ -14,18 +15,20 @@ const UserItem = ({user}) => {
 
     return(
         <>
+        <Link to={"/profile/" + user.username}>
             <li className="list-group-item">
                 <div className="d-inline-flex flex-nowrap">
                     <div className="flex-inline my-auto">
                         <img src={`${user.profilePic}`} className="wd-profile-pic-format rounded-circle"/>
                     </div>
                     <div className="flex-inline ms-3 my-auto">
-                        <div className="fs-4">
+                        <div className="fs-4 text-dark">
                             {user.firstName} {user.lastName}&nbsp;
                             <img src={checkCircleImg} className="wd-check-circle-icon-format"/>&nbsp;
                             <span className="text-secondary">{user.type.toLowerCase()}</span>
                         </div>
-                        <div className="text-secondary">
+                        <div className="text-dark mt-1">{user.bio}</div>
+                        <div className="text-secondary mt-1">
                             <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format"/>&nbsp;
                             <span>{formatJoined()}</span>
                         </div>
@@ -42,6 +45,7 @@ const UserItem = ({user}) => {
                     </div>
                 </div>
             </li>
+        </Link>
         </>
     );
 }
