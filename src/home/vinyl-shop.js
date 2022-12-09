@@ -8,6 +8,8 @@ import EditProfileScreen from "../edit-profile/edit-profile";
 import LoginScreen from "../login/index.js";
 import LogoutScreen from "../login/logout.js"
 import OtherUserProfileScreen from "../profile/other-user-profile-screen";
+import DetailsScreen from "../details/details-screen";
+import ListingComponent from "../details/listing-component";
 
 function VinylShop() {
 
@@ -20,6 +22,8 @@ function VinylShop() {
                 <Route path="/edit-profile" element={<EditProfileScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
                 <Route path="/logout" element={<LogoutScreen/>}/>
+                <Route path="/listings/:id" element={<ListingComponent/>}/>
+                <Route path="/details/:id" element={<DetailsScreen/>}/>
             </Routes>
     );
 }

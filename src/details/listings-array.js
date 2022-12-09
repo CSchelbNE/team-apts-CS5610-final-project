@@ -1,4 +1,4 @@
-const ListingArray = [
+export const records = [
     {
         "_id": "638ff7504053f1db576c7e1f",
         "discogs_id": 75394,
@@ -104,4 +104,3 @@ const ListingArray = [
             0
     },
 ]
-export default ListingArray;
