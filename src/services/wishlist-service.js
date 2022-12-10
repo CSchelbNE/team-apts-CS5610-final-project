@@ -2,7 +2,7 @@ import axios from "axios";
 // const API_REVIEWS_PATH = "http://localhost:2000/wishlist/"
 const BASE_API_PATH = "https://apts-server-backend.herokuapp.com/"
 // const BASE_API_PATH = process.env.APTS_API_BASE;
-const API_WISHLIST_PATH = `${BASE_API_PATH}/wishlist/`;
+const API_WISHLIST_PATH = `${BASE_API_PATH}wishlist/`;
 
 export const postToWishlist = async ({username, album}) => {
     const result = await axios.post(API_WISHLIST_PATH+"add/"+username, album);
