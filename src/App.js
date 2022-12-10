@@ -2,7 +2,6 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import VinylShop from "./home/vinyl-shop";
-import bgImg from "./images/trippy-soap-bubble.jpg";
 
 
 function App() {

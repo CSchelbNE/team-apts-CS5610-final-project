@@ -1,11 +1,9 @@
 import axios from "axios";
 // const BASE_URL = 'http://localhost:2000';
 
-const BASE_URL= "https://apts-server-backend.herokuapp.com/"
-// const BASE_URL = process.env.APTS_API_BASE;
-// const TUITS_API = "https://tuiter-node-server-app.azurewebsites.net/api/tuits"
+// const BASE_URL= "https://apts-server-backend.herokuapp.com/"
+const BASE_URL = process.env.APTS_API_BASE;
 // const API_BASE = process.env.REACT_APP_API_BASE;
-// const TUITS_API = `${API_BASE}/tuits`;
 
 const api = axios.create({withCredentials: true});
 
