@@ -3,5 +3,5 @@
   to = "/"
   status = 200
 
-[context.dev.environment]
-    APTS_API_BASE = "https://apts-server-backend.herokuapp.com/"
+# [context.dev.environment]
+#     APTS_API_BASE = "https://apts-server-backend.herokuapp.com/"
