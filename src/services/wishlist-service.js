@@ -1,7 +1,7 @@
 import axios from "axios";
 // const API_REVIEWS_PATH = "http://localhost:2000/wishlist/"
 // const BASE_API_PATH = "https://apts-server-backend.herokuapp.com/"
-const BASE_API_PATH = process.env.APTS_API_BASE;
+const BASE_API_PATH = process.env.REACT_APP_APTS_API_BASE;
 const API_WISHLIST_PATH = `${BASE_API_PATH}wishlist/`;
 
 const api = axios.create({withCredentials: true});

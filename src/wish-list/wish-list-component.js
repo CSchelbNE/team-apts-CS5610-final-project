@@ -3,6 +3,7 @@ import "./index.css";
 import RecordGridItem from "../home/record-grid-item";
 import {useDispatch, useSelector} from "react-redux";
 import {getWishlistByUsernameThunk} from "../services/wishlist-thunk";
+import {uuid4} from "uuid4";
 
 const WishListComponent = ({currentUser}) => {
     const {wishlist_records} = useSelector(state => state.wishlist);
@@ -22,7 +23,7 @@ const WishListComponent = ({currentUser}) => {
                     <h3>No Results</h3>
                 }
                 {   wishlist_records.length > 0 &&
-                    wishlist_records.map(record => <RecordGridItem key={record._id} record={record}/>)
+                    wishlist_records.map(record => <RecordGridItem key={uuid4()} record={record}/>)
                 }
             </div>
         </>

@@ -4,4 +4,4 @@
   status = 200
 
 [context.dev.environment]
-    APTS_API_BASE = "https://apts-server-backend.herokuapp.com/"
+    REACT_APP_APTS_API_BASE = "https://apts-server-backend.herokuapp.com/"

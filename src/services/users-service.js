@@ -2,7 +2,7 @@ import axios from "axios";
 // const BASE_URL = 'http://localhost:2000';
 
 // const BASE_URL= "https://apts-server-backend.herokuapp.com/"
-const BASE_URL = process.env.APTS_API_BASE;
+const BASE_URL = process.env.REACT_APP_APTS_API_BASE;
 // const API_BASE = process.env.REACT_APP_API_BASE;
 
 const api = axios.create({withCredentials: true});
