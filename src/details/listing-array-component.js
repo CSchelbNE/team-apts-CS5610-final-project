@@ -1,12 +1,12 @@
 import {useNavigate} from "react-router-dom";
 
-const ListingArrayComponent = ({listing}) => {
+const ListingArrayComponent = ({index, listing}) => {
     const navigate = useNavigate();
     return (
 
         <div onClick ={() =>
     {
-        navigate("/details/" + listing._id.toString());
+        navigate("/details/" + listing._id.toString(), {state: {index: index}});
     }}>
                 <div className="text-center">
                     <img src={listing.record_image} className="rounded"/>

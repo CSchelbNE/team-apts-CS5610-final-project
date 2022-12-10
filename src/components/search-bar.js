@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {
-    createAlbumListingThunk,
     findAllListingsThunk,
     getAlbumsThunk,
 } from "../services/discogs-thunk";
@@ -17,26 +16,17 @@ function SearchBar(noBlur) {
     const [newInput, setNewInput] = useState("");
     const [isInputChanged, setIsChanged] = useState(false);
     const [visibility, setVisibility] = useState("d-none p-0");
-    const createNewListing = (listing) => (event) => {
-        const newListing = {
-            // These values are from the discogs api
+    const findListings = (listing) => (event) => {
+        dispatch(findAllListingsThunk(listing.id));
+        const selectedListing = {
             "discogs_id": listing.id,
             "record_name": listing.title.split("-")[1].trim(),
             "record_artist": listing.title.split("-")[0].trim(),
             "record_genre": !listing.genre ? [] : listing.genre,
             "record_year": !listing.year ? "N/A" : listing.year,
             "record_image": !listing.thumb ? "N/A" : listing.thumb,
-            // These values need to be passed in as local state
-            record_price: 19.99,
-            record_quantity: 2,
-            record_vendor: 5
         }
-        dispatch(createAlbumListingThunk(newListing));
-    }
-
-    const findListings = (id) => (event) => {
-        dispatch(findAllListingsThunk(id));
-        // navigation("/search/"+id);
+        navigation("/listings/"+selectedListing.discogs_id, {state: {...selectedListing}});
     }
 
     useEffect(() => {
@@ -78,8 +68,8 @@ function SearchBar(noBlur) {
                         query.discogsAlbumQuery.map(e =>
                         {
                             if (e.title.split("-").length === 2){
-                        return <Card onClick={findListings(e.id)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="wd-on-hover border-1 d-flex flex-row ">
-                            <Link className="text-dark text-decoration-none w-100 p-0 m-0 d-flex flex-row" to={"/search/"+e.id}>
+                        return <Card onClick={findListings(e)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="wd-on-hover border-1 d-flex flex-row ">
+                            <Link className="text-dark text-decoration-none w-100 p-0 m-0 d-flex flex-row">
                             <img style={{height: "100px", width: "100px"}} src={e.thumb}/>
                                 <div className="p-0 ms-3 d-flex flex-column justify-content-center"
                                      style={{height: "100px", width: "75%"}}>

@@ -31,6 +31,7 @@ const CreateListingModal = (props) => {
             // NEED VENDOR ID PASSED IN
             "record_vendor" : currentUser.username
         }
+        console.log(newListing)
         dispatch(createAlbumListingThunk(newListing));
         setAlbum("");
         setArtist("");
@@ -41,7 +42,6 @@ const CreateListingModal = (props) => {
         setId("");
         setPrice("");
         props.onHide();
-
     }
     const autoFill = (data) => {
         console.log(data);

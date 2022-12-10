@@ -1,22 +1,29 @@
 import React, {useEffect} from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
+import {findAllListingsThunk} from "../services/discogs-thunk";
+import {useLocation, useNavigate} from "react-router-dom";
 import ListingArrayComponent from "./listing-array-component";
 import {uuid4} from "uuid4";
-import {findAllListingsThunk} from "../services/discogs-thunk";
+import NoListingsFoundScreen from "./not-found-component";
+
 const ListingComponent = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const selectedListing = location.state;
+    const hrefId = window.location.href.split("/").slice(-1)[0];
+    console.log(selectedListing);
     useEffect(() => {
-        dispatch(findAllListingsThunk(window.location.href.split("/").slice(-1)[0]));
+        dispatch(findAllListingsThunk(hrefId));
     },[]);
     const listings = useSelector(state => state.discogs.listings);
     return(
         <>
             <div className="wd-flex-box-format">
                 <NavigationSidebar/>
-                {
-                    listings.map(e => {
-                        return <ListingArrayComponent listing={e} key={uuid4()}/>
+                {listings.length === 0 ? <NoListingsFoundScreen/> :
+                    listings.map((e,index) => {
+                        return <ListingArrayComponent index={index} listing={e} key={uuid4()}/>
                     })
                     }
                 }
