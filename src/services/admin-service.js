@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_API_PATH = process.env.APTS_API_BASE;
+// const BASE_API_PATH = process.env.APTS_API_BASE;
+const BASE_API_PATH = "https://apts-server-backend.herokuapp.com/"
 const API_LISTINGS_PATH = `${BASE_API_PATH}/users/`;
 
 

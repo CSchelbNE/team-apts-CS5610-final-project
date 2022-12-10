@@ -99,7 +99,7 @@ const ProfileComponent = () => {
                                     { currentUser && profileUser.username === currentUser.username &&
                                         <div className="d-inline-block text-secondary w-auto">
                                             <img src={require("../images/birthday-cake.png")}
-                                                 className="wd-cake-icon-format my-auto"></img>&nbsp;
+    className="wd-cake-icon-format my-auto"/>&nbsp;
                                             <span>{formatBirthDate()}</span>
                                         </div>}
                                     <div className="d-inline-block text-secondary w-auto">
