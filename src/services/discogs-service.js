@@ -1,7 +1,10 @@
 import axios from "axios";
-const API_BASE_SEARCH_PATH = "http://localhost:2000/api/search/"
-const API_ALBUM_PATH = "http://localhost:2000/api/search/album/"
-const API_LISTINGS_PATH = "http://localhost:2000/listings/"
+// const API_BASE_SEARCH_PATH = "http://localhost:2000/api/search/"
+const BASE_API_PATH = process.env.APTS_API_BASE;
+const API_ALBUM_PATH = `${BASE_API_PATH}/api/search/album`;
+const API_LISTINGS_PATH = `${BASE_API_PATH}/listings/`;
+// const API_ALBUM_PATH = "http://localhost:2000/api/search/album/"
+// const API_LISTINGS_PATH = "http://localhost:2000/listings/"
 const api = axios.create({withCredentials: true});
 
 export const getAlbums = async (album) => {

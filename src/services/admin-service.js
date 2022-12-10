@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_LISTINGS_PATH = "http://localhost:2000/users/"
+const BASE_API_PATH = process.env.APTS_API_BASE;
+const API_LISTINGS_PATH = `${BASE_API_PATH}/users/`;
+
 
 export const getAllOpenApprovals = async () => {
     const result = await axios.get(API_LISTINGS_PATH+"approvals")

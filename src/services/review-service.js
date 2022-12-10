@@ -1,5 +1,7 @@
 import axios from "axios";
-const API_REVIEWS_PATH = "http://localhost:2000/review/"
+const BASE_API_PATH = process.env.APTS_API_BASE;
+const API_REVIEWS_PATH = `${BASE_API_PATH}/review/`;
+// const API_REVIEWS_PATH = "http://localhost:2000/review/"
 const api = axios.create({withCredentials: true});
 
 
