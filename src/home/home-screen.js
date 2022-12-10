@@ -6,6 +6,7 @@ import UsersListComponent from "../users/users-list";
 import {useDispatch, useSelector} from "react-redux";
 import WishListComponent from "../wish-list/wish-list-component";
 import {findUserThunk} from "../services/users-thunks";
+import ModalWrapperButton from "../components/modal-wrapper-button";
 
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
@@ -41,6 +42,7 @@ const HomeScreen = () => {
                 <div className="mt-3">
                     <h1>Suggested Albums</h1>
                     <div className="border border-2 border-secondary p-2 m-2">
+                        <ModalWrapperButton/>
                         <SuggestedComponent/>
                     </div>
 
