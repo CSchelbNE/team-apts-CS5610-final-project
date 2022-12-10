@@ -103,7 +103,7 @@
     right: 18%;
     top: -8px;
     z-index: 9999;
-    width: 32%;
+    width: 300px;
   }
 }
 
@@ -111,21 +111,80 @@
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
   .wd-search-bar-absolute-pos {
     position: absolute;
-    right: 16%;
+    right: 15%;
     top: -8px;
     z-index: 9999;
-    width: 32%;
+    width: 400px;
   }
 }
 
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1400px) and (max-width: 1499px) {
   .wd-search-bar-absolute-pos {
     position: absolute;
-    right: 13%;
+    right: 18%;
     top: -8px;
     z-index: 9999;
-    width: 32%;
+    /*width:20px;*/
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1599px) {
+  .wd-search-bar-absolute-pos {
+    position: absolute;
+    right: 18%;
+    top: -8px;
+    z-index: 9999;
+    /*width:20px;*/
+    width: 600px;
+  }
+}
+
+
+@media screen and (min-width: 1600px) and (max-width: 1699px) {
+  .wd-search-bar-absolute-pos {
+    position: absolute;
+    right: 18%;
+    top: -8px;
+    z-index: 9999;
+    width: 600px;
+  }
+}
+
+
+@media screen and (min-width: 1700px) and (max-width: 1799px) {
+  .wd-search-bar-absolute-pos {
+    position: absolute;
+    right: 18%;
+    top: -8px;
+    z-index: 9999;
+    /*width:20px;*/
+    width: 600px;
+  }
+}
+
+
+@media screen and (min-width: 1800px) and (max-width: 1899px) {
+  .wd-search-bar-absolute-pos {
+    position: absolute;
+    right: 19%;
+    top: -8px;
+    z-index: 9999;
+    /*width:20px;*/
+    width: 600px;
+  }
+}
+
+
+@media screen and (min-width: 1900px)  {
+  .wd-search-bar-absolute-pos {
+    position: absolute;
+    right: 30%;
+    top: -8px;
+    z-index: 9999;
+    /*width:20px;*/
+    width: 600px;
   }
 }
 

@@ -23,7 +23,7 @@ const NavigationSidebar = () => {
     const currentUser = useSelector(state => state.users.currentUser)
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
-        <div className="position-relative">
+        <div className=" position-relative">
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>

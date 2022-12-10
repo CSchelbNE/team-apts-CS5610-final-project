@@ -1,8 +1,8 @@
 import axios from "axios";
 const BASE_API_PATH = process.env.REACT_APP_APTS_API_BASE;
 // const BASE_API_PATH = "https://apts-server-backend.herokuapp.com/"
-const API_REVIEWS_PATH = `${BASE_API_PATH}review/`;
 // const API_REVIEWS_PATH = "http://localhost:2000/review/"
+const API_REVIEWS_PATH = `${BASE_API_PATH}review/`;
 const api = axios.create({withCredentials: true});
 
 
