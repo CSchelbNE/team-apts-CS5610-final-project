@@ -26,8 +26,7 @@ mongoose.connect(CONNECTION_STRING,mongooseOptions);
 // app.use(cors());
 app.use(cors({
     credentials: true,
-    // origin:"http://localhost:3000"
-
+    origin: "*"
 }));
 app.use(session({
     secret: "should be environment variable!",
