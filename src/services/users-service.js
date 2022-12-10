@@ -10,7 +10,7 @@ const BASE_URL= "https://apts-server-backend.herokuapp.com/"
 const api = axios.create({withCredentials: true});
 
 export const findAllUsers = async() => {
-    const response = await axios.get(`${BASE_URL}users`)
+    const response = await api.get(`${BASE_URL}users`)
     return response.data;
 }
 
@@ -25,21 +25,21 @@ export const login = async(user) => {
 }
 
 export const logout = async(user) => {
-    const response = await axios.post(`${BASE_URL}logout`, user)
+    const response = await api.post(`${BASE_URL}logout`, user)
     return response.data;
 }
 
 export const findUser = async() => {
-    const response = await axios.get(`${BASE_URL}api/profile`);
+    const response = await api.get(`${BASE_URL}api/profile`);
     return response.data;
 }
 
 export const findUserByUsername = async(username) => {
-    const response = await axios.get(`${BASE_URL}api/profile/${username}`);
+    const response = await api.get(`${BASE_URL}api/profile/${username}`);
     return response.data;
 }
 
 export const updateUser = async(userUpdates) => {
-    const response = await axios.put(`${BASE_URL}users/${userUpdates.username}`, {...userUpdates});
+    const response = await api.put(`${BASE_URL}users/${userUpdates.username}`, {...userUpdates});
     return response.data;
 }
