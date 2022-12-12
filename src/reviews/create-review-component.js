@@ -12,10 +12,11 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
     const createReview = () => {
         // dynamically pass in rating from the onclick event
         const newReview = {listing: details._id, rating: rating, body: body, user: currentUser._id};
-        console.log("newReview");
-        console.log(newReview);
+
         setNewReview(true);
         dispatch(createReviewThunk(newReview));
+        setBody('');
+        setRating(1);
     }
 
     return(
