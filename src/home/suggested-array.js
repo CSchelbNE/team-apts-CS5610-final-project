@@ -14,6 +14,7 @@ const suggestedArray = [
 },
 {
 "_id": "638d1f881020b96a92d85d5b",
+  "discogs_id" : 13859,
 "record_name": "In Utero",
 "record_artist": "Nirvana",
 "record_genre": "Rock",
@@ -25,6 +26,7 @@ const suggestedArray = [
 },
 {
 "_id": "638d15741020b96a92d85d5a",
+  "discogs_id" : 38722,
 "record_name": "Rumours",
 "record_artist": "Fleetwood Mac",
 "record_genre": "Rock",

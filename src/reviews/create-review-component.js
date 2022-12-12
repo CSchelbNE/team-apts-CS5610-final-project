@@ -1,10 +1,20 @@
 import React, {useState} from "react";
 import "../index.css";
+import {createReviewThunk} from "../services/review-thunk";
+import {useDispatch} from "react-redux";
 
-const CreateReviewComponent = () => {
+const CreateReviewComponent = ({setNewReview}, {details}, {currentUser}) => {
+    const dispatch = useDispatch();
     const [body, setBody] = useState('');
     const [rating, setRating] = useState(1);
-    
+    // const [newReview, setNewReview] = useState(true);
+
+    const createReview = () => (event) => {
+        // dynamically pass in rating from the onclick event
+        const newReview = {listing: details._id, rating: rating, body: body, user: currentUser._id};
+        setNewReview(true);
+        dispatch(createReviewThunk(newReview));
+    }
 
     return(
         <>
@@ -38,7 +48,7 @@ const CreateReviewComponent = () => {
                                 <img src={require("../images/review-check.png")} className="wd-review-check-format mt-2"/>
                                 <img src={require("../images/thumbs-up-five-star.png")} className="wd-thumbs-up-five-star-format ms-2 mt-2"/>
                                 <div className="float-end mt-2">
-                                    <button className="btn btn-primary">Save</button>
+                                    <button className="btn btn-primary" onClick={createReview}>Save</button>
                                 </div>
                             </div>
 

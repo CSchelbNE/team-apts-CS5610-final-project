@@ -14,7 +14,7 @@ import {useNavigate} from "react-router-dom";
 function SearchBarCreate({callback}) {
     const dispatch = useDispatch();
     const navigation = useNavigate();
-    const [newInput, setNewInput] = useState("");
+    const [newListingInput, setNewListingInput] = useState("");
     const [isInputChanged, setIsChanged] = useState(false);
     const [visibility, setVisibility] = useState("d-none p-0");
 
@@ -38,14 +38,14 @@ function SearchBarCreate({callback}) {
         // TIMEOUT ADDED TO PREVENT DISCOGS API FROM RATE-LIMITING DUE TO TOO MANY API CALLS
         const delayedGetRequest = setTimeout(() => {
             if(isInputChanged) {
-                if (newInput!=="") {
+                if (newListingInput!=="") {
                     setIsChanged(false);
-                    dispatch(getAlbumsThunk(newInput));
+                    dispatch(getAlbumsThunk(newListingInput));
                     setVisibility("d-block p-0")
                 }
             }}, 150);
         return () => clearTimeout(delayedGetRequest)
-    }, [newInput]);
+    }, [newListingInput]);
 
     const query = useSelector(state =>
         state.discogs
@@ -55,14 +55,14 @@ function SearchBarCreate({callback}) {
             <div className="p-0 row-12 position-relative">
                 <input  onFocus={()=> setTimeout(()=> setVisibility("p-0 d-block"),100)}
                         className="form-control row-cols-3 shadow-none" style={{borderRadius: 0}}
-                        placeholder={"Search for new records here..."} value={newInput} onChange={(e) =>
+                        placeholder={"Search for new records here..."} value={newListingInput} onChange={(e) =>
                 {
                     if (e.target.value === ""){
                         setVisibility("d-none");
-                        setNewInput(e.target.value);
+                        setNewListingInput(e.target.value);
                         return;
                     }
-                    setNewInput(e.target.value)
+                    setNewListingInput(e.target.value)
                     setIsChanged(true)}}/>
                 <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
             </div>

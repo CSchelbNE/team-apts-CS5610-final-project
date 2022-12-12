@@ -2,10 +2,10 @@ import React from "react";
 import CreateReviewComponent from "./create-review-component";
 import ReviewsListByUser from "./reviews-list-by-user";
 
-const ReviewsByUser = () => {
+const ReviewsByUser = ({details}, {currentUser}, {reviews}, {setNewReview}) => {
     return(
         <>
-            <CreateReviewComponent/>
+            <CreateReviewComponent details={details} currentUser={currentUser} setNewReview={setNewReview}/>
             <ReviewsListByUser/>
         </>
     );

@@ -8,7 +8,7 @@ const ReviewsListItemByUser = ({review}) => {
                 <div className="text-start">
                     <div className="row ">
                         <div className="ms-0 col-2">
-                            <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                            <img src={review.user.profilePic}
                                  className="wd-profile-pic-format rounded-circle"/>
                         </div>
                         <div className="col-11 col-lg-10 col-md-10 col-sm-11">

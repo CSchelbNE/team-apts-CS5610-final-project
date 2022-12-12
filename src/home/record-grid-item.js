@@ -4,13 +4,11 @@ import {useNavigate} from "react-router-dom";
 
 const RecordGridItem = ({record}) => {
     const navigate = useNavigate();
-
-
     return(
         <>
             <div className="d-inline-flex ms-3 mt-2 mb-2 p-2 border fs-3 flex-nowrap"
                  onClick={() => {
-                     navigate("/listings/"+record.discogs_id);
+                     navigate("/listings/"+record.discogs_id, {state: {...record}});
                  }}>
                 <div className="p-2 flex-inline my-auto">
                     <img src={`${record.record_image}`} className="wd-record-image-format"/>

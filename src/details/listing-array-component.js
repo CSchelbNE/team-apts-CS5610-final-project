@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 const ListingArrayComponent = ({listing}) => {
     const navigate = useNavigate();
@@ -6,7 +6,8 @@ const ListingArrayComponent = ({listing}) => {
 
         <div onClick ={() =>
     {
-        navigate("/details/" + listing._id.toString());
+            navigate({pathname: '/details/'+listing._id}
+            )
     }}>
                 <div className="text-center">
                     <img src={listing.record_image} className="rounded"/>
