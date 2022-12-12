@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk} from "../services/discogs-thunk";
+import CreateReviewComponent from "../reviews/create-review-component";
 
 console.log("This is a detailed listing page");
 
@@ -50,6 +51,11 @@ const DetailsScreen = ({listing}) => {
                     </div>
                 </div>
          </div>
+             <div className="row ">
+                 <div className="col-5">
+                     <CreateReviewComponent/>
+                 </div>
+             </div>
          </div>
             }
         </>
