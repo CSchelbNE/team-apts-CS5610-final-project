@@ -20,6 +20,7 @@ export const getAllReviewsByUsername = async (req,res) => {
 
 export const getAllReviewsByAlbum = async (req,res) => {
     const albumId = req.params.id;
+    console.log(albumId);
     const result = await dao.getAllReviewsByAlbum(albumId);
     res.json(result);
 }

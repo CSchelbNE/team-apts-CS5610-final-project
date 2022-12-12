@@ -24,6 +24,8 @@ const getListingByMongoId = async (req, res) => {
     return res.json(listing);
 }
 
+
+
 const getRandomListings = async (req, res) => {
 
 }

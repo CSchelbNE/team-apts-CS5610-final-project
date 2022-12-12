@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findAllListingsThunk, getAlbumsThunk} from "../services/discogs-thunk";
+import {
+    findAllListingsThunk,
+    getAlbumsThunk,
+    getSingleListingByIdThunk
+} from "../services/discogs-thunk";
+import {getSingleListingById} from "../services/discogs-service";
 
 const initialState = {
-    discogsQuery: [],
     discogsAlbumQuery: [],
+    details: null,
     listings: [],
     loading: false
 }
@@ -26,6 +31,11 @@ const discogsSlice = createSlice({
         [findAllListingsThunk.fulfilled]:
             (state, {payload}) => {
                 state.listings = payload;
+            },
+        [getSingleListingByIdThunk.fulfilled]:
+            (state, {payload}) => {
+            console.log(payload);
+                state.details = payload;
             }
     }
 });

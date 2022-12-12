@@ -25,8 +25,8 @@ const ListingComponent = () => {
             <div className="wd-flex-box-format">
                 <NavigationSidebar/>
                 {listings.length === 0 ? <NoListingsFoundScreen/> :
-                    listings.map((e,index) => {
-                        return <ListingArrayComponent listing={e} index={index} key={uuid4()}/>
+                    listings.map((e) => {
+                        return <ListingArrayComponent listing={e}  key={uuid4()}/>
                     })
                     }
                 }

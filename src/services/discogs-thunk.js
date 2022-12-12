@@ -1,5 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {createAlbumListing, getAlbums, findAllListingsById} from "./discogs-service";
+import {
+    createAlbumListing,
+    getAlbums,
+    findAllListingsById,
+    getSingleListingById
+} from "./discogs-service";
 
 
 export const getAlbumsThunk = createAsyncThunk(
@@ -19,3 +24,9 @@ export const createAlbumListingThunk = createAsyncThunk(
         return await createAlbumListing(listing);
     }
 );
+
+export const getSingleListingByIdThunk = createAsyncThunk(
+    "discogs/getSingleListing", async (id) => {
+        return await getSingleListingById(id);
+    }
+)

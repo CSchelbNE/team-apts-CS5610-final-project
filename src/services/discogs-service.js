@@ -25,4 +25,9 @@ export const findAllListingsById = async (discogId) => {
     return result.data;
 }
 
+export const getSingleListingById = async (id) => {
+    const result = await api.get(API_LISTINGS_PATH+id.toString());
+    return result.data;
+}
+
 
