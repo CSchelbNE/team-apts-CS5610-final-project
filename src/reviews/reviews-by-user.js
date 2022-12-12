@@ -6,7 +6,10 @@ const ReviewsByUser = ({details}, {currentUser}, {reviews}, {setNewReview}) => {
     return(
         <>
             <CreateReviewComponent details={details} currentUser={currentUser} setNewReview={setNewReview}/>
-            <ReviewsListByUser/>
+            {
+                !reviews ? " " :
+                <ReviewsListByUser reviews={reviews}/>
+            }
         </>
     );
 }

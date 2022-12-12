@@ -22,7 +22,7 @@ const CreateReviewComponent = ({setNewReview}, {details}, {currentUser}) => {
             <div className="border p-2 text-start rounded-2">
                 <div className="row ">
                         <div className="ms-0 col-2 col-md-2 col-sm-3 ">
-                            <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                            <img src={currentUser.profilePic}
                             className="wd-profile-pic-format rounded-circle "/>
                         </div>
                         <div className="col-10 col-lg-10 col-md-10 col-sm-9">

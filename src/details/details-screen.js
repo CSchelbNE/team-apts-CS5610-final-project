@@ -81,10 +81,15 @@ const DetailsScreen = () => {
                         </div>
                     </div>
                 </div>
+                 <h3>Review by User</h3>
                  <div className="row ">
                      <div className="col-3"></div>
                      <div className="col-6">
-                         <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser} reviews={reviews}/>
+
+
+                                 <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}
+                                            reviews={reviews}/>
+
                      </div>
                      <div className="col-3"></div>
                  </div>
@@ -92,17 +97,15 @@ const DetailsScreen = () => {
 
 
 
-                    {/*// <div>*/}
+
                     {/*//     {"Reviews: "}*/}
                     {/*//     {!reviews ? " ": reviews.map((e)=> {*/}
                     {/*//         return e.user.username + " " + e.listing.record_name+ " "+e.body+"\n";*/}
-                    {/*//     })*/}
-                    {/*//     }*/}
-                    {/*// </div>*/}
-         {/*    </div>*/}
-         {/*    </div>*/}
-         {/*</>*/}
-         </>}
+
+
+
+         </>
+        }
         </>
 
     );
