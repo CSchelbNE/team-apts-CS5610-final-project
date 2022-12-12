@@ -24,6 +24,16 @@ export const createAlbumListing = async (listing) => {
     return result.data;
 }
 
+export const deleteListing = async (id) => {
+    const result = await api.delete(API_LISTINGS_PATH+id.toString());
+    return result.data;
+}
+
+export const editListing = async (listing) => {
+    const result = await api.put(API_LISTINGS_PATH, listing);
+    return result.data;
+}
+
 export const findAllListingsById = async (discogId) => {
     const result = await api.get(API_LISTINGS_PATH+"get-all/"+discogId.toString());
     return result.data;
@@ -38,4 +48,3 @@ export const getRecentListings = async () => {
     const result = await api.get(API_LISTINGS_PATH+"recent");
     return result.data;
 }
-

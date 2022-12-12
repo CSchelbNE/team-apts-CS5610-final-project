@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    deleteListingThunk, editListingThunk,
     findAllListingsThunk,
     getAlbumByIdThunk,
     getAlbumsThunk, getRecentListingsThunk,
@@ -55,6 +56,19 @@ const discogsSlice = createSlice({
                     "record_year": !payload.year ? "N/A" : payload.year,
                     "record_image": !payload.thumb ? "N/A" : payload.thumb,
                 };
+            },
+        [deleteListingThunk.fulfilled]:
+            (state, {payload}) => {
+                // Needs to be implemented that when a user deletes a listing it navigates them back to search res;
+                console.log("Delete: " + payload.toString());
+                const index = state.listings.findIndex((e) => e._id = payload._id);
+                const leftSlice = state.listing.slice(0,index);
+                const rightSlice = state.listing.slice(index+1);
+                state.reviews = {...leftSlice, ...rightSlice};
+            },
+        [editListingThunk.fulfilled]:
+            (state, {payload}) => {
+                console.log("Edited: " + payload);
             }
     }
 });

@@ -6,24 +6,26 @@ import {
     getAllReviewsByAlbumIdThunk,
 } from "../services/review-thunk";
 import {useParams} from "react-router";
-import {getSingleListingByIdThunk} from "../services/discogs-thunk";
+import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
+import Button from "react-bootstrap/Button";
 
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
     const albumId = useParams().id;
+    const [newReview, setNewReview] = useState(true);
     useEffect(() => {
-        dispatch(getSingleListingByIdThunk(albumId));
         if(newReview) {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
             setNewReview(false);
+            dispatch(getSingleListingByIdThunk(albumId));
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
     const details = useSelector(state => state.discogs.details);
     const currentUser = useSelector(state => state.users.currentUser);
     const reviews = useSelector(state => state.reviews.reviews);
-    const [newReview, setNewReview] = useState(true);
+    const modifyListingButtonStyle = !currentUser ? "d-none" : currentUser._id === details.record_vendor ? "d-block" : "d-none";
     const createReview = (rating, body) => (event) => {
         // dynamically pass in rating from the onclick event
         const newReview = {listing: details._id, rating:rating, body: body, user: currentUser._id};
@@ -56,6 +58,13 @@ const DetailsScreen = () => {
 
                     <div className="d-grid col-5 m-2">
                         <div className="row">
+                            <Button onClick={() => {
+                                dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))
+                            }}>Edit</Button>
+                            <Button onClick={() => {
+                                dispatch(deleteListingThunk(details._id));
+                            }}>Delete</Button>
+
                             <div className="p-2">
                                 <h2 className="text-dark">{details.record_name}</h2>
                             </div>

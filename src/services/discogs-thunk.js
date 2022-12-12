@@ -3,7 +3,7 @@ import {
     createAlbumListing,
     getAlbums,
     findAllListingsById,
-    getSingleListingById, getAlbumById, getRecentListings
+    getSingleListingById, getAlbumById, getRecentListings, deleteListing, editListing
 } from "./discogs-service";
 
 
@@ -30,6 +30,18 @@ export const createAlbumListingThunk = createAsyncThunk(
         return await createAlbumListing(listing);
     }
 );
+
+export const deleteListingThunk = createAsyncThunk(
+    "discogs/deleteListing", async (id) => {
+        return await deleteListing(id);
+    }
+)
+
+export const editListingThunk = createAsyncThunk(
+    "discogs/editListing", async (listing) => {
+        return await editListing(listing);
+    }
+)
 
 export const getSingleListingByIdThunk = createAsyncThunk(
     "discogs/getSingleListing", async (id) => {

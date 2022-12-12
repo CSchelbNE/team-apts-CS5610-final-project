@@ -22,17 +22,7 @@ function SearchBar(noBlur) {
         const params = {
             'id': listing.id.toString(),
             "query": newInput
-        // 'album': listing.title.split("-")[1].split("/")[0].trim()[-1] === "?" ? listing.title.split("-")[1].split("/")[0].trim().slice(0,-1) : listing.title.split("-")[1].split("/")[0].trim()
     };
-        // const selectedListing = {
-        //     "discogs_id": listing.id,
-        //     "record_name": listing.title.split("-")[1].trim(),
-        //     "record_artist": listing.title.split("-")[0].trim(),
-        //     "record_genre": !listing.genre ? [] : listing.genre,
-        //     "record_year": !listing.year ? "N/A" : listing.year,
-        //     "record_image": !listing.thumb ? "N/A" : listing.thumb,
-        // }
-        // navigation("/listings/"+selectedListing.discogs_id, {state: {...selectedListing}});
         navigation({
                        pathname: "/search",
                        search: `?${createSearchParams(params)}`

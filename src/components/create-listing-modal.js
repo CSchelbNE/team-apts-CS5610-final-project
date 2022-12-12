@@ -28,7 +28,6 @@ const CreateListingModal = (props) => {
             // These values need to be passed in as local state
             record_price: price,
             record_quantity: quantity,
-            // NEED VENDOR ID PASSED IN
             "record_vendor" : {...currentUser}
         }
         dispatch(createAlbumListingThunk(newListing));
