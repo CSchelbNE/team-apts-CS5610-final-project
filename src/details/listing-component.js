@@ -10,7 +10,8 @@ import NoListingsFoundScreen from "./not-found-component";
 const ListingComponent = () => {
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
-    const albumName = searchParams.get("album");
+    const albumName = searchParams.get("query");
+    console.log(albumName);
     const hrefId = searchParams.get("id");
     useEffect(() => {
             dispatch(findAllListingsThunk(hrefId))
