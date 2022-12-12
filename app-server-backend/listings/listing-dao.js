@@ -19,7 +19,7 @@ export const getMostRecentListings = async () => {
 }
 
 export const deleteListing = async (id) => {
-    // await reviewModel.deleteMany({listing: new mongoose.Types.ObjectId(id)})
+    await reviewModel.deleteMany({listing: new mongoose.Types.ObjectId(id)})
     return listingModel.findByIdAndDelete(id);
 }
 
