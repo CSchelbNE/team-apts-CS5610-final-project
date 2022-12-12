@@ -15,6 +15,7 @@ const reviewSlice = createSlice({
     extraReducers: {
         [getAllReviewsByUsernameThunk.fulfilled]:
             (state, {payload}) => {
+                console.log(payload);
                 state.reviews = payload;
 
             },

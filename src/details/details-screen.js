@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
-import {createReviewThunk, getAllReviewsByAlbumIdThunk} from "../services/review-thunk";
+import {
+    createReviewThunk,
+    getAllReviewsByAlbumIdThunk,
+} from "../services/review-thunk";
 import {useParams} from "react-router";
 import {getSingleListingByIdThunk} from "../services/discogs-thunk";
 
@@ -24,6 +27,7 @@ const DetailsScreen = () => {
     const createReview = (rating, body) => (event) => {
         // dynamically pass in rating from the onclick event
         const newReview = {listing: details._id, rating:rating, body: body, user: currentUser._id};
+        setNewReview(true);
         dispatch(createReviewThunk(newReview));
     }
     return (
@@ -45,7 +49,7 @@ const DetailsScreen = () => {
                                 <button className="btn btn-outline-dark">Add to wishlist</button>
                             </div>
                             <div>
-                                <button onClick={createReview}>Write Review</button>
+                                <button onClick={createReview(2,"DBC123")}>Write Review</button>
                             </div>
                         </div>
                     </div>
@@ -71,6 +75,13 @@ const DetailsScreen = () => {
                                 <h5 className="text-dark">Price: ${details.record_price}</h5>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        {"Reviews: "}
+                        {!reviews ? " ": reviews.map((e)=> {
+                            return e.user.username + " " + e.listing.record_name+ " "+e.body+"\n";
+                        })
+                        }
                     </div>
              </div>
              </div>

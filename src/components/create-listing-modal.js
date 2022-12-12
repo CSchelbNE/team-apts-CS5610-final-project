@@ -29,9 +29,8 @@ const CreateListingModal = (props) => {
             record_price: price,
             record_quantity: quantity,
             // NEED VENDOR ID PASSED IN
-            "record_vendor" : currentUser.username
+            "record_vendor" : {...currentUser}
         }
-        console.log(newListing)
         dispatch(createAlbumListingThunk(newListing));
         setAlbum("");
         setArtist("");

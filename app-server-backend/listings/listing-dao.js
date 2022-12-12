@@ -5,9 +5,9 @@ export const pushListingToDB = (listing) => {
 }
 
 export const pullAllListingByID = (id) => {
-    return listingModel.find({discogs_id: id});
+    return listingModel.find({discogs_id: id}).populate("record_vendor");
 }
 
 export const getListingByMongoID = (id) => {
-    return listingModel.findById(id);
+    return listingModel.findById(id).populate("record_vendor");
 }
