@@ -20,17 +20,17 @@ const reviewSlice = createSlice({
     extraReducers: {
         [getAllReviewsByUsernameThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
                 state.reviews = payload;
 
             },
         [getAllReviewsByAlbumIdThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload);
                 state.reviews = payload;
             },
         [createReviewThunk.fulfilled] :
         (state, {payload}) => {
+            console.log("createReviewThunk.fulfilled");
+            console.log(payload);
             // need to implement this
             state.reviews.push(payload);
         },
