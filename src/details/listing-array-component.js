@@ -19,6 +19,7 @@ const ListingArrayComponent = ({listing, query}) => {
                     <img src={listing.record_image} className="rounded"/>
                     <h1 className="text-dark">{listing.record_name}</h1>
                     <h3 className="text-dark">Artist: {listing.record_artist}</h3>
+
                 </div>
         </div>
     );

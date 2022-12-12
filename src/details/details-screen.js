@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+
+// import {findAllListingsThunk} from "../services/discogs-thunk";
+import ReviewsByUser from "../reviews/reviews-by-user";
+// console.log("This is a detailed listing page");
+
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {
     createReviewThunk,
@@ -8,7 +13,6 @@ import {
 import {useParams} from "react-router";
 import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
-
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -28,13 +32,10 @@ const DetailsScreen = () => {
     const details = useSelector(state => state.discogs.details);
     const currentUser = useSelector(state => state.users.currentUser);
     const reviews = useSelector(state => state.reviews.reviews);
+
     const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
-    const createReview = (rating, body) => (event) => {
-        // dynamically pass in rating from the onclick event
-        const newReview = {listing: details._id, rating:rating, body: body, user: currentUser._id};
-        setNewReview(true);
-        dispatch(createReviewThunk(newReview));
-    }
+
+
     return (
         <>
         {!details ? <></> :
@@ -53,6 +54,7 @@ const DetailsScreen = () => {
                             <div className="p-2">
                                 <button className="btn btn-outline-dark">Add to wishlist</button>
                             </div>
+
                             <div className="p-2">
                                 <button className={modifyListingButtonStyle} onClick={() => {
                                     dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))
@@ -72,6 +74,9 @@ const DetailsScreen = () => {
                                                });
                                 }}>Delete Listing</button>
                             </div>
+
+
+
                         </div>
                     </div>
 
@@ -97,10 +102,32 @@ const DetailsScreen = () => {
                             </div>
                         </div>
                     </div>
+
              </div>
+
+
+                 <div className="row ">
+                     <div className="col-3"></div>
+                     <div className="col-6">
+
+
+                                 <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}
+                                            reviews={reviews}/>
+
+                     </div>
+                     <div className="col-3"></div>
+                 </div>
+
              </div>
+
+
+             {/*//     {"Reviews: "}*/}
+             {/*//     {!reviews ? " ": reviews.map((e)=> {*/}
+             {/*//         return e.user.username + " " + e.listing.record_name+ " "+e.body+"\n";*/}
+
+
          </>
-            }
+        }
         </>
 
     );
