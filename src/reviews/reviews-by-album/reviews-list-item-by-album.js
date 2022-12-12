@@ -10,19 +10,19 @@ const ReviewsListItemByAlbum = ({review}) => {
                         <div className="text-center">
                             <div className="d-inline-flex">
                                 <div className="">
-                                    <img src={review.record_image} className="wd-thumb-format"/>
+                                    <img src={review.listing.record_image} className="wd-thumb-format"/>
                                 </div>
                                 <div className="flex-inline flex-nowrap text-start ms-2 my-auto">
-                                    <div>{review.record_name}</div>
-                                    <div>{review.record_artist}</div>
-                                    <div>{review.record_year}</div>
+                                    <div>{review.listing.record_name}</div>
+                                    <div>{review.listing.record_artist}</div>
+                                    <div>{review.listing.record_year}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="row ">
                         <div className="ms-0 col-2 ">
-                            <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                            <img src={review.user.profilePic}
                                  className="wd-profile-pic-large-format rounded-circle mt-2"/>
                         </div>
                         <div className="col-11 col-lg-10 col-md-10 col-sm-11">

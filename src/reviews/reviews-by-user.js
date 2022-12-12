@@ -5,9 +5,7 @@ import ReviewsListByUser from "./reviews-list-by-user";
 const ReviewsByUser = ({details, currentUser, reviews, setNewReview}) => {
     return(
         <>
-            {
 
-            }
             {
                 details && currentUser &&
                 <CreateReviewComponent details={details} currentUser={currentUser} setNewReview={setNewReview}/>
