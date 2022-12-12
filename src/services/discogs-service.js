@@ -1,7 +1,4 @@
 import axios from "axios";
-// const BASE_API_PATH = "https://apts-server-backend.herokuapp.com/"
-// const API_ALBUM_PATH = "http://localhost:2000/api/search/album/"
-// const API_LISTINGS_PATH = "http://localhost:2000/listings/"
 const BASE_API_PATH = process.env.REACT_APP_APTS_API_BASE;
 const API_ALBUM_PATH = `${BASE_API_PATH}api/search/album/`;
 const API_SINGLE_ALBUM_PATH = `${BASE_API_PATH}api/search-one/album/`;
@@ -28,17 +25,17 @@ export const createAlbumListing = async (listing) => {
 }
 
 export const findAllListingsById = async (discogId) => {
-    const result = await api.get(API_LISTINGS_PATH+"find-all/"+discogId.toString());
+    const result = await api.get(API_LISTINGS_PATH+"get-all/"+discogId.toString());
     return result.data;
 }
 
 export const getSingleListingById = async (id) => {
-    const result = await api.get(API_LISTINGS_PATH+id.toString());
+    const result = await api.get(API_LISTINGS_PATH+"single/"+id.toString());
     return result.data;
 }
 
-export const getDiscogsDetailsById = async (id) => {
-    const result = await axios.get()
+export const getRecentListings = async () => {
+    const result = await api.get(API_LISTINGS_PATH+"recent");
+    return result.data;
 }
-
 

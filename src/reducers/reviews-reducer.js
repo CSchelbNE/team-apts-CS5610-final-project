@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createReviewThunk, getAllReviewsByAlbumIdThunk, getAllReviewsByUsernameThunk} from "../services/review-thunk";
+import {
+    createReviewThunk,
+    deleteReviewByIdThunk,
+    getAllReviewsByAlbumIdThunk,
+    getAllReviewsByUsernameThunk
+} from "../services/review-thunk";
 
 const initialState = {
     reviews: []
@@ -28,7 +33,14 @@ const reviewSlice = createSlice({
         (state, {payload}) => {
             // need to implement this
             state.reviews.push(payload);
-        }
+        },
+        [deleteReviewByIdThunk.fulfilled]:
+            (state, {payload})=> {
+                const index = state.reviews.findIndex((e) => e._id = payload._id);
+                const leftSlice = state.reviews.slice(0,index);
+                const rightSlice = state.reviews.slice(index+1);
+                state.reviews = {...leftSlice, ...rightSlice};
+            }
     }
 });
 

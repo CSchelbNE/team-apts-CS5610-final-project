@@ -28,5 +28,4 @@ const adminSlice = createSlice({
     }
 });
 
-export const {getFocalApprovals} = adminSlice.actions
 export default adminSlice.reducer;

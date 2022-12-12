@@ -3,7 +3,6 @@ import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllListingsThunk, getAlbumByIdThunk} from "../services/discogs-thunk";
 import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
-import {removeNotFound} from "../reducers/discog-reducer";
 import ListingArrayComponent from "./listing-array-component";
 import {uuid4} from "uuid4";
 import NoListingsFoundScreen from "./not-found-component";
@@ -11,7 +10,8 @@ import NoListingsFoundScreen from "./not-found-component";
 const ListingComponent = () => {
     const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
-    const albumName = searchParams.get("album");
+    const albumName = searchParams.get("query");
+    console.log(albumName);
     const hrefId = searchParams.get("id");
     useEffect(() => {
             dispatch(findAllListingsThunk(hrefId))
@@ -19,8 +19,6 @@ const ListingComponent = () => {
     },[hrefId, dispatch]);
     const listings = useSelector(state => state.discogs.listings);
     const notFound = useSelector(state => state.discogs.notFound);
-
-
     return(
         <>
             <div className="wd-flex-box-format">
