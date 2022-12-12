@@ -3,15 +3,17 @@ import "../index.css";
 import {createReviewThunk} from "../services/review-thunk";
 import {useDispatch} from "react-redux";
 
-const CreateReviewComponent = ({setNewReview}, {details}, {currentUser}) => {
+const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
     const dispatch = useDispatch();
     const [body, setBody] = useState('');
     const [rating, setRating] = useState(1);
     // const [newReview, setNewReview] = useState(true);
 
-    const createReview = () => (event) => {
+    const createReview = () => {
         // dynamically pass in rating from the onclick event
         const newReview = {listing: details._id, rating: rating, body: body, user: currentUser._id};
+        console.log("newReview");
+        console.log(newReview);
         setNewReview(true);
         dispatch(createReviewThunk(newReview));
     }

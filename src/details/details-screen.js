@@ -28,12 +28,12 @@ const DetailsScreen = () => {
     const currentUser = useSelector(state => state.users.currentUser);
     const reviews = useSelector(state => state.reviews.reviews);
     const [newReview, setNewReview] = useState(true);
-    const createReview = (rating, body) => (event) => {
-        // dynamically pass in rating from the onclick event
-        const newReview = {listing: details._id, rating:rating, body: body, user: currentUser._id};
-        setNewReview(true);
-        dispatch(createReviewThunk(newReview));
-    }
+    // const createReview = (rating, body) => (event) => {
+    //     // dynamically pass in rating from the onclick event
+    //     const newReview = {listing: details._id, rating:rating, body: body, user: currentUser._id};
+    //     setNewReview(true);
+    //     dispatch(createReviewThunk(newReview));
+    // }
     return (
         <>
         {!details ? <></> :
@@ -96,12 +96,9 @@ const DetailsScreen = () => {
              </div>
 
 
-
-
-                    {/*//     {"Reviews: "}*/}
-                    {/*//     {!reviews ? " ": reviews.map((e)=> {*/}
-                    {/*//         return e.user.username + " " + e.listing.record_name+ " "+e.body+"\n";*/}
-
+             {/*//     {"Reviews: "}*/}
+             {/*//     {!reviews ? " ": reviews.map((e)=> {*/}
+             {/*//         return e.user.username + " " + e.listing.record_name+ " "+e.body+"\n";*/}
 
 
          </>
