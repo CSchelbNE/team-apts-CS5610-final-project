@@ -21,7 +21,7 @@ function SearchBar(noBlur) {
         dispatch(findAllListingsThunk(listing.id));
         const params = {
             'id': listing.id.toString(),
-        'album': listing.title.split("-")[1].trim()
+        'album': listing.title.split("-")[1].split("/")[0].trim()[-1] === "?" ? listing.title.split("-")[1].split("/")[0].trim().slice(0,-1) : listing.title.split("-")[1].split("/")[0].trim()
     };
         // const selectedListing = {
         //     "discogs_id": listing.id,

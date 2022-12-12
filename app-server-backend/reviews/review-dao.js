@@ -7,6 +7,14 @@ export const createReview = async (review) => {
     return reviewModel.findById(result._id).populate(["user","listing"]);
 }
 
+export const deleteReview = async (id) => {
+    return reviewModel.findByIdAndDelete(id);
+}
+
+export const editReview = async (id) => {
+    return reviewModel.updateOne
+}
+
 export const getAllReviewsByUsername = async (username) => {
     const result = await userModel.findOne({username: username}).lean(true);
     console.log(result);

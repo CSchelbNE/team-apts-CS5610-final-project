@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     findAllListingsThunk,
     getAlbumByIdThunk,
-    getAlbumsThunk,
+    getAlbumsThunk, getRecentListingsThunk,
     getSingleListingByIdThunk
 } from "../services/discogs-thunk";
 
@@ -38,11 +38,15 @@ const discogsSlice = createSlice({
             },
         [getSingleListingByIdThunk.fulfilled]:
             (state, {payload}) => {
-            console.log(payload);
                 state.details = payload;
+            },
+        [getRecentListingsThunk.fulfilled]:
+            (state, {payload}) => {
+                state.listings = payload;
             },
         [getAlbumByIdThunk.fulfilled]:
             (state, {payload}) => {
+                console.log(payload);
                 state.notFound = {
                     "discogs_id": payload.id,
                     "record_name": payload.title.split("-")[1].trim(),

@@ -3,7 +3,6 @@ import {useLocation} from "react-router-dom";
 
 
 const NoListingsFoundScreen = ({details}) => {
-    console.log(details)
     return (
         <>
             {!details ? <></> :

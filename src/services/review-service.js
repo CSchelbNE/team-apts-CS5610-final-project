@@ -23,3 +23,8 @@ export const getAllReviewsByAlbumId = async (albumId) => {
     const result = await api.get(API_REVIEWS_PATH+"album/get-all/"+albumId.toString());
     return result.data;
 }
+
+export const deleteReviewById = async (id) => {
+    const result = await api.delete(API_REVIEWS_PATH+id.toString());
+    return result.data;
+}

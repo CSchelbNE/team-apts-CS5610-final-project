@@ -3,7 +3,7 @@ import {
     createAlbumListing,
     getAlbums,
     findAllListingsById,
-    getSingleListingById, getAlbumById
+    getSingleListingById, getAlbumById, getRecentListings
 } from "./discogs-service";
 
 
@@ -15,7 +15,6 @@ export const getAlbumsThunk = createAsyncThunk(
 
 export const getAlbumByIdThunk = createAsyncThunk(
     "discogs/getAlbumById", async ({album, id}) => {
-        console.log(album,id);
         return await getAlbumById({album, id});
     }
 )
@@ -35,5 +34,11 @@ export const createAlbumListingThunk = createAsyncThunk(
 export const getSingleListingByIdThunk = createAsyncThunk(
     "discogs/getSingleListing", async (id) => {
         return await getSingleListingById(id);
+    }
+)
+
+export const getRecentListingsThunk = createAsyncThunk(
+    "discogs/getRecentListing", async () => {
+        return await getRecentListings();
     }
 )
