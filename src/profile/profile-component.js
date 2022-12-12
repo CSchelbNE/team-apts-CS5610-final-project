@@ -6,7 +6,7 @@ import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
-import WishListComponent from "../wish-list/wish-list-component";
+import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
@@ -129,9 +129,9 @@ const ProfileComponent = () => {
                                 {
                                     currentUser && profileUser.username === currentUser.username &&
                                     <>
-                                        <h1 className="mt-3">Wish List</h1>
+                                        <h1 className="mt-3">Reviews</h1>
                                         <div className="border border-2 border-secondary p-2 m-2">
-                                            <WishListComponent key={profileUser._id} currentUser={profileUser}/>
+                                            <ReviewsByAlbum key={profileUser._id} currentUser={profileUser}/>
                                         </div>
                                     </>
                                 }

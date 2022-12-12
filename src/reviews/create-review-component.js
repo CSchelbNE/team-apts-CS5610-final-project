@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./index.css";
+import "../index.css";
 
 const CreateReviewComponent = () => {
     const [body, setBody] = useState('');
@@ -9,11 +9,11 @@ const CreateReviewComponent = () => {
     return(
         <>
 
-            <div className="border p-2 text-start">
+            <div className="border p-2 text-start rounded-2">
                 <div className="row ">
-                        <div className="ms-0 col-2 col-md-2 col-sm-3">
+                        <div className="ms-0 col-2 col-md-2 col-sm-3 ">
                             <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
-                            className="wd-profile-avatar-format rounded-circle my-auto"/>
+                            className="wd-profile-pic-format rounded-circle "/>
                         </div>
                         <div className="col-10 col-lg-10 col-md-10 col-sm-9">
                             <div className="float-end">

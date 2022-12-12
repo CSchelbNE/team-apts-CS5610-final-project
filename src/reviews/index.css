@@ -1,4 +1,4 @@
-.wd-profile-avatar-format {
+.wd-profile-pic-format {
     width: 45px;
     height: 45px;
 }
@@ -19,4 +19,13 @@
 }
 .wd-gold-star-format {
     width: 21px;
+}
+.wd-nowrap {
+    white-space: nowrap;
+}
+.wd-thumb-format {
+    width: 100px;
+}
+.wd-profile-pic-large-format {
+    width: 60px;
 }
