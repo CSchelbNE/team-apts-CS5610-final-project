@@ -25,7 +25,7 @@ const ListingComponent = () => {
                 <NavigationSidebar/>
                 {listings.length === 0 ? <NoListingsFoundScreen details={notFound}/> :
                     listings.map((e) => {
-                        return <ListingArrayComponent listing={e}  key={uuid4()}/>
+                        return <ListingArrayComponent query={albumName} listing={e}  key={uuid4()}/>
                     }
                     )
                     }

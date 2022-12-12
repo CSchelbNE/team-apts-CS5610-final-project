@@ -15,7 +15,6 @@ const HomeScreen = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUserThunk());
-        dispatch(getRecentListingsThunk());
     }, []);
     const {currentUser} = useSelector(state => state.users);
 

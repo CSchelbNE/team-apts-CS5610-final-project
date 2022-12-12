@@ -22,6 +22,11 @@ const discogsSlice = createSlice({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false
     }),
+    reducers: {
+        clearListings(state,action) {
+            state.discogsAlbumQuery = [];
+    }
+    },
     extraReducers: {
         [getAlbumsThunk.fulfilled]:
             (state, {payload}) => {
@@ -32,7 +37,6 @@ const discogsSlice = createSlice({
         [findAllListingsThunk.fulfilled]:
             (state, {payload}) => {
                 if (payload.length !==0 || state.listings.length !==0){
-                    console.log("HERE");
                     state.notFound = null;
                 }
                 state.listings = payload;
@@ -73,4 +77,5 @@ const discogsSlice = createSlice({
     }
 });
 
+export const {clearListings} = discogsSlice.actions;
 export default discogsSlice.reducer;

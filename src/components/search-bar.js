@@ -9,6 +9,7 @@ import {uuid4} from "uuid4"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 import {createSearchParams, Link, useNavigate} from "react-router-dom";
+import {clearListings} from "../reducers/discog-reducer";
 
 function SearchBar(noBlur) {
     const dispatch = useDispatch();
@@ -32,12 +33,15 @@ function SearchBar(noBlur) {
     useEffect(() => {
         // TIMEOUT ADDED TO PREVENT DISCOGS API FROM RATE-LIMITING DUE TO TOO MANY API CALLS
         const delayedGetRequest = setTimeout(() => {
-        if(isInputChanged) {
-            if (newInput!=="") {
-                        setIsChanged(false);
-                        dispatch(getAlbumsThunk(newInput));
-                        setVisibility("d-block p-0")
+            if (!newInput){
+                dispatch(clearListings());
             }
+            if(isInputChanged) {
+                if (newInput!=="") {
+                            setIsChanged(false);
+                            dispatch(getAlbumsThunk(newInput));
+                            setVisibility("d-block p-0")
+                }
         }}, 150);
         return () => clearTimeout(delayedGetRequest)
     }, [newInput]);

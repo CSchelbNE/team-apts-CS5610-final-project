@@ -1,12 +1,18 @@
 import {useNavigate} from "react-router";
+import {createSearchParams} from "react-router-dom";
 
-const ListingArrayComponent = ({listing}) => {
+const ListingArrayComponent = ({listing, query}) => {
     const navigate = useNavigate();
+    const params = {query: query.toString()};
+
     return (
 
         <div onClick ={() =>
     {
-            navigate({pathname: '/details/'+listing._id}
+            navigate({
+                         pathname: '/details/' + listing._id,
+                         search: `?${createSearchParams(params)}`
+                     }
             )
     }}>
                 <div className="text-center">

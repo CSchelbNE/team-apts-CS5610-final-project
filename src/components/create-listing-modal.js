@@ -4,6 +4,7 @@ import SearchBarCreate from "./search-bar-create";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createAlbumListingThunk} from "../services/discogs-thunk";
+import {clearListings} from "../reducers/discog-reducer";
 
 const CreateListingModal = (props) => {
     const currentUser = useSelector(state => state.users.currentUser);
@@ -31,6 +32,7 @@ const CreateListingModal = (props) => {
             "record_vendor" : {...currentUser}
         }
         dispatch(createAlbumListingThunk(newListing));
+        dispatch(clearListings());
         setAlbum("");
         setArtist("");
         setYear("");
