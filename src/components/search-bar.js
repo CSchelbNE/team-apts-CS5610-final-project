@@ -8,7 +8,7 @@ import {Card, Button} from "react-bootstrap";
 import {uuid4} from "uuid4"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
-import {Link, useNavigate} from "react-router-dom";
+import {createSearchParams, Link, useNavigate} from "react-router-dom";
 
 function SearchBar(noBlur) {
     const dispatch = useDispatch();
@@ -16,8 +16,13 @@ function SearchBar(noBlur) {
     const [newInput, setNewInput] = useState("");
     const [isInputChanged, setIsChanged] = useState(false);
     const [visibility, setVisibility] = useState("d-none p-0");
+
     const findListings = (listing) => (event) => {
         dispatch(findAllListingsThunk(listing.id));
+        const params = {
+            'id': listing.id.toString(),
+        'album': listing.title.split("-")[1].trim()
+    };
         // const selectedListing = {
         //     "discogs_id": listing.id,
         //     "record_name": listing.title.split("-")[1].trim(),
@@ -27,7 +32,10 @@ function SearchBar(noBlur) {
         //     "record_image": !listing.thumb ? "N/A" : listing.thumb,
         // }
         // navigation("/listings/"+selectedListing.discogs_id, {state: {...selectedListing}});
-        navigation("/search/"+listing.id);
+        navigation({
+                       pathname: "/search",
+                       search: `?${createSearchParams(params)}`
+                   });
     }
 
     useEffect(() => {

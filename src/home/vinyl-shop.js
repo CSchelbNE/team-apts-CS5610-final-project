@@ -18,7 +18,7 @@ function VinylShop() {
                 <Route path="/edit-profile" element={<EditProfileScreen/>}/>
                 <Route path="/login" element={<LoginScreen/>}/>
                 <Route path="/logout" element={<LogoutScreen/>}/>
-                <Route path="/search/:id" element={<ListingComponent/>}/>
+                <Route path="/search/" element={<ListingComponent/>}/>
                 <Route path="/details/:id" element={<DetailsScreen/>}/>
             </Routes>
     );
