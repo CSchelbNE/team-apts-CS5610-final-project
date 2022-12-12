@@ -1,16 +1,31 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
-import {Nav} from "react-bootstrap";
+import {createReviewThunk, getAllReviewsByAlbumIdThunk} from "../services/review-thunk";
+import {useParams} from "react-router";
 
-console.log("This is a detailed listing page");
 
-const DetailsScreen = ({listing}) => {
-    const location = useLocation();
-    const index = location.state.index;
-
+const DetailsScreen = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if(newReview) {
+            // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
+            setNewReview(false);
+            dispatch(getAllReviewsByAlbumIdThunk(albumId));
+        }
+    },[])
     const listings = useSelector(state => state.discogs.listings);
+    const currentUser = useSelector(state => state.users.currentUser);
+    const reviews = useSelector(state => state.reviews.reviews);
+    const [params, setSearchParams] = useSearchParams();
+    const [newReview, setNewReview] = useState(true);
+    const albumId = useParams().id;
+    const index = params.get("index");
+    const createReview = () => {
+        const newReview = {listing: listings[index]._id, rating:2, user: currentUser._id};
+        dispatch(createReviewThunk(newReview));
+    }
     return (
         <>
         {listings.length === 0 ? <></> :
@@ -28,6 +43,9 @@ const DetailsScreen = ({listing}) => {
                             </div>
                             <div className="p-2">
                                 <button className="btn btn-outline-dark">Add to wishlist</button>
+                            </div>
+                            <div>
+                                <button onClick={createReview}>Write Review</button>
                             </div>
                         </div>
                     </div>

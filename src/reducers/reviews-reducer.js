@@ -20,12 +20,13 @@ const reviewSlice = createSlice({
             },
         [getAllReviewsByAlbumIdThunk.fulfilled]:
             (state, {payload}) => {
+                console.log(payload);
                 state.reviews = payload;
             },
         [createReviewThunk.fulfilled] :
         (state, {payload}) => {
+            // need to implement this
             state.reviews.push(payload);
-            console.log(state.reviews);
         }
     }
 });

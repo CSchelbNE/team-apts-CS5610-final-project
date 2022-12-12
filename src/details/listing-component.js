@@ -6,13 +6,16 @@ import {useLocation, useNavigate} from "react-router-dom";
 import ListingArrayComponent from "./listing-array-component";
 import {uuid4} from "uuid4";
 import NoListingsFoundScreen from "./not-found-component";
+import {useParams} from "react-router";
 
 const ListingComponent = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const selectedListing = location.state;
+    const navigate = useNavigate();
+    // const selectedListing = location.state;
     const hrefId = window.location.href.split("/").slice(-1)[0];
-    console.log(selectedListing);
+
+    // console.log(selectedListing);
     useEffect(() => {
         dispatch(findAllListingsThunk(hrefId));
     },[]);
@@ -23,7 +26,7 @@ const ListingComponent = () => {
                 <NavigationSidebar/>
                 {listings.length === 0 ? <NoListingsFoundScreen/> :
                     listings.map((e,index) => {
-                        return <ListingArrayComponent index={index} listing={e} key={uuid4()}/>
+                        return <ListingArrayComponent listing={e} index={index} key={uuid4()}/>
                     })
                     }
                 }

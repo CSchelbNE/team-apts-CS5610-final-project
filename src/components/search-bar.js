@@ -18,15 +18,16 @@ function SearchBar(noBlur) {
     const [visibility, setVisibility] = useState("d-none p-0");
     const findListings = (listing) => (event) => {
         dispatch(findAllListingsThunk(listing.id));
-        const selectedListing = {
-            "discogs_id": listing.id,
-            "record_name": listing.title.split("-")[1].trim(),
-            "record_artist": listing.title.split("-")[0].trim(),
-            "record_genre": !listing.genre ? [] : listing.genre,
-            "record_year": !listing.year ? "N/A" : listing.year,
-            "record_image": !listing.thumb ? "N/A" : listing.thumb,
-        }
-        navigation("/listings/"+selectedListing.discogs_id, {state: {...selectedListing}});
+        // const selectedListing = {
+        //     "discogs_id": listing.id,
+        //     "record_name": listing.title.split("-")[1].trim(),
+        //     "record_artist": listing.title.split("-")[0].trim(),
+        //     "record_genre": !listing.genre ? [] : listing.genre,
+        //     "record_year": !listing.year ? "N/A" : listing.year,
+        //     "record_image": !listing.thumb ? "N/A" : listing.thumb,
+        // }
+        // navigation("/listings/"+selectedListing.discogs_id, {state: {...selectedListing}});
+        navigation("/search/"+listing.id);
     }
 
     useEffect(() => {
