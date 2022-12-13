@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "../index.css";
 import {createReviewThunk} from "../services/review-thunk";
 import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 
 const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
     const dispatch = useDispatch();
@@ -25,8 +26,12 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
             <div className="border p-2 text-start rounded-2">
                 <div className="row ">
                         <div className="ms-0 col-2 col-md-2 col-sm-3 ">
-                            <img src={currentUser.profilePic}
-                            className="wd-profile-pic-format rounded-circle "/>
+                            <Link to={"/profile/" + currentUser.username}>
+
+                                <img src={currentUser.profilePic}
+                                className="wd-profile-pic-format rounded-circle "/>
+                            </Link>
+
                         </div>
                         <div className="col-10 col-lg-10 col-md-10 col-sm-9">
                             <div className="float-end">
