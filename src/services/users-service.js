@@ -37,6 +37,11 @@ export const findUserByUsername = async(username) => {
     return response.data;
 }
 
+export const findCurrentUser = async () => {
+    const response = await api.get(`${BASE_URL}api/profile`);
+    return response.data;
+}
+
 export const updateUser = async(userUpdates) => {
     const response = await api.put(`${BASE_URL}users/${userUpdates.username}`, {...userUpdates});
     return response.data;

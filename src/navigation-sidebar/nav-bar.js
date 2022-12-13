@@ -9,21 +9,32 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {findUserThunk} from "../services/users-thunks";
+import {
+    findCurrentUserThunk,
+    findUserByUsernameThunk,
+    findUserThunk
+} from "../services/users-thunks";
+import ScrollToTop from "../components/scroll-to-top";
+import {setProfileUserNull} from "../reducers/users-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
     const [modalShow, setModalShow] = useState(false);
+    const hrefPath = window.location.href;
     const dispath = useDispatch();
     useEffect(() => {
-        dispath(findUserThunk());
+        window.scrollTo(0, 0);
+        if (!hrefPath.includes("/profile")) {
+            dispath(findCurrentUserThunk());
+        }
     }, []);
-    const currentUser = useSelector(state => state.users.currentUser)
+    const {currentUser,profileUser} = useSelector(state => state.users);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
         <div className=" position-relative">
+            {/*<ScrollToTop/>*/}
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>

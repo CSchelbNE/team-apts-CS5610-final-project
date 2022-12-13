@@ -10,7 +10,6 @@ const ReviewsListByAlbum = ({profileUser}) => {
     }, []);
     const reviews = useSelector(state => state.reviews.reviews);
 
-
     return(
         <>
             <ul className="list-group">

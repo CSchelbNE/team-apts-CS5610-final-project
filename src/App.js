@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import VinylShop from "./home/vinyl-shop";
+import ScrollToTop from "./components/scroll-to-top";
 
 
 function App() {

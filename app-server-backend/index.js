@@ -7,6 +7,7 @@ import session from "express-session"
 import {ListingsController} from "./listings/listings-controller.js";
 import {ReviewController} from "./reviews/review-controller.js";
 import {WishlistController} from "./wishlist/wishlist-controller.js";
+import {FollowingController} from "./following/following-control.js";
 
 const app = express();
 app.use(express.json());
@@ -40,4 +41,5 @@ UserController(app);
 ListingsController(app);
 ReviewController(app);
 WishlistController(app);
+FollowingController(app);
 app.listen(process.env.PORT || 2000);
