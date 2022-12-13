@@ -7,7 +7,7 @@ import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
-import FollowingComponent from "../following/following-component";
+import FollowingButton from "../following/following-button";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
@@ -22,8 +22,6 @@ const ProfileComponent = () => {
         dispatch(findUserByUsernameThunk(uid))
     }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
-    console.log(currentUser);
-    console.log(profileUser);
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -43,7 +41,6 @@ const ProfileComponent = () => {
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
     }
-
 
     return (
         <>
@@ -69,7 +66,7 @@ const ProfileComponent = () => {
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
                                  className="rounded-circle wd-profile-avatar-format position-absolute wd-profile-avatar-margins"/>
-                            <FollowingComponent currentUser={currentUser} profileUser={profileUser}/>
+                            <FollowingButton currentUser={currentUser} profileUser={profileUser}/>
 
                         </div>
                         {/*profile info*/}

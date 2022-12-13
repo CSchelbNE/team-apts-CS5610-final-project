@@ -7,7 +7,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 
-const FollowingComponent = ({currentUser, profileUser}) => {
+const FollowingButton = ({currentUser, profileUser}) => {
     const dispatch = useDispatch();
     const followers = useSelector(state => state.following.followingUsers);
     useEffect(()=> {
@@ -40,4 +40,4 @@ const FollowingComponent = ({currentUser, profileUser}) => {
     )
 }
 
-export default FollowingComponent;
+export default FollowingButton;
