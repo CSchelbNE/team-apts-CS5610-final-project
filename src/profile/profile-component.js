@@ -1,27 +1,16 @@
 import React, {useEffect, useState} from "react";
 import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {findUserThunk, findUserByUsernameThunk} from "../services/users-thunks";
+
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
 
-const ProfileComponent = () => {
-    let uid = window.location.pathname;
 
-    if (uid.includes("/profile")) {
-        let url_parts = uid.split("/").filter(part => part);
-        uid = url_parts[url_parts.length - 1];
-    }
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(findUserThunk())
-        dispatch(findUserByUsernameThunk(uid))
-    }, [])
-    const {currentUser, profileUser} = useSelector((state) => state.users);
+const ProfileComponent = ({currentUser, profileUser}) => {
+
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
