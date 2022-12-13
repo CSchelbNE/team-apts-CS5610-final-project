@@ -8,6 +8,7 @@ import {ListingsController} from "./listings/listings-controller.js";
 import {ReviewController} from "./reviews/review-controller.js";
 import {WishlistController} from "./wishlist/wishlist-controller.js";
 import {FollowingController} from "./following/following-control.js";
+import {ShoppingCartController} from "./shopping-cart/shopping-cart-controller.js";
 
 const app = express();
 app.use(express.json());
@@ -42,4 +43,5 @@ ListingsController(app);
 ReviewController(app);
 WishlistController(app);
 FollowingController(app);
+ShoppingCartController(app);
 app.listen(process.env.PORT || 2000);
