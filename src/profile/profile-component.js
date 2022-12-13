@@ -12,6 +12,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
+import {getAllFollowersThunk} from "../services/following-thunk";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
@@ -26,7 +27,10 @@ const ProfileComponent = () => {
             dispatch(findUserThunk());
         } else {
             const getProfileUser = async () => {
-                dispatch(findUserByUsernameThunk(uid))
+                await dispatch(findUserByUsernameThunk(uid))
+                    .then((e) => {
+                        dispatch(getAllFollowersThunk(e.payload._id))
+                    })
             }
             getProfileUser().then(r => {
                 dispatch(findCurrentUserThunk())
@@ -34,6 +38,7 @@ const ProfileComponent = () => {
         }
 
     }, [])
+    const followers = useSelector(state => state.following.followingUsers);
     const {currentUser, profileUser} = useSelector((state) => state.users);
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -78,7 +83,7 @@ const ProfileComponent = () => {
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
                                  className="rounded-circle wd-profile-avatar-format position-absolute wd-profile-avatar-margins"/>
-                            <FollowingButton currentUser={currentUser} profileUser={profileUser}/>
+                            <FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>
 
                         </div>
                         {/*profile info*/}
