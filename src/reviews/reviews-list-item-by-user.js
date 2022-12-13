@@ -1,5 +1,6 @@
 import React from "react";
 import "../index.css";
+import {Link} from "react-router-dom";
 
 const ReviewsListItemByUser = ({review}) => {
     return(
@@ -8,8 +9,10 @@ const ReviewsListItemByUser = ({review}) => {
                 <div className="text-start">
                     <div className="row ">
                         <div className="ms-0 col-2">
-                            <img src={review.user.profilePic}
-                                 className="wd-profile-pic-format rounded-circle"/>
+                            <Link to={"/profile/" + review.user.username}>
+                                <img src={review.user.profilePic}
+                                     className="wd-profile-pic-format rounded-circle"/>
+                            </Link>
                         </div>
                         <div className="col-11 col-lg-10 col-md-10 col-sm-11">
                             <div className="float-end wd-nowrap">
