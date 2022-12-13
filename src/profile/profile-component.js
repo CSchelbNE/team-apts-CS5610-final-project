@@ -9,7 +9,9 @@ import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
 
 
+
 const ProfileComponent = ({currentUser, profileUser}) => {
+
 
 
     const formatBirthDate = () => {

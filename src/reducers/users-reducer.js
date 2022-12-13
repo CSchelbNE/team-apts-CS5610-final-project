@@ -22,13 +22,16 @@ const usersReducer = createSlice({
         setError(state, action) {
             state.error = action.payload;
         },
+        clearProfileUser(state, action){
+            state.profileUser = null
+        }
     },
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, {payload}) => {
              state.users = payload;
         },
         [findUserThunk.fulfilled]: (state, {payload}) => {
-            // state.profileUser = payload;
+            state.profileUser = payload;
             state.currentUser = payload;
         },
         [findUserByUsernameThunk.fulfilled]: (state, {payload}) => {
@@ -68,5 +71,5 @@ const usersReducer = createSlice({
         }
     }
 })
-export const {setError, setProfileUserNull} = usersReducer.actions;
+export const {setError, clearProfileUser} = usersReducer.actions;
 export default usersReducer.reducer

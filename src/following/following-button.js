@@ -9,15 +9,14 @@ import {useEffect} from "react";
 
 const FollowingButton = ({currentUser, profileUser}) => {
     const dispatch = useDispatch();
-    const followers = useSelector(state => state.following.followingUsers);
     useEffect(()=> {
         dispatch(getAllFollowersThunk(profileUser._id));
-    },[profileUser])
-    const initialState = !currentUser ? false : followers.some(
-        e => e.following_user._id === currentUser._id);
-    const [isFollowing,setIsFollowing] = useState(initialState);
-    const followButtonStyle = !currentUser || !profileUser ? "d-none" :
-                              currentUser._id === profileUser._id ? "d-none" : !isFollowing ? "position-absolute end-0 me-3 p-2" : "position-absolute end-0 me-3 p-2 bg-danger";
+    },[])
+    const followers = useSelector(state => state.following.followingUsers);
+    const [isFollowing,setIsFollowing] = useState(currentUser && profileUser && currentUser._id !== profileUser._id && followers.some(
+        e => e.following_user._id === currentUser._id));
+    const followButtonStyle = !profileUser || !currentUser || currentUser._id === profileUser._id ?
+                              "d-none" : isFollowing ?  "position-absolute end-0 me-3 p-2 bg-danger": "position-absolute end-0 me-3 p-2" ;
     return (
         <div>
         <button onClick={() => {
@@ -35,7 +34,7 @@ const FollowingButton = ({currentUser, profileUser}) => {
                                              }))
             }
         }}
-                className={followButtonStyle}>{!isFollowing? "Follow": "Unfollow"}</button>
+                className={followButtonStyle}>{isFollowing.toString()}</button>
         </div>
     )
 }
