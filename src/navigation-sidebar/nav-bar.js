@@ -9,8 +9,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {findUserByUsernameThunk, findUserThunk} from "../services/users-thunks";
+import {
+    findCurrentUserThunk,
+    findUserByUsernameThunk,
+    findUserThunk
+} from "../services/users-thunks";
 import ScrollToTop from "../components/scroll-to-top";
+import {setProfileUserNull} from "../reducers/users-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -22,10 +27,10 @@ const NavigationSidebar = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         if (!hrefPath.includes("/profile")) {
-            dispath(findUserThunk());
+            dispath(findCurrentUserThunk());
         }
     }, []);
-    const currentUser = useSelector(state => state.users.currentUser)
+    const {currentUser,profileUser} = useSelector(state => state.users);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
         <div className=" position-relative">

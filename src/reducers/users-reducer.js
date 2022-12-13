@@ -6,7 +6,7 @@ import {
     logoutThunk,
     registerThunk,
     updateUserThunk,
-    findUserByUsernameThunk
+    findUserByUsernameThunk, findCurrentUserThunk
 } from "../services/users-thunks";
 
 const usersReducer = createSlice({
@@ -21,14 +21,14 @@ const usersReducer = createSlice({
     reducers: {
         setError(state, action) {
             state.error = action.payload;
-        }
+        },
     },
     extraReducers: {
         [findAllUsersThunk.fulfilled]: (state, {payload}) => {
              state.users = payload;
         },
         [findUserThunk.fulfilled]: (state, {payload}) => {
-            state.profileUser = payload;
+            // state.profileUser = payload;
             state.currentUser = payload;
         },
         [findUserByUsernameThunk.fulfilled]: (state, {payload}) => {
@@ -63,7 +63,10 @@ const usersReducer = createSlice({
             state.profileUser = payload;
             state.error = null;
         },
+        [findCurrentUserThunk.fulfilled]: (state, {payload})=> {
+            state.currentUser = payload;
+        }
     }
 })
-export const {setError} = usersReducer.actions;
+export const {setError, setProfileUserNull} = usersReducer.actions;
 export default usersReducer.reducer
