@@ -26,9 +26,10 @@ const ReviewsListByAlbum = ({profileUser}) => {
         <>
             <ul className="list-group">
                 {
-                    reviews.slice(0).reverse().map(review =>
+                    reviews &&
+                    reviews.map(review =>
                         <ReviewsListItemByAlbum key={review._id} review={review}/>
-                    )
+                    ).reverse()
                 }
             </ul>
         </>

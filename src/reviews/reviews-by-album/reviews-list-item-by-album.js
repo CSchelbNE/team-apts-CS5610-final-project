@@ -1,12 +1,22 @@
 import React from "react";
 import "../index.css";
+import {useDispatch} from "react-redux";
+import {deleteReviewByIdThunk} from "../../services/review-thunk";
 
 const ReviewsListItemByAlbum = ({review}) => {
+    const dispatch = useDispatch();
+    const deleteReview = () => {
+        dispatch(deleteReviewByIdThunk(review._id));
+    }
+
     return(
         <>
             <li className="list-group-item">
                 <div className="text-start">
                     <div className="row ">
+                        <div className="text-end ">
+                            <img src={require("../../images/big_x.png")} className="wd-big-x-format" onClick={deleteReview}/>
+                        </div>
                         <div className="text-center">
                             <div className="d-inline-flex">
                                 <div className="">
