@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-
-// import {findAllListingsThunk} from "../services/discogs-thunk";
 import ReviewsByUser from "../reviews/reviews-by-user";
 // console.log("This is a detailed listing page");
 
@@ -13,6 +11,7 @@ import {
 import {useParams} from "react-router";
 import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
+import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -49,7 +48,10 @@ const DetailsScreen = () => {
                                 <img src={details.record_image}/>
                             </div>
                             <div className="p-2">
-                                <button className="btn btn-outline-dark">Add to cart</button>
+                                <button onClick={() => {
+                                    dispatch(addToShoppingCartThunk({userId: currentUser._id, listing: details}))
+                                }
+                                } className="btn btn-outline-dark">Add to cart</button>
                             </div>
                             <div className="p-2">
                                 <button className="btn btn-outline-dark">Add to wishlist</button>

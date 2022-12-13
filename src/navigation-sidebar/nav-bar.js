@@ -7,21 +7,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ModalWrapperButton from "../components/modal-wrapper-button";
-import {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {
     findCurrentUserThunk,
     findUserByUsernameThunk,
     findUserThunk
 } from "../services/users-thunks";
-import ScrollToTop from "../components/scroll-to-top";
-import {clearProfileUser, setProfileUserNull} from "../reducers/users-reducer";
+import {clearProfileUser} from "../reducers/users-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
-    const [modalShow, setModalShow] = useState(false);
     const hrefPath = window.location.href;
     const dispath = useDispatch();
     useEffect(() => {
@@ -35,7 +32,6 @@ const NavigationSidebar = () => {
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
         <div className=" position-relative">
-            {/*<ScrollToTop/>*/}
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>
@@ -82,6 +78,8 @@ const NavigationSidebar = () => {
                              <></>
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
+                            <NavDropdown.Item>
+                            </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>
                                 <ModalWrapperButton props={"ADMIN"}/>
