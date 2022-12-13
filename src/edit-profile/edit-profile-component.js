@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import bigXImage from "../images/big_x.png";
 import cameraImage from "../images/camera_icon_1.jpg";
-import {updateUserThunk, findUserByUsernameThunk, findUserThunk} from "../services/users-thunks";
+import {updateUserThunk} from "../services/users-thunks";
 
 const EditProfileComponent = () => {
     // bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png"
@@ -13,10 +13,6 @@ const EditProfileComponent = () => {
     // default profile pic: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(findUserThunk())
-    //
-    // }, [])
 
     let {currentUser} = useSelector(state => state.users);
     if (!currentUser) {

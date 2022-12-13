@@ -15,7 +15,7 @@ import {
     findUserThunk
 } from "../services/users-thunks";
 import ScrollToTop from "../components/scroll-to-top";
-import {setProfileUserNull} from "../reducers/users-reducer";
+import {clearProfileUser, setProfileUserNull} from "../reducers/users-reducer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -26,10 +26,11 @@ const NavigationSidebar = () => {
     const dispath = useDispatch();
     useEffect(() => {
         window.scrollTo(0, 0);
+        dispath(clearProfileUser());
         if (!hrefPath.includes("/profile")) {
             dispath(findCurrentUserThunk());
         }
-    }, []);
+    }, [pathname]);
     const {currentUser,profileUser} = useSelector(state => state.users);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
