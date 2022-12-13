@@ -10,7 +10,7 @@ import {useEffect} from "react";
 const FollowingButton = ({currentUser, profileUser, followers}) => {
     const dispatch = useDispatch();
     console.log(followers);
-    const followButtonStyle = !currentUser || !profileUser ? "d-none" :  "position-absolute end-0 me-3 p-2" ;
+    const followButtonStyle = !currentUser || !profileUser || profileUser._id === currentUser._id || followers.some(e=> e.following_user._id === currentUser._id) ? "d-none" :  "position-absolute end-0 me-3 p-2" ;
     return (
         <>
             {!profileUser || ! currentUser  ? <></> :

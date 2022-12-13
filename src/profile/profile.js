@@ -4,6 +4,7 @@ import ProfileComponent from "./profile-component";
 import {useDispatch, useSelector} from "react-redux";
 import {findCurrentUserThunk, findUserByUsernameThunk, findUserThunk} from "../services/users-thunks";
 import WhoToFollowComponent from "../following/who-to-follow";
+import {getAllFollowersThunk} from "../services/following-thunk";
 
 const ProfileScreen = () => {
     let uid = window.location.pathname;
@@ -18,7 +19,10 @@ const ProfileScreen = () => {
             dispatch(findUserThunk());
         } else {
             const getProfileUser = async () => {
-                dispatch(findUserByUsernameThunk(uid))
+                await dispatch(findUserByUsernameThunk(uid))
+                    .then((e) => {
+                        dispatch(getAllFollowersThunk(e.payload._id))
+                    })
             }
             getProfileUser().then(r => {
                 dispatch(findCurrentUserThunk())
@@ -27,6 +31,7 @@ const ProfileScreen = () => {
 
     }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
+    const followers = useSelector(state => state.following.followingUsers);
 
     return (
         <div className="">
@@ -34,12 +39,10 @@ const ProfileScreen = () => {
             <div className="container mt-2">
                 <div className="row">
                     <div className="col-8">
-
-                        <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
-
+                        <ProfileComponent followers={followers} currentUser={currentUser} profileUser={profileUser}/>
                     </div>
                     <div className="col-4">
-                        <WhoToFollowComponent currentUser={currentUser}/>
+                        <WhoToFollowComponent followers={followers} currentUser={currentUser}/>
                     </div>
                 </div>
             </div>

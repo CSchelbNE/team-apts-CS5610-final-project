@@ -1,6 +1,6 @@
 import React from "react";
 
-const WhoToFollowComponent = ({currentUser}) => {
+const WhoToFollowComponent = ({currentUser, followers}) => {
     return(
         <>
             <ul className="list-group">

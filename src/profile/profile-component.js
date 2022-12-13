@@ -1,45 +1,14 @@
 import React, {useEffect, useState} from "react";
 import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    findUserThunk,
-    findUserByUsernameThunk,
-    findCurrentUserThunk
-} from "../services/users-thunks";
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
-import {getAllFollowersThunk} from "../services/following-thunk";
 
-const ProfileComponent = () => {
-    let uid = window.location.pathname;
+const ProfileComponent = ({followers,currentUser,profileUser}) => {
 
-    if (uid.includes("/profile")) {
-        let url_parts = uid.split("/").filter(part => part);
-        uid = url_parts[url_parts.length - 1];
-    }
-    const dispatch = useDispatch();
-    useEffect( () => {
-        if (uid==="profile" || uid==="/profile"){
-            dispatch(findUserThunk());
-        } else {
-            const getProfileUser = async () => {
-                await dispatch(findUserByUsernameThunk(uid))
-                    .then((e) => {
-                        dispatch(getAllFollowersThunk(e.payload._id))
-                    })
-            }
-            getProfileUser().then(r => {
-                dispatch(findCurrentUserThunk())
-            })
-        }
-
-    }, [])
-    const followers = useSelector(state => state.following.followingUsers);
-    const {currentUser, profileUser} = useSelector((state) => state.users);
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
         const year = dateArr[0];
