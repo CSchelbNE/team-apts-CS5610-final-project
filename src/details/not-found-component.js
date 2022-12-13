@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 
-
 const NoListingsFoundScreen = ({details}) => {
     return (
         <>

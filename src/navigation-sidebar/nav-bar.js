@@ -14,6 +14,7 @@ import {
     findUserThunk
 } from "../services/users-thunks";
 import {clearProfileUser} from "../reducers/users-reducer";
+import CheckoutDrawer from "../components/checkout-drawer";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -79,6 +80,7 @@ const NavigationSidebar = () => {
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
                             <NavDropdown.Item>
+                                <CheckoutDrawer/>
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>

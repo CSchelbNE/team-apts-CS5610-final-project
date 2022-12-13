@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-function OffCanvasExample({ name, ...props }) {
+function CheckoutDrawer({ name, ...props }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <div variant="primary" onClick={handleShow} className="me-2">
-                {Checkout}
+            <div variant="primary" onClick={handleShow} className="p-0">
+                Checkout
             </div>
-            <Offcanvas show={show} onHide={handleClose} {...props}>
+            <Offcanvas placement={"end"} show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -23,3 +23,5 @@ function OffCanvasExample({ name, ...props }) {
         </>
     );
 }
+
+export default CheckoutDrawer
