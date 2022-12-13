@@ -19,9 +19,6 @@ const ReviewsListByAlbum = ({profileUser}) => {
         dispatch(getAllReviewsByUsernameThunk(profileUser.username));
     }, []);
     const reviews = useSelector(state => state.reviews.reviews);
-    console.log('reviews');
-    console.log(reviews);
-
     return(
         <>
             <ul className="list-group">

@@ -5,7 +5,6 @@ const initialState = {
     openApprovals : [],
 }
 
-
 const adminSlice = createSlice({
     name: "admin",
     initialState,

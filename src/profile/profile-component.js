@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -7,14 +7,15 @@ import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
+import FollowingComponent from "../following/following-component";
 
 const ProfileComponent = () => {
     let uid = window.location.pathname;
+
     if (uid.includes("/profile")) {
         let url_parts = uid.split("/").filter(part => part);
         uid = url_parts[url_parts.length - 1];
     }
-
     const dispatch = useDispatch();
     useEffect(() => {
         if (uid === "profile") {
@@ -22,8 +23,7 @@ const ProfileComponent = () => {
         } else {
             dispatch(findUserByUsernameThunk(uid))
         }
-    }, [])
-
+    }, [uid])
     const {currentUser, profileUser} = useSelector((state) => state.users);
 
     const formatBirthDate = () => {
@@ -70,6 +70,8 @@ const ProfileComponent = () => {
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
                                  className="rounded-circle wd-profile-avatar-format position-absolute wd-profile-avatar-margins"/>
+                            <FollowingComponent currentUser={currentUser} profileUser={profileUser}/>
+
                         </div>
                         {/*profile info*/}
                         <div className="wd-text-margins">

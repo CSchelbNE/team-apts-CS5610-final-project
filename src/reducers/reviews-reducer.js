@@ -10,7 +10,6 @@ const initialState = {
     reviews: []
 }
 
-
 const reviewSlice = createSlice({
     name: "reviews",
     initialState,
@@ -29,22 +28,14 @@ const reviewSlice = createSlice({
             },
         [createReviewThunk.fulfilled] :
         (state, {payload}) => {
-            console.log("createReviewThunk.fulfilled");
-            console.log(payload);
-            // need to implement this
             state.reviews.push(payload);
         },
         [deleteReviewByIdThunk.fulfilled]:
             (state, {payload})=> {
-                console.log("payload");
-                console.log(payload);
-
                 const index = state.reviews.findIndex((e) => e._id === payload._id);
                 const leftSlice = state.reviews.slice(0,index);
                 const rightSlice = state.reviews.slice(index+1);
                 state.reviews = [...leftSlice, ...rightSlice];
-                console.log("state.reviews");
-                console.log(state.reviews);
             }
     }
 });

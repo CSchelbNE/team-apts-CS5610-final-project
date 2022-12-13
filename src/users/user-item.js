@@ -18,7 +18,7 @@ const UserItem = ({user}) => {
         <Link to={"/profile/" + user.username}>
             <li className="list-group-item">
                 <div className="d-inline-flex flex-nowrap">
-                    <div className="flex-inline my-auto">
+                    <div  className="flex-inline my-auto">
                         <img src={`${user.profilePic}`} className="wd-profile-pic-format rounded-circle"/>
                     </div>
                     <div className="flex-inline ms-3 my-auto">
