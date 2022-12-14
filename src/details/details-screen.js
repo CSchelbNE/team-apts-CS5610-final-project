@@ -15,8 +15,8 @@ import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
 import AddToCartToast from "../components/add-to-cart-toast";
 import AlreadyInCartToast from "../components/already-in-cart-toast";
 import {createEmptyWishlistThunk, postToWishlistThunk} from "../services/wishlist-thunk"
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Toast from 'react-bootstrap/Toast';
+import {ToastContainer} from "react-bootstrap";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -64,16 +64,24 @@ const DetailsScreen = () => {
     const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
     return (
         <>
-        {!details ? <></> :
+        {!details 
+           ? <></>
+            :
          <>
-            <Modal show={show} onHide={handleClose} 
-                aria-labelledby="contained-modal-title-vcenter"
-                centered>
-                        <Modal.Header closeButton>
-                        <Modal.Title>Success</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>Added to the wishlist successfully</Modal.Body>
-                  </Modal>
+              <ToastContainer className="mt-5 me-5" position="top-end">
+                <Toast onClose={() => setShow(false)} show={show}  delay={1500} autohide>
+                    <Toast.Header>
+                        <img
+                            style={{width:"30px", height: "30px"}}
+                            src={details.record_image}
+                            className="rounded me-2"
+                            alt=""
+                        />
+                        <strong className="me-auto">Vintage Vinyl</strong>
+                    </Toast.Header>
+                    <Toast.Body>Successfully added to your cart!</Toast.Body>
+                </Toast>
+            </ToastContainer>
              <NavigationSidebar/>
              <div className="text-center">
                 <div className="row">

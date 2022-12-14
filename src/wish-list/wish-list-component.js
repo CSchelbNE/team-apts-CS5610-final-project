@@ -17,7 +17,7 @@ const WishListComponent = ({currentUser}) => {
 
     return(
         <>
-            <div className="wd-flex-box-format">
+            <div className="d-flex d-flex-lg-row">
                 {
                     wishlist_records.length === 0 &&
                     <h3>No Results</h3>
