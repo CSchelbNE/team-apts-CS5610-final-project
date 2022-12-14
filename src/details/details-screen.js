@@ -14,6 +14,9 @@ import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom
 import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
 import AddToCartToast from "../components/add-to-cart-toast";
 import AlreadyInCartToast from "../components/already-in-cart-toast";
+import {createEmptyWishlistThunk, postToWishlistThunk} from "../services/wishlist-thunk"
+import Toast from 'react-bootstrap/Toast';
+import {ToastContainer} from "react-bootstrap";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -29,6 +32,25 @@ const DetailsScreen = () => {
     const [addShow, setAddShow] = useState(false);
     const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
+    // useEffect(() =>{
+    //     dispatch(findCurrentUserThunk())
+    // }, [])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleAddWishList = () => {
+        if(!currentUser) {
+            return;
+        }
+        const wishlistData = {
+            username: currentUser.username,
+            album:{...details}
+        }       
+        dispatch(createEmptyWishlistThunk(wishlistData.username)).then((e) => {
+            dispatch(postToWishlistThunk(wishlistData))
+            handleShow()
+        })
+    }
     useEffect(() => {
         if(newReview) {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
@@ -42,8 +64,24 @@ const DetailsScreen = () => {
     const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
     return (
         <>
-        {!details ? <></> :
+        {!details 
+           ? <></>
+            :
          <>
+              <ToastContainer className="mt-5 me-5" position="top-end">
+                <Toast onClose={() => setShow(false)} show={show}  delay={1500} autohide>
+                    <Toast.Header>
+                        <img
+                            style={{width:"30px", height: "30px"}}
+                            src={details.record_image}
+                            className="rounded me-2"
+                            alt=""
+                        />
+                        <strong className="me-auto">Vintage Vinyl</strong>
+                    </Toast.Header>
+                    <Toast.Body>Successfully added to your cart!</Toast.Body>
+                </Toast>
+            </ToastContainer>
              <NavigationSidebar/>
              <div className="text-center">
                 <div className="row">
@@ -71,7 +109,7 @@ const DetailsScreen = () => {
                                     <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
                                     <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
                                      <div className="p-2">
-                                         <button className="btn btn-outline-dark">Add to wishlist</button>
+                                         <button className="btn btn-outline-dark" onClick={() => handleAddWishList()}>Add to wishlist</button>
                                      </div>
                                  </>
                                 }
