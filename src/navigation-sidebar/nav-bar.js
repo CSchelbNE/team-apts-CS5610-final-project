@@ -91,7 +91,7 @@ const NavigationSidebar = ({isLoginPage}) => {
                              <></>
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
-                            <NavDropdown.Item className={!currentUser || !shoppingCart ? "d-none" : ""}>
+                            <NavDropdown.Item className={!currentUser || !shoppingCart || currentUser.type === "ADMIN" ? "d-none" : ""}>
                                 {!currentUser || !shoppingCart ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
                             </NavDropdown.Item>
                             {/* <NavDropdown.Item href="/profile">Profile</NavDropdown.Item> */}
