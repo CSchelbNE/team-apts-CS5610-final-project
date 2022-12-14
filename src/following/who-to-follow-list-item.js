@@ -23,7 +23,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
             }));
         }
         else {
-            if (!followedUsers.some(u=> u._id === user._id)) {
+            if (!followedUsers.some(u=> u.followed_user._id === user._id)) {
                 dispatch(addFollowerThunk({
                     following_user: currentUser._id,
                     followed_user: user._id

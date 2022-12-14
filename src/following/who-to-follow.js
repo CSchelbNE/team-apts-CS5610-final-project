@@ -16,6 +16,10 @@ const WhoToFollowComponent = ({currentUser}) => {
 
     const {users} = useSelector(state => state.users);
     const {followedUsers} = useSelector(state => state.following);
+    console.log("users");
+    console.log(users);
+    console.log("followedUsers");
+    console.log(followedUsers);
 
     return(
         <>
