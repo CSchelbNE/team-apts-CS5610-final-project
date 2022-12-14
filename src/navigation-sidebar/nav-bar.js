@@ -28,7 +28,7 @@ const NavigationSidebar = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispath(clearProfileUser());
-        dispath(findCurrentUserThunk()).then(e => dispath(getShoppingCartByIdThunk(e.payload._id)));
+        dispath(findCurrentUserThunk()).then(e => {if(e.payload) dispath(getShoppingCartByIdThunk(e.payload._id))});
     }, [pathname]);
     const {currentUser,profileUser} = useSelector(state => state.users);
     const {shoppingCart} = useSelector(state => state.shoppingCart);
@@ -82,8 +82,8 @@ const NavigationSidebar = () => {
                              <></>
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
-                            <NavDropdown.Item className={!currentUser ? "d-none" : ""}>
-                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
+                            <NavDropdown.Item className={!currentUser || !shoppingCart ? "d-none" : ""}>
+                                {!currentUser || !shoppingCart ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>

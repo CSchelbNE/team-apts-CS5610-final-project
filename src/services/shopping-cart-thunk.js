@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
-    addToShoppingCart,
+    addToShoppingCart, confirmTransaction,
     createEmptyShoppingCart, deleteFromShoppingCart,
     getShoppingCartById
 } from "./shopping-cart-services";
@@ -26,5 +26,11 @@ export const addToShoppingCartThunk = createAsyncThunk(
 export const deleteFromShoppingCartThunk = createAsyncThunk(
     "cart/deleteItem", async ({userId, listing}) => {
         return await deleteFromShoppingCart({userId, listing});
+    }
+)
+
+export const confirmTransactionThunk = createAsyncThunk(
+    "cart/confirm", async (transaction) => {
+        return await confirmTransaction(transaction)
     }
 )

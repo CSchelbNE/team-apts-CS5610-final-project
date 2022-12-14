@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-    addToShoppingCartThunk,
+    addToShoppingCartThunk, confirmTransactionThunk,
     deleteFromShoppingCartThunk,
     getShoppingCartByIdThunk
 } from "../services/shopping-cart-thunk";
@@ -29,6 +29,10 @@ const shoppingCartReducer = createSlice({
                                             (state, {payload}) => {
                                                 state.shoppingCart = payload;
                                                 console.log(state.shoppingCart);
+                                            },
+                                        [confirmTransactionThunk.fulfilled]:
+                                            (state, {payload}) => {
+                                                state.shoppingCart = payload;
                                             }
                                     }
                                 });
