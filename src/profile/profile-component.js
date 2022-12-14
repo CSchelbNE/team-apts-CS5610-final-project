@@ -11,6 +11,11 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 
 const ProfileComponent = ({currentUser, profileUser}) => {
+    let uid = window.location.pathname;
+    if (uid.includes("/profile")) {
+        let url_parts = uid.split("/").filter(part => part);
+        uid = url_parts[url_parts.length - 1];
+    }
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -34,9 +39,13 @@ const ProfileComponent = ({currentUser, profileUser}) => {
     const loginRedirectHandler = () => {
         navigate("/login")
     }
+
+    console.log("profileUser--profile component");
+    console.log(profileUser);
+
     return (
         <>
-            {!profileUser ?
+            {(!currentUser && (uid==="profile" || uid==="/profile")) ?
                 <>
                  <div
                     className="modal show"
@@ -60,7 +69,7 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                     </div>
                     {/* <h3>Please log in</h3> */}
                 </>
-                :
+                : !profileUser ? <></> :
                 <div className="">
                     <div className="rounded-2 bg-white border">
                         <h1 className="wd-text-margins-profile pt-2">Profile</h1>

@@ -20,26 +20,40 @@ const ProfileScreen = () => {
     const dispatch = useDispatch();
     useEffect( () => {
         if (uid==="profile" || uid==="/profile"){
-            const getProfileUserAndFollowed = async () => {
-                await dispatch(findUserByUsernameThunk(currentUser._id))
-                    .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload._id))});
-            }
-            if (currentUser) {
-                getProfileUserAndFollowed();
-            }
-
+            dispatch(findUserThunk()).then((x) => {if (x.payload) dispatch(getAllFollowedThunk(x.payload._id))});
         } else {
-            const getFollowed = async () => {
-                if (currentUser) {
-                    await dispatch(getAllFollowedThunk(currentUser._id));
-                }
+            const getCurrentUserAndFollowed = async () => {
+                await dispatch(findCurrentUserThunk())
+                    .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload_id))})
             }
-            getFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
+            getCurrentUserAndFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
         }
 
     }, [])
+    // useEffect( () => {
+    //     if (uid==="profile" || uid==="/profile"){
+    //         const getProfileUserAndFollowed = async () => {
+    //             await dispatch(findUserThunk())
+    //                 .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload._id))});
+    //         }
+    //         if (currentUser) {
+    //             getProfileUserAndFollowed();
+    //         }
+    //
+    //     } else {
+    //         const getFollowed = async () => {
+    //             if (currentUser) {
+    //                 await dispatch(getAllFollowedThunk(currentUser._id));
+    //             }
+    //         }
+    //         getFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
+    //     }
+
+    // }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
     const followed = useSelector(state => state.following.followedUsers);
+    console.log("profileUser");
+    console.log(profileUser);
 
     return (
         <div className="">
