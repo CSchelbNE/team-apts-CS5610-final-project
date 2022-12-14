@@ -35,7 +35,7 @@ const NavigationSidebar = ({isLoginPage}) => {
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     const searchbarVisibility = show ? "d-none" : "wd-search-bar-absolute-pos"
     return(
-        <div className=" position-relative">
+        <div className=" position-relative z-index-999999">
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>
@@ -65,7 +65,7 @@ const NavigationSidebar = ({isLoginPage}) => {
                     <SearchBar noBlur={false}/>
                 }
             </div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="z-index-999999">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="/home">Vinyl Shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
