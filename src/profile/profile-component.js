@@ -37,11 +37,11 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                 :
                 <div className="">
                     <div className="rounded-2 bg-white border">
-                        <h1 className="wd-text-margins pt-2">Profile</h1>
+                        <h1 className="wd-text-margins-profile pt-2">Profile</h1>
                         {/*banner image*/}
                         <div className="p-2">
                             <img src={`${profileUser.bannerPic}`}
-                                 className="w-100 wd-banner-format"/>
+                                 className="w-100 wd-banner-pic-format-profile"/>
                         </div>
                         {/*edit profile button*/}
                         { currentUser && profileUser.username === currentUser.username &&
@@ -51,13 +51,15 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                         {/*avatar*/}
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
-                                 className="rounded-circle wd-profile-avatar-format position-absolute wd-profile-avatar-margins"/>
+
+                                 className="rounded-circle wd-profile-pic-format-profile position-absolute wd-profile-pic-margins-profile"/>
                             <FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+
 
                         </div>
                         {/*profile info*/}
-                        <div className="wd-text-margins">
-                            <div className="wd-leave-extra-space-below-avatar">
+                        <div className="wd-text-margins-profile">
+                            <div className="wd-leave-extra-space-below-avatar-profile">
                                 <div className="row">
                                     <h5 className="fw-bold m-0">{profileUser.firstName} {profileUser.lastName}</h5>
                                     <div className="text-secondary">{profileUser.type === "BUYER" ? "Buyer" :
@@ -77,17 +79,17 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                                 <div className="row mt-2">
                                     <div className="d-inline-block text-secondary w-auto">
                                         <img src={require("../images/map-pin-vector.png")}
-                                             className="wd-map-vector-icon-format my-auto"/>&nbsp;
+                                             className="wd-map-vector-icon-format-profile my-auto"/>&nbsp;
                                         <span className="">{profileUser.location}</span>
                                     </div>
                                     { currentUser && profileUser.username === currentUser.username &&
                                         <div className="d-inline-block text-secondary w-auto">
                                             <img src={require("../images/birthday-cake.png")}
-    className="wd-cake-icon-format my-auto"/>&nbsp;
+                                                className="wd-cake-icon-format-profile my-auto"/>&nbsp;
                                             <span>{formatBirthDate()}</span>
                                         </div>}
                                     <div className="d-inline-block text-secondary w-auto">
-                                        <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format"/>&nbsp;
+                                        <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format-profile"/>&nbsp;
                                         <span>{formatJoined()}</span>
                                     </div>
                                 </div>

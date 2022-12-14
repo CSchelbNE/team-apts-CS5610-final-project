@@ -4,7 +4,9 @@ import ProfileComponent from "./profile-component";
 import {useDispatch, useSelector} from "react-redux";
 import {findCurrentUserThunk, findUserByUsernameThunk, findUserThunk} from "../services/users-thunks";
 import WhoToFollowComponent from "../following/who-to-follow";
+
 import {getAllFollowersThunk} from "../services/following-thunk";
+
 
 const ProfileScreen = () => {
     let uid = window.location.pathname;
@@ -42,7 +44,9 @@ const ProfileScreen = () => {
                         <ProfileComponent followers={followers} currentUser={currentUser} profileUser={profileUser}/>
                     </div>
                     <div className="col-4">
-                        <WhoToFollowComponent followers={followers} currentUser={currentUser}/>
+
+                        <WhoToFollowComponent currentUser={currentUser}/>
+
                     </div>
                 </div>
             </div>

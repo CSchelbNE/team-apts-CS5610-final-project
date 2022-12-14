@@ -1,10 +1,10 @@
-.wd-text-margins {
+.wd-text-margins-profile {
     margin-left: 45px;
     margin-right: 45px;
 }
-.wd-banner-format {
+.wd-banner-pic-format-profile {
     object-fit: cover;
-    height: 500px;
+    height: 300px;
 }
 .wd-ep-button-format {
     background-color: #fd7e14;
@@ -14,30 +14,26 @@
     color: #0c63e4 !important;
 }
 
-.wd-profile-avatar-format {
+.wd-profile-pic-format-profile {
     width: 150px;
     height: 150px;
 }
-.wd-profile-avatar-margins {
+.wd-profile-pic-margins-profile {
     bottom: -85px;
     left: 45px;
 }
-.wd-leave-extra-space-below-avatar {
-    margin-top: 95px;
+.wd-leave-extra-space-below-avatar-profile {
+    margin-top: 105px;
 }
-.wd-map-vector-icon-format {
+.wd-map-vector-icon-format-profile {
     width: 15px;
     height: 15px;
 }
-.wd-cake-icon-format {
+.wd-cake-icon-format-profile {
     width: 20px;
     height: 20px;
 }
-.wd-calendar-icon-format {
+.wd-calendar-icon-format-profile {
     width: 18px;
     height: 18px;
-}
-.wd-horizontal-scroll {
-    overflow-y: scroll;
-    height: 96vh;
 }

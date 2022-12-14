@@ -6,18 +6,12 @@ import bigXImage from "../images/big_x.png";
 import cameraImage from "../images/camera_icon_1.jpg";
 import {updateUserThunk} from "../services/users-thunks";
 
-const EditProfileComponent = () => {
+const EditProfileComponent = ({currentUser}) => {
     // bannerPic: "https://user-images.githubusercontent.com/53150782/204566612-cfdec9af-f6b3-467b-b0f2-f71452cb2e93.png"
     // profilePic: "https://user-images.githubusercontent.com/53150782/204596506-f2e2dd98-58d2-4b7d-a1ea-e25467dcf261.PNG"
     // banner default https://c4.wallpaperflare.com/wallpaper/276/510/467/vinyl-retro-records-wallpaper-preview.jpg
     // default profile pic: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png
     const dispatch = useDispatch();
-
-
-    let {currentUser} = useSelector(state => state.users);
-    if (!currentUser) {
-        currentUser = new Object();
-    }
 
 
     const [firstName, setFirstName] = useState({firstName: `${currentUser.firstName}`});
@@ -109,31 +103,22 @@ const EditProfileComponent = () => {
         setEmail(newEmail);
     }
     const switchChangeHandler =  (event) => {
-        console.log("switchChangeHandler");
         const label1 = document.getElementById("switch-flag-label");
         // const button1 = document.getElementById("switch-flag");
         if (event.target.checked) {
-            console.log("target.checked");
-            console.log(event.target.checked);
             label1.innerHTML = "Seller Status Requested";
             setRequestToBeSeller({requestToBeSeller: true});
-            console.log(requestToBeSeller.requestToBeSeller);
 
         } else {
-            console.log("target.not-checked");
-            console.log(event.target.checked);
             label1.innerHTML = "Request \"Seller\" status";
             setRequestToBeSeller({requestToBeSeller: false});
-            console.log(requestToBeSeller.requestToBeSeller);
 
         }
 
     }
-    const formatBirthdate = () => {
-        console.log("formatBirthdate called");
-        console.log(birthdate.birthdate.split('T')[0]);
-        return birthdate.birthdate.split('T')[0];
-    }
+    // const formatBirthdate = () => {
+    //     return birthdate.birthdate.split('T')[0];
+    // }
 
     const saveProfile = () => {
         const username = currentUser.username;
@@ -146,8 +131,6 @@ const EditProfileComponent = () => {
         const newBirthdate = birthdate;
         const newEmail = email.email.trim();
         const newRequestToBeSeller = requestToBeSeller.requestToBeSeller;
-        console.log("saveProfile");
-        console.log(newRequestToBeSeller);
         const userUpdates = {"username": username, "bannerPic": newBannerPic, "profilePic": newProfilePic, "firstName": newFirstName, "lastName": newLastName,
             "bio": newBio, "location": newLocation, "dob": newBirthdate, "email": newEmail, "requestToBeSeller": newRequestToBeSeller};
         dispatch(updateUserThunk(userUpdates));
