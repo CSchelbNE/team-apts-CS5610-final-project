@@ -36,12 +36,6 @@ const NavigationSidebar = ({isLoginPage}) => {
     const searchbarVisibility = show ? "d-none" : "wd-search-bar-absolute-pos"
     return(
         <div className=" position-relative">
-                {
-                    isLoginPage ? 
-                        <></>
-                    :
-                    <SearchBar noBlur={false}/>
-                }
             {/* <a className="list-group-item">Vinyl Shop</a>
             <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
                 <FaHome/>
@@ -64,7 +58,12 @@ const NavigationSidebar = ({isLoginPage}) => {
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
             <div className={searchbarVisibility}>
-                <SearchBar noBlur={false}/>
+                {
+                    isLoginPage ? 
+                        <></>
+                    :
+                    <SearchBar noBlur={false}/>
+                }
             </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>

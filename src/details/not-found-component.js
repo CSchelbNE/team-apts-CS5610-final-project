@@ -3,8 +3,6 @@ import {useLocation} from "react-router-dom";
 import { findCurrentUserThunk } from "../services/users-thunks";
 import { useDispatch, useSelector } from "react-redux";
 import { postToWishlistThunk, createEmptyWishlistThunk } from "../services/wishlist-thunk";
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 
 const NoListingsFoundScreen = ({details}) => {
     
@@ -22,11 +20,7 @@ const NoListingsFoundScreen = ({details}) => {
                                  <img src={details.record_image}/>
                              </div>
                              <div className="p-2">
-                                { currentUser ?
-                                    <button className="btn btn-outline-dark">Add to wishlist</button>
-                                   :    
-                                   <></>
-                                }
+                                 <button className="btn btn-outline-dark">Add to wishlist</button>
                              </div>
                          </div>
                      </div>

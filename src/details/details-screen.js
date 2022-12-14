@@ -14,6 +14,9 @@ import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom
 import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
 import AddToCartToast from "../components/add-to-cart-toast";
 import AlreadyInCartToast from "../components/already-in-cart-toast";
+import {createEmptyWishlistThunk, postToWishlistThunk} from "../services/wishlist-thunk"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -29,9 +32,9 @@ const DetailsScreen = () => {
     const [addShow, setAddShow] = useState(false);
     const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
-    useEffect(() =>{
-        dispatch(findCurrentUserThunk())
-    }, [])
+    // useEffect(() =>{
+    //     dispatch(findCurrentUserThunk())
+    // }, [])
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
