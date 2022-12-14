@@ -64,7 +64,8 @@ const DetailsScreen = () => {
                                 }else {
                                     setAddShow(true);
                                     dispatch(addToShoppingCartThunk(
-                                {userId: currentUser._id, listing: details}))
+                                {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
+                                                                                                      === details.record_quantity}}))
                                         }}
                                 } className={modifyListingButtonStyle}>Add to cart</button>
                                     <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>

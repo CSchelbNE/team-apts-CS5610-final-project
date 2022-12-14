@@ -14,5 +14,6 @@ const listingSchema = mongoose.Schema({
           ref: 'User',
           required: true
       },
+    scheduled_for_delete: {type: Boolean, optional: true, default: false}
 }, {collection: "listings"})
 export default listingSchema;

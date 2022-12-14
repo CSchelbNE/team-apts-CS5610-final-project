@@ -16,6 +16,7 @@ import {
 import {clearProfileUser} from "../reducers/users-reducer";
 import CheckoutDrawer from "../components/checkout-drawer";
 import {getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
+import {useState} from "react";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -23,6 +24,7 @@ const NavigationSidebar = () => {
     const active = paths[1];
     const hrefPath = window.location.href;
     const dispath = useDispatch();
+    const [show, setShow] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0);
         dispath(clearProfileUser());
@@ -31,6 +33,7 @@ const NavigationSidebar = () => {
     const {currentUser,profileUser} = useSelector(state => state.users);
     const {shoppingCart} = useSelector(state => state.shoppingCart);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
+    const searchbarVisibility = show ? "d-none" : "wd-search-bar-absolute-pos"
     return(
         <div className=" position-relative">
             {/* <a className="list-group-item">Vinyl Shop</a>
@@ -54,7 +57,7 @@ const NavigationSidebar = () => {
                 <FaSignOutAlt/>
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
-            <div className="wd-search-bar-absolute-pos">
+            <div className={searchbarVisibility}>
                 <SearchBar noBlur={false}/>
             </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -80,7 +83,7 @@ const NavigationSidebar = () => {
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
                             <NavDropdown.Item className={!currentUser ? "d-none" : ""}>
-                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} shoppingCart={shoppingCart} dispatch={dispath}/>}
+                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>
