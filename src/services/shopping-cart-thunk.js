@@ -24,8 +24,8 @@ export const addToShoppingCartThunk = createAsyncThunk(
 )
 
 export const deleteFromShoppingCartThunk = createAsyncThunk(
-    "cart/deleteItem", async ({userId, listing}) => {
-        return await deleteFromShoppingCart({userId, listing});
+    "cart/deleteItem", async ({userId, itemToDeleteId}) => {
+        return await deleteFromShoppingCart({userId, itemToDeleteId});
     }
 )
 

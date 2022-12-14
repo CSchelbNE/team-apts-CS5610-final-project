@@ -27,7 +27,7 @@ function CheckoutDrawer({ currentUser, dispatch, shoppingCart, show, setShow, ..
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <h4>{"Total Items: " + shoppingCart.shopping_cart.length.toString()}</h4>
-                    {shoppingCart.shopping_cart.length === 0 ? <></> : shoppingCart.shopping_cart.map(e => <CartItem key={uuid4()} listing={e} />)}
+                    {shoppingCart.shopping_cart.length === 0 ? <></> : shoppingCart.shopping_cart.map(e => <CartItem key={uuid4()} dispatch={dispatch} currentUser={currentUser} listing={e} />)}
                 </Offcanvas.Body>
                 <div className="w-100 d-flex justify-content-between align-items-center">
                     <h4 className="m-2">{"Total: $" + total}</h4>

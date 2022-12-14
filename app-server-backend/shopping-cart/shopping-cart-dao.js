@@ -22,10 +22,12 @@ export const postToShoppingCart = async (listing, id) => {
 // ID IS THE USER ID, ITEM TO DELETE IS THE LISTING ID
 export const deleteFromShoppingCart = async (itemToDelete, id) => {
     const previousList = await shoppingCartModel.findOne({owner: new mongoose.Types.ObjectId(id)}).lean(true);
+    console.log(previousList);
     const newValue = {owner: previousList.owner, shopping_cart :previousList.shopping_cart.filter(e => {
-        return e._id.$oid.toString() !== itemToDelete
+        return e._id.toString() !== itemToDelete
     })}
-    return shoppingCartModel.updateOne({owner: new mongoose.Types.ObjectId(id)}, {$set: newValue});
+    await shoppingCartModel.updateOne({owner: new mongoose.Types.ObjectId(id)}, {$set: newValue});
+    return shoppingCartModel.findOne({owner: new mongoose.Types.ObjectId(id)}).lean(true);
 }
 
 export const confirmTransaction = async (transaction) => {
