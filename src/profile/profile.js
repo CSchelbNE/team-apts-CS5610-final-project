@@ -5,7 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {findCurrentUserThunk, findUserByUsernameThunk, findUserThunk} from "../services/users-thunks";
 import WhoToFollowComponent from "../following/who-to-follow";
 
-import {getAllFollowersThunk} from "../services/following-thunk";
+import {getAllFollowedThunk} from "../services/following-thunk";
+import FollowingComponent from "../following/following";
+import "./index.css";
 
 
 const ProfileScreen = () => {
@@ -18,36 +20,74 @@ const ProfileScreen = () => {
     const dispatch = useDispatch();
     useEffect( () => {
         if (uid==="profile" || uid==="/profile"){
-            dispatch(findUserThunk());
+            dispatch(findUserThunk()).then((x) => {if (x.payload) dispatch(getAllFollowedThunk(x.payload._id))});
         } else {
-            const getProfileUser = async () => {
-                await dispatch(findUserByUsernameThunk(uid))
-                    .then((e) => {
-                        dispatch(getAllFollowersThunk(e.payload._id))
-                    })
+            const getCurrentUserAndFollowed = async () => {
+                await dispatch(findCurrentUserThunk())
+                    .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload_id))})
             }
-            getProfileUser().then(r => {
-                dispatch(findCurrentUserThunk())
-            })
+            getCurrentUserAndFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
         }
 
     }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
-    const followers = useSelector(state => state.following.followingUsers);
+    const followed = useSelector(state => state.following.followedUsers);
 
     return (
         <div className="">
                 <NavigationSidebar/>
             <div className="container mt-2">
                 <div className="row">
-                    <div className="col-8">
-                        <ProfileComponent followers={followers} currentUser={currentUser} profileUser={profileUser}/>
-                    </div>
-                    <div className="col-4">
+                    {   currentUser &&
+                        <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
 
-                        <WhoToFollowComponent currentUser={currentUser}/>
+                            <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
 
-                    </div>
+                        </div>
+                    }
+                    {
+                        !currentUser &&
+                        <>
+                            <div className="col-xxl-2 col-lg-2 p-0 "></div>
+                            <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
+                            </div>
+                            <div className="col-xxl-2 col-lg-2 p-0 "></div>
+
+                        </>
+                    }
+
+
+                        {
+                            currentUser &&
+                            <div className="col-xxl-4 col-lg-4 p-0 ">
+
+                                <div className="border p-2 rounded-2">
+                                    <ul className="list-group">
+                                        <li className="list-group-item">
+                                            <div className="d-flex">
+                                                <div className="my-auto d-inline-flex">
+                                                    <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
+                                                </div>
+                                                <div className="my-auto d-inline-flex flex-nowrap fs-3 ms-3">
+                                                    {currentUser.firstName} {currentUser.lastName}
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className="mt-3">
+                                        <WhoToFollowComponent currentUser={currentUser}/>
+                                    </div>
+                                    <div className="mt-3">
+                                        {   currentUser && followed &&
+                                            <FollowingComponent currentUser={currentUser} followed={followed}/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
                 </div>
             </div>
         </div>

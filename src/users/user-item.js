@@ -14,7 +14,7 @@ const UserItem = ({user}) => {
     }
     return(
         <>
-        <Link to={"/profile/" + user.username}>
+        <Link to={"/profile/" + user.username} className="text-decoration-none">
             <li className="list-group-item">
                 <div className="d-inline-flex flex-nowrap">
                     <div  className="flex-inline my-auto">

@@ -2,14 +2,10 @@ import React, {useEffect} from "react";
 import FollowingListItem from "./following-list-item";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllFollowersThunk} from "../services/following-thunk";
+import {uuid4} from "uuid4";
 
-const FollowingComponent = ({currentUser}) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllFollowersThunk());
-    }, []);
+const FollowingComponent = ({currentUser, followed}) => {
 
-    const {followingUsers} = useSelector(state => state.following);
 
     return(
         <>
@@ -27,11 +23,11 @@ const FollowingComponent = ({currentUser}) => {
 
                 }
                 {
-                    currentUser && followingUsers.length > 0 &&
+                    currentUser && followed.length > 0 &&
 
-                    followingUsers.slice(0).reverse().map((user, i) => {
+                    followed.slice(0).reverse().map((followingItem, i) => {
                         if (i < 10) {
-                            return <FollowingListItem key={user.username} user={user} currentUser={currentUser}/>
+                            return <FollowingListItem key={uuid4()} followingItem={followingItem} currentUser={currentUser}/>
                         }
                     })
 

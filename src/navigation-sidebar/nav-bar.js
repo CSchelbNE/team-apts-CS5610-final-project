@@ -18,7 +18,7 @@ import CheckoutDrawer from "../components/checkout-drawer";
 import {getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
 import {useState} from "react";
 
-const NavigationSidebar = () => {
+const NavigationSidebar = ({isLoginPage}) => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
@@ -58,22 +58,31 @@ const NavigationSidebar = () => {
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
             <div className={searchbarVisibility}>
-                <SearchBar noBlur={false}/>
+                {
+                    isLoginPage ?
+                        <></>
+                    :
+                    <SearchBar noBlur={false}/>
+                }
             </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#">Logo</Navbar.Brand>
+                    <Navbar.Brand href="/home">Vinyl Shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/profile">Profile</Nav.Link>
+                        {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
                     </Nav>
                     <Nav>
+                        {
+                            isLoginPage ?
+                                <></>
+                        :
                         <NavDropdown title="user" id="collasible-nav-dropdown">
                             {currentUser ? 
                                <>
-                                <NavDropdown.Item>
+                                <NavDropdown.Item href="/profile">
                                         <span><i className="bi bi-person-fill mr-10 fs-19"></i>{currentUser.username}</span>
                                 </NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -93,6 +102,7 @@ const NavigationSidebar = () => {
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/logout" className="text-danger logout-btn">Logout</NavDropdown.Item>
                         </NavDropdown>
+                        }
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
