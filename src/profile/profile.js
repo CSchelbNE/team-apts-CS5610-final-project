@@ -38,41 +38,56 @@ const ProfileScreen = () => {
                 <NavigationSidebar/>
             <div className="container mt-2">
                 <div className="row">
-                    <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                        {
-                            followed && currentUser && profileUser &&
-                            <ProfileComponent followed={followed} currentUser={currentUser} profileUser={profileUser}/>
-                        }
-                    </div>
-                    <div className="col-xxl-4 col-lg-4 p-0 ">
+                    {   currentUser &&
+                        <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
+                            <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
+
+                        </div>
+                    }
+                    {
+                        !currentUser &&
+                        <>
+                            <div className="col-xxl-2 col-lg-2 p-0 "></div>
+                            <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
+                            </div>
+                            <div className="col-xxl-2 col-lg-2 p-0 "></div>
+
+                        </>
+                    }
+
+
                         {
                             currentUser &&
-                            <div className="border p-2 rounded-2">
-                                <ul className="list-group">
-                                    <li className="list-group-item">
-                                        <div className="d-flex">
-                                            <div className="my-auto d-inline-flex">
-                                                <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
-                                            </div>
-                                            <div className="my-auto d-inline-flex flex-nowrap fs-3 ms-3">
-                                                {currentUser.firstName} {currentUser.lastName}
+                            <div className="col-xxl-4 col-lg-4 p-0 ">
 
+                                <div className="border p-2 rounded-2">
+                                    <ul className="list-group">
+                                        <li className="list-group-item">
+                                            <div className="d-flex">
+                                                <div className="my-auto d-inline-flex">
+                                                    <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
+                                                </div>
+                                                <div className="my-auto d-inline-flex flex-nowrap fs-3 ms-3">
+                                                    {currentUser.firstName} {currentUser.lastName}
+
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div className="mt-3">
-                                    <WhoToFollowComponent currentUser={currentUser}/>
-                                </div>
-                                <div className="mt-3">
-                                    {   currentUser && followed &&
-                                        <FollowingComponent currentUser={currentUser} followed={followed}/>
-                                    }
+                                        </li>
+                                    </ul>
+                                    <div className="mt-3">
+                                        <WhoToFollowComponent currentUser={currentUser}/>
+                                    </div>
+                                    <div className="mt-3">
+                                        {   currentUser && followed &&
+                                            <FollowingComponent currentUser={currentUser} followed={followed}/>
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
                         }
-                    </div>
                 </div>
             </div>
         </div>

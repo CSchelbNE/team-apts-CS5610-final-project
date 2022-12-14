@@ -7,7 +7,7 @@ import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
 
-const ProfileComponent = ({followed, currentUser, profileUser}) => {
+const ProfileComponent = ({currentUser, profileUser}) => {
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
