@@ -79,8 +79,8 @@ const NavigationSidebar = () => {
                              <></>
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <CheckoutDrawer/>
+                            <NavDropdown.Item className={!currentUser ? "d-none" : ""}>
+                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} dispatch={dispath}/>}
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>

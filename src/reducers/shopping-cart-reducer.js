@@ -6,7 +6,7 @@ import {
 } from "../services/shopping-cart-thunk";
 
 const initialState = {
-    shopping_cart: []
+    shoppingCart: []
 }
 
 const shoppingCartReducer = createSlice({
@@ -17,18 +17,18 @@ const shoppingCartReducer = createSlice({
                                             (state, {payload}) => {
                                                 console.log("On Delete")
                                                 console.log(payload);
-                                                state.shopping_cart = payload;
+                                                state.shoppingCart = payload;
                                             },
                                         [getShoppingCartByIdThunk.fulfilled]:
                                             (state, {payload}) => {
-                                                state.shopping_cart = payload;
+                                                state.shoppingCart = payload;
                                                 console.log("GetbyID")
-                                                console.log(state.shopping_cart);
+                                                console.log(state.shoppingCart);
                                             },
                                         [addToShoppingCartThunk.fulfilled]:
                                             (state, {payload}) => {
-                                                state.shopping_cart = payload;
-                                                console.log(state.shopping_cart);
+                                                state.shoppingCart = payload;
+                                                console.log(state.shoppingCart);
                                             }
                                     }
                                 });
