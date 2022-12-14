@@ -6,6 +6,7 @@ import {findCurrentUserThunk, findUserByUsernameThunk, findUserThunk} from "../s
 import WhoToFollowComponent from "../following/who-to-follow";
 
 import {getAllFollowersThunk} from "../services/following-thunk";
+import FollowingComponent from "../following/following";
 
 
 const ProfileScreen = () => {
@@ -41,12 +42,18 @@ const ProfileScreen = () => {
             <div className="container mt-2">
                 <div className="row">
                     <div className="col-8">
-                        <ProfileComponent followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+                        {
+                            followers && currentUser && profileUser &&
+                            <ProfileComponent followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+                        }
                     </div>
                     <div className="col-4">
 
                         <WhoToFollowComponent currentUser={currentUser}/>
-
+                        <div className="mt-3">
+                            {   currentUser && followers &&
+                                <FollowingComponent currentUser={currentUser} followers={followers}/>}
+                        </div>
                     </div>
                 </div>
             </div>

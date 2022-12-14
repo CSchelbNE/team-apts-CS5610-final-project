@@ -2,6 +2,14 @@ import React from "react";
 import checkCircleImg from "../images/check-circle.png";
 
 const FollowingListItem = ({user, currentUser}) => {
+    const formatJoined = () => {
+        const joinDate = new Date(user.dateJoined);
+        const timeDiff = joinDate.getTimezoneOffset() * 60000;
+        const adjustedDate = new Date(joinDate.valueOf() + timeDiff);
+        const month = adjustedDate.toLocaleString('default', {month: 'long'});
+        return "Joined " + month + " " + adjustedDate.getFullYear();
+    }
+
     return(
 
         <>

@@ -53,7 +53,7 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                             <img src={`${profileUser.profilePic}`}
 
                                  className="rounded-circle wd-profile-pic-format-profile position-absolute wd-profile-pic-margins-profile"/>
-                            <FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+                            {/*<FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>*/}
 
 
                         </div>
