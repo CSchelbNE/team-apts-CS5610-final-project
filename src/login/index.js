@@ -41,8 +41,10 @@ const Login = () => {
         const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller,
             bannerPic, profilePic, userType};
         dispath(registerThunk(newUser)).then((e) => {
-            dispath(createEmptyWishlistThunk(e.payload.username))
-            dispath(createEmptyShoppingCartThunk(e.payload._id));
+            if (e.payload) {
+                dispath(createEmptyWishlistThunk(e.payload.username))
+                dispath(createEmptyShoppingCartThunk(e.payload._id));
+            }
         })
     }
     useEffect(() => {

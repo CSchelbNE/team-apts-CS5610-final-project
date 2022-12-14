@@ -35,6 +35,5 @@ export const deleteFromShoppingCart = async (req, res) => {
 export const confirmTransaction = async (req,res) => {
     const transaction = req.body;
     const result = await dao.confirmTransaction(transaction);
-    console.log(result);
     return res.json(result);
 }

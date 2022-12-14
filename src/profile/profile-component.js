@@ -106,8 +106,7 @@ const ProfileComponent = ({followed, currentUser, profileUser}) => {
                                 {
                                     currentUser && profileUser.username === currentUser.username && profileUser.type === "SELLER" &&
                                     <>
-                                        <h2 className="mt-3">Click here to create a listing</h2>
-                                        <div className="mt-2">
+                                        <div className=" mt-2">
                                             <ModalWrapperButton/>
                                         </div>
                                     </>

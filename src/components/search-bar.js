@@ -63,7 +63,7 @@ function SearchBar(noBlur) {
                     }
                     setNewInput(e.target.value)
                     setIsChanged(true)}}/>
-                <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
+                <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute d-none d-none-sm d-md-block end-0 d-none top-50 translate-middle-y"/>
             </div>
             <div className={visibility}>
                 <div className="wd-search-scroll-div wd-art-nuvo  p-0">

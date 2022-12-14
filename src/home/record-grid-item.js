@@ -6,20 +6,13 @@ const RecordGridItem = ({record}) => {
     const navigate = useNavigate();
     return(
         <>
-            <div className="d-inline-flex ms-3 mt-2 mb-2 p-2 border fs-3 flex-nowrap"
-                 onClick={() => {
-                     navigate("/listings/"+record.discogs_id, {state: {...record}});
-                 }}>
-                <div className="p-2 flex-inline my-auto">
-                    <img src={`${record.record_image}`} className="wd-record-image-format"/>
-                </div>
-                <div className="flex-inline flex-nowrap">
-                    <div>{record.record_name}</div>
-                    <div>{record.record_artist}</div>
-                    <div>{record.record_year}</div>
-                </div>
+        <div onClick={() => {
+            navigate("/details/"+record._id);
+        }} className="w-50 mw-50 d-flex align-content-center justify-content-center ms-3 mt-1 mb-1 p-1  border fs-1 ">
+                <img className="mt-md-2" style={{width:"90%", height:"90%"}} src={record.record_image}/>
             </div>
         </>
+
     );
 }
 export default RecordGridItem;

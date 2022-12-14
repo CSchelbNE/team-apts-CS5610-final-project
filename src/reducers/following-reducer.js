@@ -10,6 +10,7 @@ const initialState = {
 }
 
 const followingSlice = createSlice({
+
     name: "following",
     initialState,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
@@ -43,4 +44,5 @@ const followingSlice = createSlice({
             }
     }
 });
+
 export default followingSlice.reducer;

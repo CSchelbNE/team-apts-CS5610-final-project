@@ -12,7 +12,6 @@ const UserItem = ({user}) => {
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
     }
-
     return(
         <>
         <Link to={"/profile/" + user.username}>
