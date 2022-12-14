@@ -8,9 +8,13 @@ const WhoToFollowComponent = ({currentUser}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findAllUsersThunk());
+        if (currentUser) {
+            dispatch(getAllFollowedThunk(currentUser._id));
+        }
     }, []);
 
     const {users} = useSelector(state => state.users);
+    const {followedUsers} = useSelector(state => state.following);
 
     return(
         <>
@@ -32,7 +36,7 @@ const WhoToFollowComponent = ({currentUser}) => {
 
                     users.slice(0).reverse().map((user, i) => {
                     if (i < 5) {
-                        return <WhoToFollowListItem key={user.username} user={user} currentUser={currentUser}/>
+                        return <WhoToFollowListItem key={user.username} user={user} currentUser={currentUser} followedUsers={followedUsers}/>
                     }
                     })
 
