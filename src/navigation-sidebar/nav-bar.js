@@ -72,7 +72,7 @@ const NavigationSidebar = ({isLoginPage}) => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
-                        {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
+                        <Nav.Link href="/profile">Profile</Nav.Link>
                     </Nav>
                     <Nav>
                         {

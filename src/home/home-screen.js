@@ -52,7 +52,7 @@ const HomeScreen = () => {
                 <div>
                     {
                         currentUser &&
-                        <div className="mt-3">
+                        <div className="mt-3  mb-3">
                             <h3 className="font-weight-bold">Wishlist</h3>
                             <div>
                                 <WishListComponent key={currentUser._id} currentUser={currentUser}/>
