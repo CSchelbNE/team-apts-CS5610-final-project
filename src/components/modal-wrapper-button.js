@@ -14,7 +14,7 @@ const ModalWrapperButton = ({props}) => {
     return (
         <div>
             {!props ?
-                <Button className="bg-dark" onClick={() => setModalShow(true)}>
+                <Button className="bg-dark rounded-pill mt-2 border-dark" onClick={() => setModalShow(true)}>
                     Create Listing
                 </Button> :
                 <div onClick={() => setModalShow(true)} className="p-0">
