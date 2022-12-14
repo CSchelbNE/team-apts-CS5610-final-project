@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import WhoToFollowListItem from "./who-to-follow-list-item";
 import {findAllUsersThunk} from "../services/users-thunks";
 import {useDispatch, useSelector} from "react-redux";
+import {getAllFollowedThunk} from "../services/following-thunk";
 
 
 const WhoToFollowComponent = ({currentUser}) => {
