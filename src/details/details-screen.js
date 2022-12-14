@@ -21,6 +21,25 @@ const DetailsScreen = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("query");
     const [newReview, setNewReview] = useState(true);
+    useEffect(() =>{
+        dispatch(findCurrentUserThunk())
+    }, [])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleAddWishList = () => {
+        if(!currentUser) {
+            return;
+        }
+        const wishlistData = {
+            username: currentUser.username,
+            album:{...details}
+        }       
+        dispatch(createEmptyWishlistThunk(wishlistData.username)).then((e) => {
+            dispatch(postToWishlistThunk(wishlistData))
+            handleShow()
+        })
+    }
     useEffect(() => {
         if(newReview) {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
@@ -40,6 +59,14 @@ const DetailsScreen = () => {
         <>
         {!details ? <></> :
          <>
+            <Modal show={show} onHide={handleClose} 
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Success</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Added to the wishlist successfully</Modal.Body>
+                  </Modal>
              <NavigationSidebar/>
              <div className="text-center">
                 <div className="row">
@@ -52,7 +79,7 @@ const DetailsScreen = () => {
                                 <button className="btn btn-outline-dark">Add to cart</button>
                             </div>
                             <div className="p-2">
-                                <button className="btn btn-outline-dark">Add to wishlist</button>
+                                <button className="btn btn-outline-dark" onClick={() => handleAddWishList()}>Add to wishlist</button>
                             </div>
 
                             <div className="p-2">

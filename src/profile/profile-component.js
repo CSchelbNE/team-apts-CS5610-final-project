@@ -6,6 +6,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 const ProfileComponent = ({followers,currentUser,profileUser}) => {
 
@@ -27,12 +30,35 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
     }
-
+    const navigate = useNavigate();
+    const loginRedirectHandler = () => {
+        navigate("/login")
+    }
     return (
         <>
             {!profileUser ?
                 <>
-                    <h3>Please log in</h3>
+                 <div
+                    className="modal show"
+                    style={{ display: 'block' }}
+                    >
+                    <Modal.Dialog
+                        size="lg"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                    >
+                        <Modal.Header>
+                        <Modal.Title className="text-danger">Login required</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                        <p>Please login to access the profile.</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                    </div>
+                    {/* <h3>Please log in</h3> */}
                 </>
                 :
                 <div className="">

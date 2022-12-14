@@ -6,6 +6,7 @@ import './index.css';
 import { setError } from "../reducers/users-reducer";
 import { useNavigate } from "react-router-dom";
 import {createEmptyWishlistThunk} from "../services/wishlist-thunk";
+import NavigationSidebar from "../navigation-sidebar/nav-bar";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -45,6 +46,12 @@ const Login = () => {
     }
     useEffect(() => {
         if (!error && currentUser) {
+            if (currentUser.type) {
+                if (currentUser.type == "ADMIN" || currentUser.type == "SELLER") {
+                    navigate("/home")
+                    return
+                }
+            }
             navigate('/home');
         }
     }, [currentUser, error]);
@@ -57,6 +64,7 @@ const Login = () => {
     }
     return (
         <>
+            <NavigationSidebar isLoginPage={true}/>
             <section className="login-page-main-section vh-100">
                 <div className="container h-100 py-5">
                     <div className="row h-100 align-items-center justify-content-center">
