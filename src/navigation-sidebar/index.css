@@ -27,3 +27,7 @@
   .fs-19 {
     font-size: 19px;
   }
+
+  .z-index-999999 {
+    z-index: 999999;
+  }

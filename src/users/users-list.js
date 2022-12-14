@@ -17,7 +17,7 @@ const UsersListComponent = () => {
 
     return(
         <>
-            <ul className="list-group">
+            <ul className="list-group list-group-item-action">
                 {   users.length > 0 &&
                     users.slice(0).reverse().map((user, i) => {
                         if (i < 5) {

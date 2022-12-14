@@ -11,6 +11,11 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 
 const ProfileComponent = ({currentUser, profileUser}) => {
+    let uid = window.location.pathname;
+    if (uid.includes("/profile")) {
+        let url_parts = uid.split("/").filter(part => part);
+        uid = url_parts[url_parts.length - 1];
+    }
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -34,33 +39,36 @@ const ProfileComponent = ({currentUser, profileUser}) => {
     const loginRedirectHandler = () => {
         navigate("/login")
     }
+
+    console.log("profileUser--profile component");
+    console.log(profileUser);
+
     return (
         <>
-            {!profileUser ?
+            {(!currentUser && (uid==="profile" || uid==="/profile")) ?
                 <>
                  <div
                     className="modal show"
                     style={{ display: 'block' }}
                     >
-                    <Modal.Dialog
-                        size="lg"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                    >
-                        <Modal.Header>
-                        <Modal.Title className="text-danger">Login required</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                        <p>Please login to access the profile.</p>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
-                        </Modal.Footer>
-                    </Modal.Dialog>
+                        <Modal.Dialog
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                        >
+                            <Modal.Header>
+                            <Modal.Title className="text-danger">Login required</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            <p>Please login to access the profile.</p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
+                            </Modal.Footer>
+                        </Modal.Dialog>
                     </div>
-                    {/* <h3>Please log in</h3> */}
                 </>
-                :
+                : !profileUser ? <></> :
                 <div className="">
                     <div className="rounded-2 bg-white border">
                         <h1 className="wd-text-margins-profile pt-2">Profile</h1>

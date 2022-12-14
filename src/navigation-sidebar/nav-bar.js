@@ -65,14 +65,14 @@ const NavigationSidebar = ({isLoginPage}) => {
                     <SearchBar noBlur={false}/>
                 }
             </div>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="z-index-999999">
                 <Container>
                     <Navbar.Brand href="/home">Vinyl Shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
-                        {/* <Nav.Link href="/profile">Profile</Nav.Link> */}
+                        <Nav.Link href="/profile">Profile</Nav.Link>
                     </Nav>
                     <Nav>
                         {

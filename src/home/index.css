@@ -53,3 +53,7 @@
 .wd-flex-box-format {
     justify-content: space-between;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

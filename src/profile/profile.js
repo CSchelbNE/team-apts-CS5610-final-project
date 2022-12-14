@@ -30,8 +30,30 @@ const ProfileScreen = () => {
         }
 
     }, [])
+    // useEffect( () => {
+    //     if (uid==="profile" || uid==="/profile"){
+    //         const getProfileUserAndFollowed = async () => {
+    //             await dispatch(findUserThunk())
+    //                 .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload._id))});
+    //         }
+    //         if (currentUser) {
+    //             getProfileUserAndFollowed();
+    //         }
+    //
+    //     } else {
+    //         const getFollowed = async () => {
+    //             if (currentUser) {
+    //                 await dispatch(getAllFollowedThunk(currentUser._id));
+    //             }
+    //         }
+    //         getFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
+    //     }
+
+    // }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
     const followed = useSelector(state => state.following.followedUsers);
+    console.log("profileUser");
+    console.log(profileUser);
 
     return (
         <div className="">

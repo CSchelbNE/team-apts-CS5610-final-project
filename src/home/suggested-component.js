@@ -5,11 +5,11 @@ import "./index.css";
 const SuggestedComponent = ({suggested}) => {
     return(
         <>
-            <div className="d-flex d-flex-lg-row">
+            <ul className="list-group">
                 {!suggested ? <></>:
                     suggested.map(record => <RecordGridItem key={record._id} record={record}/>)
                 }
-            </div>
+            </ul>
         </>
     );
 }
