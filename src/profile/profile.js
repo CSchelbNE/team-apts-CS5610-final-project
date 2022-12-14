@@ -7,6 +7,7 @@ import WhoToFollowComponent from "../following/who-to-follow";
 
 import {getAllFollowedThunk} from "../services/following-thunk";
 import FollowingComponent from "../following/following";
+import "./index.css";
 
 
 const ProfileScreen = () => {
@@ -57,16 +58,34 @@ const ProfileScreen = () => {
                             <ProfileComponent followed={followed} currentUser={currentUser} profileUser={profileUser}/>
                         }
                     </div>
-                    <div className="col-4">
-
+                    <div className="col-4 border p-2 rounded-2">
                         {
                             currentUser &&
-                            <WhoToFollowComponent currentUser={currentUser}/>
+                            <>
+                                <ul className="list-group">
+                                    <li className="list-group-item">
+                                        <div className="d-flex">
+                                            <div className="my-auto d-inline-flex">
+                                                <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
+                                            </div>
+                                            <div className="my-auto d-inline-flex flex-nowrap fs-3 ms-3">
+                                                {currentUser.firstName} {currentUser.lastName}
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div className="mt-3">
+                                    <WhoToFollowComponent currentUser={currentUser}/>
+                                </div>
+                                <div className="mt-3">
+                                    {   currentUser && followed &&
+                                        <FollowingComponent currentUser={currentUser} followed={followed}/>
+                                    }
+                                </div>
+                            </>
+
                         }
-                        <div className="mt-3">
-                            {   currentUser && followed &&
-                                <FollowingComponent currentUser={currentUser} followed={followed}/>}
-                        </div>
                     </div>
                 </div>
             </div>
