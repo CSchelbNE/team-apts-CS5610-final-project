@@ -9,7 +9,7 @@ const AlreadyInCartToast = ({thumb, setShow, show}) => {
         <Row>
             <Col xs={6}>
                 <ToastContainer style={{zIndex: 9999}} className="mt-5 me-5" position="top-end">
-                    <Toast bg={"danger"} onClose={() => setShow(false)} show={show}  delay={3000} autohide>
+                    <Toast bg={"danger"} onClose={() => setShow(false)} show={show}  delay={1500} autohide>
                         <Toast.Header>
                             <img
                                 style={{width:"30px", height: "30px"}}

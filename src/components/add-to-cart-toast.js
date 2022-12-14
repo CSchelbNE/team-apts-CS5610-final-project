@@ -9,8 +9,8 @@ const AddToCartToast = ({thumb, setShow, show}) => {
     return (
         <Row>
             <Col xs={6}>
-                <ToastContainer className="mt-5 ms-5" position="top-end">
-                    <Toast onClose={() => setShow(false)} show={show}  delay={3000} autohide>
+                <ToastContainer className="mt-5 me-5" position="top-end">
+                    <Toast onClose={() => setShow(false)} show={show}  delay={1500} autohide>
                         <Toast.Header>
                             <img
                                 style={{width:"30px", height: "30px"}}

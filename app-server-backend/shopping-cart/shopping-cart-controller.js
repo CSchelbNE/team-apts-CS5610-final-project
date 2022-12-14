@@ -4,7 +4,7 @@ export const ShoppingCartController = (app) => {
     app.post("/cart/:id", postToShoppingCart);
     app.post("/cart/new/:id", createEmptyShoppingCart)
     app.delete("/cart/:id", deleteFromShoppingCart);
-    app.post("/cart/confirm/",confirmTransaction);
+    app.post("/cart/confirm/:id", confirmTransaction);
 }
 
 export const getShoppingCartById = async (req, res) => {
@@ -18,7 +18,6 @@ export const createEmptyShoppingCart = async (req,res) => {
     const result = await dao.createEmptyShoppingCart(id);
     return res.json(result);
 }
-
 export const postToShoppingCart = async (req, res) => {
     const id = req.params.id;
     const listing = req.body;
@@ -35,7 +34,7 @@ export const deleteFromShoppingCart = async (req, res) => {
 
 export const confirmTransaction = async (req,res) => {
     const transaction = req.body;
-    console.log(transaction);
     const result = await dao.confirmTransaction(transaction);
+    console.log(result);
     return res.json(result);
 }

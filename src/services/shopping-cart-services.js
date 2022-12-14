@@ -25,6 +25,6 @@ export const deleteFromShoppingCart = async ({userId, itemToDeleteId}) => {
 }
 
 export const confirmTransaction = async (transaction) => {
-    const result = await api.post(API_CART_PATH+"cart/coonfirm",transaction);
+    const result = await api.post(API_CART_PATH+"confirm/"+transaction.owner,transaction);
     return result.data;
 }

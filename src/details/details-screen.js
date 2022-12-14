@@ -59,7 +59,7 @@ const DetailsScreen = () => {
                                          <input value={quantity} onChange={(e) => setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
                                      </div>
                                     <button onClick={() => {
-                                    if (shoppingCart.shopping_cart.some(e => e._id === details._id)){
+                                    if (!shoppingCart.shopping_cart || shoppingCart.shopping_cart.some(e => e._id === details._id)){
                                     setNegativeShow(true);
                                 }else {
                                     setAddShow(true);
