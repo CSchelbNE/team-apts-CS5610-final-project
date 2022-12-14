@@ -64,7 +64,7 @@ function SearchBarCreate({callback}) {
                     }
                     setNewListingInput(e.target.value)
                     setIsChanged(true)}}/>
-                <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 translate-middle-y"/>
+                <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 d-none d-none-sm d-block-md translate-middle-y"/>
             </div>
             <div className="p-0">
                 <div className="wd-create-search-div wd-art-nuvo  p-0">

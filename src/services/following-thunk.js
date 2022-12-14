@@ -19,7 +19,7 @@ export const addFollowerThunk = createAsyncThunk(
 )
 
 export const deleteFollowerThunk = createAsyncThunk(
-    "follow/deleteFollower", async ({followingUser, followedUser}) => {
-        return await deleteFollower({followingUser, followedUser});
+    "follow/deleteFollower", async (followingId) => {
+        return await deleteFollower(followingId);
     }
 )

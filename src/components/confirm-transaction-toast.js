@@ -10,7 +10,7 @@ const ConfirmTransactionToast = ({setShow, show}) => {
         <Row>
             <Col xs={6}>
                 <ToastContainer className="mt-5 me-5" position="middle-center">
-                    <Toast onClose={() => setShow(false)} show={show} bg={"success"} delay={1000} autohide>
+                    <Toast onClose={() => setShow(false)} show={show} bg={"success"} delay={1500} autohide>
                         <Toast.Header>
                             <strong className="me-auto">Transaction Confirmed</strong>
                         </Toast.Header>

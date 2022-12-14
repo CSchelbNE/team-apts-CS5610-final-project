@@ -4,7 +4,7 @@ export const FollowingController = (app) => {
     app.post("/follow", addFollower);
     app.get("/follow/get-all/:id", getAllFollowers);
     app.get("/follow/get-followed/:id", getAllFollowed)
-    app.delete("/follow",deleteFollower);
+    app.delete("/follow/:id",deleteFollower);
 }
 
 export const getAllFollowers = async (req,res) => {
@@ -26,8 +26,7 @@ export const addFollower = async (req,res) => {
 }
 
 export const deleteFollower = async (req,res) => {
-    const followingUser = req.query.following_user;
-    const followedUser = req.query.followed_user;
-    const result = await dao.deleteFollower(followedUser,followingUser);
+    const id = req.params.id;
+    const result = await dao.deleteFollower(id);
     return res.json(result);
 }
