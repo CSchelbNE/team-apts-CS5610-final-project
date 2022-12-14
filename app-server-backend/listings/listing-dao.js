@@ -23,6 +23,7 @@ export const deleteListing = async (id) => {
     return listingModel.findByIdAndDelete(id);
 }
 
+
 export const editListing = async (listing) => {
     const oid = new mongoose.Types.ObjectId(listing._id);
     const vOid = new mongoose.Types.ObjectId(listing.record_vendor);

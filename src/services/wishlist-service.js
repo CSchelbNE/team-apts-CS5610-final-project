@@ -21,7 +21,6 @@ export const getWishlistByUsername = async (username) => {
     return result.data;
 }
 
-
 export const deleteItemFromWishlist = async ({username, albumId}) => {
     const result = await api.delete(API_WISHLIST_PATH+"delete?id="+albumId.toString()+"&username="+username.toString());
     return {...result.data, discogs_id: albumId};

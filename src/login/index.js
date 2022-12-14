@@ -39,7 +39,9 @@ const Login = () => {
         const profilePic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
         const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller,
             bannerPic, profilePic, userType};
-        dispath(registerThunk(newUser)).then(() => dispath(createEmptyWishlistThunk(username)))
+        dispath(registerThunk(newUser)).then((e) => {
+            dispath(createEmptyWishlistThunk(username))
+        })
     }
     useEffect(() => {
         if (!error && currentUser) {
@@ -49,6 +51,7 @@ const Login = () => {
     const changePageFlag = (flag) => {
         setUserName("")
         setPassword("")
+        dispath(setError(null))
         setValidatePassword("")
         setLoginPageFlag(flag)
     }

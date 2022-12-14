@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from "react";
 import "./profile-style-sheet.css";
 import {Link} from "react-router-dom";
-
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 import ReviewsByAlbum from "../reviews/reviews-by-album/reviews-by-album";
 import FollowingButton from "../following/following-button";
 
-
-
-const ProfileComponent = ({currentUser, profileUser}) => {
-
-
+const ProfileComponent = ({followers,currentUser,profileUser}) => {
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -56,8 +51,10 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                         {/*avatar*/}
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
+
                                  className="rounded-circle wd-profile-pic-format-profile position-absolute wd-profile-pic-margins-profile"/>
-                            <FollowingButton currentUser={currentUser} profileUser={profileUser}/>
+                            <FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+
 
                         </div>
                         {/*profile info*/}

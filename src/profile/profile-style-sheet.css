@@ -9,9 +9,11 @@
 .wd-ep-button-format {
     background-color: #fd7e14;
 }
+
 #edit-profile-btn:hover {
     color: #0c63e4 !important;
 }
+
 .wd-profile-pic-format-profile {
     width: 150px;
     height: 150px;
