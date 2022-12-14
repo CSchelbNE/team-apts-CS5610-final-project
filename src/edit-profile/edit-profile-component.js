@@ -24,6 +24,9 @@ const EditProfileComponent = ({currentUser}) => {
     const [profilePic, setProfilePic] = useState({profilePic: `${currentUser.profilePic}`});
     const [requestToBeSeller, setRequestToBeSeller] = useState({requestToBeSeller: currentUser.requestToBeSeller});
     const [edited, setEdited] = useState(false);
+    const vendorCheckVisibility = !currentUser || currentUser.type === "SELLER" || currentUser.type === "ADMIN" ? "d-none" : "form-check-input"
+    const vendorLabelVisibility = !currentUser || currentUser.type === "SELLER" || currentUser.type === "ADMIN" ? "d-none" : "form-check-label"
+
 
 
     const bannerTextChangeHandler = (event) => {
@@ -213,10 +216,10 @@ const EditProfileComponent = ({currentUser}) => {
                     {/*    <input type="date" id="dob" name="Date-of-birth" onChange={e => setDob(e.target.value)} defaultValue={dob} className="form-control form-control-md"/>*/}
                     {/*</div>*/}
                     <div className="form-check form-switch ms-2 mt-3">
-                        <input className="form-check-input"
+                        <input className={vendorCheckVisibility}
                                type="checkbox"
                                id="switch-flag" onChange={switchChangeHandler}  defaultChecked={requestToBeSeller.requestToBeSeller}/>
-                        <label className="form-check-label" id="switch-flag-label"
+                        <label className={vendorLabelVisibility} id="switch-flag-label"
                                htmlFor="switch-flag">{requestToBeSeller.requestToBeSeller ? 'Seller Status Requested':'Request "Seller" Status'}</label>
                     </div>
                     <div className="mt-3 mb-3 text-center">

@@ -5,6 +5,7 @@ import AdminPanelModal from "./admin-panel-modal";
 import {useDispatch} from "react-redux";
 import {clearListings} from "../reducers/discog-reducer";
 
+
 const ModalWrapperButton = ({props}) => {
     const [modalShow, setModalShow] = useState(false);
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const ModalWrapperButton = ({props}) => {
     return (
         <div>
             {!props ?
-                <Button className="bg-dark rounded-pill mt-2 border-dark" onClick={() => setModalShow(true)}>
+                <Button style={{backgroundColor: "#fd7e14"}} className=" rounded-pill border-0 p-2" onClick={() => setModalShow(true)}>
                     Create Listing
                 </Button> :
                 <div onClick={() => setModalShow(true)} className="p-0">

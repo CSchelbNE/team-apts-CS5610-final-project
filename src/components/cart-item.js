@@ -18,7 +18,7 @@ const CartItem = ({listing, dispatch, currentUser}) => {
                 <div className="pt-3 ms-3 d-flex flex-column justify-content-center"
                      style={{height: "100px", width: "75%"}}>
                     <div  style={{width: "fit-content"}}>{"Album: " +listing.record_name}</div>
-                    <div>{"Artist: "+listing.record_artist}</div>
+                    <div>{"Artist: "+listing.record_artist.replace("*","")}</div>
                     <div  style={{width: "fit-content"}}>{"Price: $"+listing.record_price}</div>
                     <div>{"Quantity: " +listing.record_quantity}</div>
                 </div>

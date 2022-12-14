@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import ReviewsByUser from "../reviews/reviews-by-user";
-// console.log("This is a detailed listing page");
 
 import NavigationSidebar from "../navigation-sidebar/nav-bar";
 import {
-    createReviewThunk,
     getAllReviewsByAlbumIdThunk,
 } from "../services/review-thunk";
 import {useParams} from "react-router";
@@ -17,8 +15,9 @@ import AlreadyInCartToast from "../components/already-in-cart-toast";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
-    const albumId = useParams().id;
     const navigation = useNavigate();
+    const params = useParams();
+    const albumId = !params.id ? undefined : params.id;
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("query");
     const details = useSelector(state => state.discogs.details);
@@ -107,7 +106,7 @@ const DetailsScreen = () => {
                                 <h2 className="text-dark">{details.record_name}</h2>
                             </div>
                             <div className="p-2">
-                                <h3 className="text-dark">By: {details.record_artist}</h3>
+                                <h3 className="text-dark">By: {details.record_artist.replace("*","")}</h3>
                             </div>
                             <div className="p-2">
                                 <h5 className="text-dark">Genre: {details.record_genre}</h5>
