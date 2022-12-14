@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 
 export const getShoppingCartById = (id) => {
-
+    return shoppingCartModel.findOne({owner: new mongoose.Types.ObjectId(id)})
 }
 
 

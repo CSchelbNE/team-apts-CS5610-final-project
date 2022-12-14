@@ -12,6 +12,8 @@ import {useParams} from "react-router";
 import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
+import AddToCartToast from "../components/add-to-cart-toast";
+import AlreadyInCartToast from "../components/already-in-cart-toast";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -19,6 +21,8 @@ const DetailsScreen = () => {
     const navigation = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("query");
+    const [addShow, setAddShow] = useState(false);
+    const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
     useEffect(() => {
         if(newReview) {
@@ -31,10 +35,10 @@ const DetailsScreen = () => {
     const details = useSelector(state => state.discogs.details);
     const currentUser = useSelector(state => state.users.currentUser);
     const reviews = useSelector(state => state.reviews.reviews);
+    const {shoppingCart} = useSelector(state => state.shoppingCart);
+    console.log(shoppingCart);
 
     const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
-
-
     return (
         <>
         {!details ? <></> :
@@ -49,14 +53,21 @@ const DetailsScreen = () => {
                             </div>
                             <div className="p-2">
                                 <button onClick={() => {
-                                    dispatch(addToShoppingCartThunk({userId: currentUser._id, listing: details}))
+                                    if (shoppingCart.shopping_cart.some(e => e._id === details._id)){
+                                        setNegativeShow(true);
+                                    }else {
+                                        setAddShow(true);
+                                        dispatch(addToShoppingCartThunk(
+                                            {userId: currentUser._id, listing: details}))
+                                    }
                                 }
                                 } className="btn btn-outline-dark">Add to cart</button>
+                                <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
+                                <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
                             </div>
                             <div className="p-2">
                                 <button className="btn btn-outline-dark">Add to wishlist</button>
                             </div>
-
                             <div className="p-2">
                                 <button className={modifyListingButtonStyle} onClick={() => {
                                     dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))

@@ -10,7 +10,7 @@ export const createEmptyShoppingCart = async (userId) => {
 }
 
 export const getShoppingCartById = async (userId) => {
-    const result = await api.get(API_CART_PATH)
+    const result = await api.get(API_CART_PATH+userId)
     return result.data;
 }
 

@@ -15,6 +15,7 @@ import {
 } from "../services/users-thunks";
 import {clearProfileUser} from "../reducers/users-reducer";
 import CheckoutDrawer from "../components/checkout-drawer";
+import {getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
 
 const NavigationSidebar = () => {
     const {pathname} = useLocation();
@@ -25,11 +26,10 @@ const NavigationSidebar = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispath(clearProfileUser());
-        if (!hrefPath.includes("/profile")) {
-            dispath(findCurrentUserThunk());
-        }
+        dispath(findCurrentUserThunk()).then(e => dispath(getShoppingCartByIdThunk(e.payload._id)));
     }, [pathname]);
     const {currentUser,profileUser} = useSelector(state => state.users);
+    const {shoppingCart} = useSelector(state => state.shoppingCart);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
     return(
         <div className=" position-relative">
@@ -80,7 +80,7 @@ const NavigationSidebar = () => {
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
                             <NavDropdown.Item className={!currentUser ? "d-none" : ""}>
-                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} dispatch={dispath}/>}
+                                {!currentUser ? <></> : <CheckoutDrawer currentUser={currentUser} shoppingCart={shoppingCart} dispatch={dispath}/>}
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={adminVisibility}>
