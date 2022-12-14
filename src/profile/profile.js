@@ -22,46 +22,32 @@ const ProfileScreen = () => {
         if (uid==="profile" || uid==="/profile"){
             dispatch(findUserThunk()).then((x) => {if (x.payload) dispatch(getAllFollowedThunk(x.payload._id))});
         } else {
-            // const getProfileUser = async () => {
-            //     await dispatch(findUserByUsernameThunk(uid))
-            //         .then((e) => { if (e.payload)
-            //             dispatch(getAllFollowedThunk(e.payload._id))
-            //         })
-            // }
-            // getProfileUser().then(r => {
-            //     dispatch(findCurrentUserThunk())
-            // })
-            const getCurrentUserAndProfileUser = async () => {
+            const getCurrentUserAndFollowed = async () => {
                 await dispatch(findCurrentUserThunk())
                     .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload_id))})
             }
-            getCurrentUserAndProfileUser().then(r => {dispatch(findUserByUsernameThunk(uid))})
+            getCurrentUserAndFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
         }
 
     }, [])
     const {currentUser, profileUser} = useSelector((state) => state.users);
     const followed = useSelector(state => state.following.followedUsers);
-    console.log("followed");
-    console.log(followed);
-    console.log("currentUser");
-    console.log(currentUser);
-    console.log("profileUser");
-    console.log(profileUser);
+
     return (
         <div className="">
                 <NavigationSidebar/>
             <div className="container mt-2">
                 <div className="row">
-                    <div className="col-8">
+                    <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
                         {
                             followed && currentUser && profileUser &&
                             <ProfileComponent followed={followed} currentUser={currentUser} profileUser={profileUser}/>
                         }
                     </div>
-                    <div className="col-4 border p-2 rounded-2">
+                    <div className="col-xxl-4 col-lg-4 p-0 ">
                         {
                             currentUser &&
-                            <>
+                            <div className="border p-2 rounded-2">
                                 <ul className="list-group">
                                     <li className="list-group-item">
                                         <div className="d-flex">
@@ -83,7 +69,7 @@ const ProfileScreen = () => {
                                         <FollowingComponent currentUser={currentUser} followed={followed}/>
                                     }
                                 </div>
-                            </>
+                            </div>
 
                         }
                     </div>
