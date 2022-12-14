@@ -13,6 +13,6 @@ const listingSchema = mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'User',
           required: true
-      }
+      },
 }, {collection: "listings"})
 export default listingSchema;
