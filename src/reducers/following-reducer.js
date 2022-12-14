@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
     addFollowerThunk,
-    deleteFollowerThunk,
+    deleteFollowerThunk, getAllFollowedThunk,
     getAllFollowersThunk
 } from "../services/following-thunk";
 
 const initialState = {
     followingUsers : [],
-    isFollowing: false
+    followedUsers: []
 }
 
 const followingSlice = createSlice({
@@ -34,6 +34,10 @@ const followingSlice = createSlice({
                                                const leftSlice = state.followingUsers.slice(0,index);
                                                const rightSlice = state.followingUsers.slice(index+1);
                                                state.followingUsers = [...leftSlice, ...rightSlice];
+                                           },
+                                       [getAllFollowedThunk.fulfilled]:
+                                           (state, {payload}) => {
+                                                state.followedUsers = payload;
                                            }
                                    }
                                });

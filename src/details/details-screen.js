@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-
-// import {findAllListingsThunk} from "../services/discogs-thunk";
 import ReviewsByUser from "../reviews/reviews-by-user";
 // console.log("This is a detailed listing page");
 
@@ -13,6 +11,9 @@ import {
 import {useParams} from "react-router";
 import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
+import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
+import AddToCartToast from "../components/add-to-cart-toast";
+import AlreadyInCartToast from "../components/already-in-cart-toast";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -20,22 +21,25 @@ const DetailsScreen = () => {
     const navigation = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("query");
+    const details = useSelector(state => state.discogs.details);
+    const currentUser = useSelector(state => state.users.currentUser);
+    const reviews = useSelector(state => state.reviews.reviews);
+    const {shoppingCart} = useSelector(state => state.shoppingCart);
+    const [quantity, setQuantity] = useState(!details ? 0 : details.record_quantity);
+    const [addShow, setAddShow] = useState(false);
+    const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
     useEffect(() => {
         if(newReview) {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
             setNewReview(false);
-            dispatch(getSingleListingByIdThunk(albumId));
+            dispatch(getSingleListingByIdThunk(albumId)).then(e => {
+                setQuantity(e.payload.record_quantity)
+            });
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const details = useSelector(state => state.discogs.details);
-    const currentUser = useSelector(state => state.users.currentUser);
-    const reviews = useSelector(state => state.reviews.reviews);
-
     const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
-
-
     return (
         <>
         {!details ? <></> :
@@ -48,13 +52,30 @@ const DetailsScreen = () => {
                             <div className="p-2">
                                 <img src={details.record_image}/>
                             </div>
-                            <div className="p-2">
-                                <button className="btn btn-outline-dark">Add to cart</button>
+                            <div className="mt-2">
+                                {!currentUser ? "Log in to purchase a record!" :
+                                 <>
+                                     <div className="mb-2">
+                                         <input value={quantity} onChange={(e) => setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
+                                     </div>
+                                    <button onClick={() => {
+                                    if (shoppingCart.shopping_cart.some(e => e._id === details._id)){
+                                    setNegativeShow(true);
+                                }else {
+                                    setAddShow(true);
+                                    dispatch(addToShoppingCartThunk(
+                                {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
+                                                                                                      === details.record_quantity}}))
+                                        }}
+                                } className={modifyListingButtonStyle}>Add to cart</button>
+                                    <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
+                                    <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
+                                     <div className="p-2">
+                                         <button className="btn btn-outline-dark">Add to wishlist</button>
+                                     </div>
+                                 </>
+                                }
                             </div>
-                            <div className="p-2">
-                                <button className="btn btn-outline-dark">Add to wishlist</button>
-                            </div>
-
                             <div className="p-2">
                                 <button className={modifyListingButtonStyle} onClick={() => {
                                     dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))

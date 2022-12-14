@@ -17,6 +17,11 @@ export const getAllFollowers = async (id) => {
     return result.data;
 }
 
+export const getAllFollowed = async (id) => {
+    const result = await api.get(API_FOLLOWING_PATH+"/get-followed/"+id.toString());
+    return result.data;
+}
+
 export const deleteFollower = async ({followingUser, followedUser}) => {
     const result = await api.delete(API_FOLLOWING_PATH+"?followed_user="+
                                     followedUser.toString()+"&following_user="+followingUser.toString());

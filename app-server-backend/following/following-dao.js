@@ -15,6 +15,13 @@ export const createFollower = async (ids) => {
     return followingModel.findById(result._id).populate(["followed_user","following_user"]);
 }
 
+
+// Gets all the users following the current user
 export const getAllFollowers = async (id) => {
     return followingModel.find({followed_user: new mongoose.Types.ObjectId(id)}).populate(["followed_user","following_user"]);
+}
+
+// Checks if the provided id is the user following another user, returns all the users the currentUser is following
+export const getAllFollowed = async (id) => {
+    return followingModel.find({following_user: new mongoose.Types.ObjectId(id)}).populate(["followed_user", "following_user"])
 }

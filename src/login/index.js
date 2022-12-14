@@ -6,6 +6,7 @@ import './index.css';
 import { setError } from "../reducers/users-reducer";
 import { useNavigate } from "react-router-dom";
 import {createEmptyWishlistThunk} from "../services/wishlist-thunk";
+import {createEmptyShoppingCartThunk} from "../services/shopping-cart-thunk";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -40,7 +41,8 @@ const Login = () => {
         const newUser = {email, username, password, firstName, lastName, bio, location, dob, dateJoined, numOfReviews, numOfWishlist, requestToBeSeller,
             bannerPic, profilePic, userType};
         dispath(registerThunk(newUser)).then((e) => {
-            dispath(createEmptyWishlistThunk(username))
+            dispath(createEmptyWishlistThunk(e.payload.username))
+            dispath(createEmptyShoppingCartThunk(e.payload._id));
         })
     }
     useEffect(() => {
