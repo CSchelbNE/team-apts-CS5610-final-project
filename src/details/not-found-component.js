@@ -1,10 +1,48 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
+import { findCurrentUserThunk } from "../services/users-thunks";
+import { useDispatch, useSelector } from "react-redux";
+import { postToWishlistThunk, createEmptyWishlistThunk } from "../services/wishlist-thunk";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const NoListingsFoundScreen = ({details}) => {
+    const dispatch = useDispatch();
+    useEffect(() =>{
+        dispatch(findCurrentUserThunk())
+    }, [])
+    const {currentUser} = useSelector(state => state.users);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const handleAddWishList = () => {
+        if(!currentUser) {
+            return;
+        }
+        const wishlistData = {
+            username: currentUser.username,
+            album:{...details}
+        }       
+        dispatch(createEmptyWishlistThunk(wishlistData.username)).then((e) => {
+            dispatch(postToWishlistThunk(wishlistData))
+            handleShow()
+        })
+    }
     return (
         <>
-            {!details ? <></> :
+            {
+            !details ? 
+            <></> 
+            :
              <div className="container text-center">
+                <Modal show={show} onHide={handleClose} 
+                aria-labelledby="contained-modal-title-vcenter"
+                centered>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Success</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Added to the wishlist successfully</Modal.Body>
+                  </Modal>
                  <div className="row">
                      <div className="d-grid col-4 m-5">
                          <div className="row">
@@ -12,7 +50,11 @@ const NoListingsFoundScreen = ({details}) => {
                                  <img src={details.record_image}/>
                              </div>
                              <div className="p-2">
-                                 <button className="btn btn-outline-dark">Add to wishlist</button>
+                                { currentUser ?
+                                    <button className="btn btn-outline-dark" onClick={() => handleAddWishList()}>Add to wishlist</button>
+                                   :    
+                                   <></>
+                                }
                              </div>
                          </div>
                      </div>

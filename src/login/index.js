@@ -53,6 +53,7 @@ const Login = () => {
     const changePageFlag = (flag) => {
         setUserName("")
         setPassword("")
+        dispath(setError(null))
         setValidatePassword("")
         setLoginPageFlag(flag)
     }
