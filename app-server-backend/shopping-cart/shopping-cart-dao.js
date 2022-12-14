@@ -1,7 +1,7 @@
 import shoppingCartModel from "./shopping-cart-model.js";
 import mongoose from "mongoose";
 import listingModel from "../listings/listing-model.js";
-
+import {faLocationPin} from "@fortawesome/free-solid-svg-icons";
 
 export const getShoppingCartById = (id) => {
     return shoppingCartModel.findOne({owner: new mongoose.Types.ObjectId(id)})
