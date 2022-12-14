@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 
-const ProfileComponent = ({followers,currentUser,profileUser}) => {
+const ProfileComponent = ({currentUser, profileUser}) => {
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -42,23 +42,22 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                     className="modal show"
                     style={{ display: 'block' }}
                     >
-                    <Modal.Dialog
-                        size="lg"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                    >
-                        <Modal.Header>
-                        <Modal.Title className="text-danger">Login required</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                        <p>Please login to access the profile.</p>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
-                        </Modal.Footer>
-                    </Modal.Dialog>
+                        <Modal.Dialog
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                        >
+                            <Modal.Header>
+                            <Modal.Title className="text-danger">Login required</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            <p>Please login to access the profile.</p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
+                            </Modal.Footer>
+                        </Modal.Dialog>
                     </div>
-                    {/* <h3>Please log in</h3> */}
                 </>
                 :
                 <div className="">
@@ -79,7 +78,7 @@ const ProfileComponent = ({followers,currentUser,profileUser}) => {
                             <img src={`${profileUser.profilePic}`}
 
                                  className="rounded-circle wd-profile-pic-format-profile position-absolute wd-profile-pic-margins-profile"/>
-                            <FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>
+                            {/*<FollowingButton  followers={followers} currentUser={currentUser} profileUser={profileUser}/>*/}
 
 
                         </div>

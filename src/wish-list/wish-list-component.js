@@ -17,7 +17,7 @@ const WishListComponent = ({currentUser}) => {
 
     return(
         <>
-            <div className="d-flex d-flex-lg-row">
+            <ul className="list-group">
                 {
                     wishlist_records.length === 0 &&
                     <h3>No Results</h3>
@@ -25,7 +25,7 @@ const WishListComponent = ({currentUser}) => {
                 {   wishlist_records.length > 0 &&
                     wishlist_records.map(record => <RecordGridItem key={uuid4()} record={record}/>)
                 }
-            </div>
+            </ul>
         </>
     );
 }

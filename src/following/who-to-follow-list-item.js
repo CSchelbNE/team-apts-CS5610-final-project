@@ -1,14 +1,35 @@
 import React from "react";
 import checkCircleImg from "../images/check-circle.png";
 import "./index.css";
+import {useDispatch} from "react-redux";
+import {addFollowerThunk} from "../services/following-thunk";
 
-const WhoToFollowListItem = ({user, currentUser}) => {
+const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
+    const dispatch = useDispatch();
+
     const formatJoined = () => {
         const joinDate = new Date(user.dateJoined);
         const timeDiff = joinDate.getTimezoneOffset() * 60000;
         const adjustedDate = new Date(joinDate.valueOf() + timeDiff);
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
+    }
+
+    const handleFollowClick = () => {
+        if (followedUsers.length === 0) {
+            dispatch(addFollowerThunk({
+                following_user: currentUser._id,
+                followed_user: user._id
+            }));
+        }
+        else {
+            if (!followedUsers.some(u=> u.followed_user._id === user._id)) {
+                dispatch(addFollowerThunk({
+                    following_user: currentUser._id,
+                    followed_user: user._id
+                }));
+            }
+        }
     }
 
     return(
@@ -41,7 +62,10 @@ const WhoToFollowListItem = ({user, currentUser}) => {
                         </div>
                     </div>
                     <div className="my-auto ms-1">
-                        <button className="btn btn-primary my-auto ">Follow</button>
+                        {
+                            followedUsers &&
+                            <button className="btn btn-primary my-auto " onClick={handleFollowClick}>Follow</button>
+                        }
                     </div>
                 </div>
             </li>
