@@ -45,7 +45,7 @@ const ProfileScreen = () => {
                     </div>
                     <div className="col-4">
 
-                        <WhoToFollowComponent followers={followers} currentUser={currentUser}/>
+                        <WhoToFollowComponent currentUser={currentUser}/>
 
                     </div>
                 </div>
