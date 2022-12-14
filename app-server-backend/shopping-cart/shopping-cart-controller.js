@@ -4,6 +4,7 @@ export const ShoppingCartController = (app) => {
     app.post("/cart/:id", postToShoppingCart);
     app.post("/cart/new/:id", createEmptyShoppingCart)
     app.delete("/cart/:id", deleteFromShoppingCart);
+    app.post("/cart/confirm/",confirmTransaction);
 }
 
 export const getShoppingCartById = async (req, res) => {
@@ -29,5 +30,12 @@ export const deleteFromShoppingCart = async (req, res) => {
     const id = req.params.id;
     const itemToDelete = req.query.delete.toString();
     const result = await dao.deleteFromShoppingCart(itemToDelete,id);
+    return res.json(result);
+}
+
+export const confirmTransaction = async (req,res) => {
+    const transaction = req.body;
+    console.log(transaction);
+    const result = await dao.confirmTransaction(transaction);
     return res.json(result);
 }

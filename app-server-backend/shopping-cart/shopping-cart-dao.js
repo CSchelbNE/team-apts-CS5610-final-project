@@ -1,5 +1,6 @@
 import shoppingCartModel from "./shopping-cart-model.js";
 import mongoose from "mongoose";
+import listingModel from "../listings/listing-model.js";
 
 
 export const getShoppingCartById = (id) => {
@@ -25,4 +26,9 @@ export const deleteFromShoppingCart = async (itemToDelete, id) => {
         return e._id.$oid.toString() !== itemToDelete
     })}
     return shoppingCartModel.updateOne({owner: new mongoose.Types.ObjectId(id)}, {$set: newValue});
+}
+
+export const confirmTransaction = async (transaction) => {
+
+
 }

@@ -28,7 +28,7 @@ const NavigationSidebar = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         dispath(clearProfileUser());
-        dispath(findCurrentUserThunk()).then(e => dispath(getShoppingCartByIdThunk(e.payload._id)));
+        dispath(findCurrentUserThunk()).then(e => {if(e.payload) dispath(getShoppingCartByIdThunk(e.payload._id))});
     }, [pathname]);
     const {currentUser,profileUser} = useSelector(state => state.users);
     const {shoppingCart} = useSelector(state => state.shoppingCart);

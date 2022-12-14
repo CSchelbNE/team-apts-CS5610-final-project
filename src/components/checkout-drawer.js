@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import {getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
+import {confirmTransactionThunk, getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
 import {useSelector} from "react-redux";
 import CartItem from "./cart-item";
 import {uuid4} from "uuid4";
@@ -28,7 +28,7 @@ function CheckoutDrawer({ currentUser, dispatch, shoppingCart, show, setShow, ..
                 </Offcanvas.Body>
                 <div className="w-100 d-flex justify-content-between align-items-center">
                     <h4 className="m-2">{"Total: $" + total}</h4>
-                    <Button style={{width:"fit-content"}}  className="m-2 bg-success border-success">Submit</Button>
+                    <Button style={{width:"fit-content"}} onClick={dispatch(confirmTransactionThunk(shoppingCart))} className="m-2 bg-success border-success">Submit</Button>
                 </div>
             </Offcanvas>
         </>
