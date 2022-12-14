@@ -13,12 +13,13 @@ import wishlistReducer from "./reducers/wishlist-reducer";
 import adminReducer from "./reducers/admin-reducer";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import followingReducer from "./reducers/following-reducer";
+import shoppingCartReducer from "./reducers/shopping-cart-reducer";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = configureStore({
     reducer: {discogs: discogsReducer, users: usersReducer, reviews: reviewsReducer, wishlist: wishlistReducer,
-    admin: adminReducer, following: followingReducer}
+    admin: adminReducer, following: followingReducer, shoppingCart: shoppingCartReducer}
 });
 
 root.render(

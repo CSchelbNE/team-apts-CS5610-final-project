@@ -188,6 +188,12 @@
   }
 }
 
+@media screen and (min-width: 0px) and (max-width: 575px){
+  .wd-side-drawer {
+    z-index: 9999;
+  }
+}
+
 
 @font-face {
   font-family: "Art Nuvo";
@@ -202,3 +208,8 @@
   object-fit: fill;
   height: 100vh;
 }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+

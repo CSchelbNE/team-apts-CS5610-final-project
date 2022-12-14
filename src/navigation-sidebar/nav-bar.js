@@ -7,41 +7,64 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import ModalWrapperButton from "../components/modal-wrapper-button";
-import {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {
     findCurrentUserThunk,
     findUserByUsernameThunk,
     findUserThunk
 } from "../services/users-thunks";
-import ScrollToTop from "../components/scroll-to-top";
-import {clearProfileUser, setProfileUserNull} from "../reducers/users-reducer";
+import {clearProfileUser} from "../reducers/users-reducer";
+import CheckoutDrawer from "../components/checkout-drawer";
+import {getShoppingCartByIdThunk} from "../services/shopping-cart-thunk";
+import {useState} from "react";
 
 const NavigationSidebar = ({isLoginPage}) => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
-    const [modalShow, setModalShow] = useState(false);
     const hrefPath = window.location.href;
     const dispath = useDispatch();
+    const [show, setShow] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0);
         dispath(clearProfileUser());
-        if (!hrefPath.includes("/profile")) {
-            dispath(findCurrentUserThunk());
-        }
+        dispath(findCurrentUserThunk()).then(e => {if(e.payload) dispath(getShoppingCartByIdThunk(e.payload._id))});
     }, [pathname]);
     const {currentUser,profileUser} = useSelector(state => state.users);
+    const {shoppingCart} = useSelector(state => state.shoppingCart);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
+    const searchbarVisibility = show ? "d-none" : "wd-search-bar-absolute-pos"
     return(
         <div className=" position-relative">
-            <div className="wd-search-bar-absolute-pos">
                 {
                     isLoginPage ? 
                         <></>
                     :
                     <SearchBar noBlur={false}/>
                 }
+            {/* <a className="list-group-item">Vinyl Shop</a>
+            <Link to="/home" className={`list-group-item ${active === 'home'?'active':''}`}>
+                <FaHome/>
+                <span className="d-none d-lg-inline-block ms-2">Home</span>
+            </Link>
+            <Link to="/search" className={`list-group-item ${active === 'search'?'active':''}`}>
+                <FaSearch/>
+                <span className="d-none d-lg-inline-block ms-2">Search</span>
+            </Link>
+            <Link to="/profile" className={`list-group-item ${active === 'profile'?'active':''}`}>
+                <FaUser />
+                <span className="d-none d-lg-inline-block ms-2">Profile</span>
+            </Link>
+            <Link to="/login" className={`list-group-item ${active === 'login'?'active':''}`}>
+                <FaSignInAlt/>
+                <span className="d-none d-lg-inline-block ms-2">Login</span>
+            </Link>
+            <Link to="/logout" className={`list-group-item ${active === 'logout'?'active':''}`}>
+                <FaSignOutAlt/>
+                <span className="d-none d-lg-inline-block ms-2">Logout</span>
+            </Link> */}
+            <div className={searchbarVisibility}>
+                <SearchBar noBlur={false}/>
             </div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
@@ -69,6 +92,9 @@ const NavigationSidebar = ({isLoginPage}) => {
                              <></>
                             }
                             <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
+                            <NavDropdown.Item className={!currentUser || !shoppingCart ? "d-none" : ""}>
+                                {!currentUser || !shoppingCart ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
+                            </NavDropdown.Item>
                             {/* <NavDropdown.Item href="/profile">Profile</NavDropdown.Item> */}
                             <NavDropdown.Item className={adminVisibility}>
                                 <ModalWrapperButton props={"ADMIN"}/>

@@ -1,9 +1,10 @@
 import shoppingCartModel from "./shopping-cart-model.js";
 import mongoose from "mongoose";
+import listingModel from "../listings/listing-model.js";
 
 
 export const getShoppingCartById = (id) => {
-
+    return shoppingCartModel.findOne({owner: new mongoose.Types.ObjectId(id)})
 }
 
 
@@ -25,4 +26,16 @@ export const deleteFromShoppingCart = async (itemToDelete, id) => {
         return e._id.$oid.toString() !== itemToDelete
     })}
     return shoppingCartModel.updateOne({owner: new mongoose.Types.ObjectId(id)}, {$set: newValue});
+}
+
+export const confirmTransaction = async (transaction) => {
+    const ownerId = transaction.owner;
+    // await transaction.shopping_cart.forEach(listing => {
+    //     if(listing.scheduled_for_delete){
+    //         listingModel.findByIdAndDelete(new mongoose.Types.ObjectId(listing._id));
+    //     }
+    // });
+    const result = await shoppingCartModel.deleteOne({_id: new mongoose.Types.ObjectId(transaction._id)})
+    console.log(result);
+    return await createEmptyShoppingCart(ownerId);
 }
