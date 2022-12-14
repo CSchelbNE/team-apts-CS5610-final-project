@@ -51,23 +51,22 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                     className="modal show"
                     style={{ display: 'block' }}
                     >
-                    <Modal.Dialog
-                        size="lg"
-                        aria-labelledby="contained-modal-title-vcenter"
-                        centered
-                    >
-                        <Modal.Header>
-                        <Modal.Title className="text-danger">Login required</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                        <p>Please login to access the profile.</p>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
-                        </Modal.Footer>
-                    </Modal.Dialog>
+                        <Modal.Dialog
+                            size="lg"
+                            aria-labelledby="contained-modal-title-vcenter"
+                            centered
+                        >
+                            <Modal.Header>
+                            <Modal.Title className="text-danger">Login required</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            <p>Please login to access the profile.</p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary" onClick={() => loginRedirectHandler()}>Login</Button>
+                            </Modal.Footer>
+                        </Modal.Dialog>
                     </div>
-                    {/* <h3>Please log in</h3> */}
                 </>
                 : !profileUser ? <></> :
                 <div className="">

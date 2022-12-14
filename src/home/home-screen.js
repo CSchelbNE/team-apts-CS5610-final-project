@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import WishListComponent from "../wish-list/wish-list-component";
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {getRecentListingsThunk} from "../services/discogs-thunk";
-
+import homeScreenImg from "../images/home-screen.jpg"
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
@@ -21,11 +21,10 @@ const HomeScreen = () => {
 
     return (
         <div className="">
-
             <NavigationSidebar/>
             <div className="container mt-2">
                 <div className="position-relative">
-                    <img src={"http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg"} className="w-100 wd-banner-image-format"/>
+                    <img src={homeScreenImg} className="w-100 wd-banner-image-format"/>
                     <div className="wd-title-format">
                         Vintage Vinyl
                     </div>
@@ -38,15 +37,15 @@ const HomeScreen = () => {
                 </div>
                
                 <div className="mt-3">
-                    <h1>Suggested Albums</h1>
-                    <div className="border border-2 border-secondary p-2 m-2">
+                    <h3 className="font-weight-bold">Suggested Albums</h3>
+                    <div>
                         <SuggestedComponent suggested={suggested}/>
                     </div>
 
                 </div>
                 <div className="mt-3">
-                    <h1>Recent Users</h1>
-                    <div className="border border-2 border-secondary p-2 m-2">
+                    <h3 className="font-weight-bold">Recent Users</h3>
+                    <div>
                         <UsersListComponent/>
                     </div>
                 </div>
@@ -54,8 +53,8 @@ const HomeScreen = () => {
                     {
                         currentUser &&
                         <div className="mt-3">
-                            <h1>Wish List</h1>
-                            <div className="border border-2 border-secondary p-2 m-2">
+                            <h3 className="font-weight-bold">Wishlist</h3>
+                            <div>
                                 <WishListComponent key={currentUser._id} currentUser={currentUser}/>
                             </div>
                         </div>
