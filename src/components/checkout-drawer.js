@@ -30,7 +30,7 @@ function CheckoutDrawer({ currentUser, dispatch, shoppingCart, show, setShow, ..
                     {shoppingCart.shopping_cart.length === 0 ? <></> : shoppingCart.shopping_cart.map(e => <CartItem key={uuid4()} dispatch={dispatch} currentUser={currentUser} listing={e} />)}
                 </Offcanvas.Body>
                 <div className="w-100 d-flex justify-content-between align-items-center">
-                    <h4 className="m-2">{"Total: $" + total}</h4>
+                    <h4 className="ms-3 m-2">{"Total: $" + total}</h4>
                     <Button style={{width:"fit-content"}} onClick={() => {
                         if(shoppingCart.shopping_cart.length !== 0){
                             setShowToast(true);

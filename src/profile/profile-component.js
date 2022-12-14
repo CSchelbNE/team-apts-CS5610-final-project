@@ -140,7 +140,7 @@ const ProfileComponent = ({currentUser, profileUser}) => {
 
                                 <>
                                     <h1 className="mt-3">Reviews</h1>
-                                    <div className="border border-2 border-secondary p-2 m-2">
+                                    <div className="border border-2  p-2 m-2">
                                         <ReviewsByAlbum key={profileUser._id} profileUser={profileUser}/>
                                     </div>
                                 </>

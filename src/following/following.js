@@ -1,7 +1,5 @@
 import React, {useEffect} from "react";
 import FollowingListItem from "./following-list-item";
-import {useDispatch, useSelector} from "react-redux";
-import {getAllFollowersThunk} from "../services/following-thunk";
 import {uuid4} from "uuid4";
 
 const FollowingComponent = ({currentUser, followed}) => {

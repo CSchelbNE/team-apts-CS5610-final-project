@@ -19,7 +19,7 @@ const ReviewsListItemByAlbum = ({review}) => {
                     <div className="text-start">
                         <div className="row ">
                             <div className="text-end ">
-                                <img src={require("../../images/big_x.png")} className="wd-big-x-format" onClick={deleteReview}/>
+                                <img src={require("../../images/big_x.png")} style={{cursor: "pointer"}} className="wd-big-x-format" onClick={deleteReview}/>
                             </div>
                             <div className="text-center">
                                 <Link to={"/details/" + review.listing._id + "?query=" + review.listing.record_name.split(' ')[0]}>

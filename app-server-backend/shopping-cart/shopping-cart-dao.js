@@ -32,12 +32,14 @@ export const deleteFromShoppingCart = async (itemToDelete, id) => {
 
 export const confirmTransaction = async (transaction) => {
     const ownerId = transaction.owner;
+    // const deleteListing = async (listing) => {
+    //     await listingModel.findByIdAndDelete(new mongoose.Types.ObjectId(listing._id));
+    // }
     // await transaction.shopping_cart.forEach(listing => {
     //     if(listing.scheduled_for_delete){
-    //         listingModel.findByIdAndDelete(new mongoose.Types.ObjectId(listing._id));
+    //         deleteListing(listing);
     //     }
     // });
     const result = await shoppingCartModel.deleteOne({_id: new mongoose.Types.ObjectId(transaction._id)})
-    console.log(result);
     return await createEmptyShoppingCart(ownerId);
 }

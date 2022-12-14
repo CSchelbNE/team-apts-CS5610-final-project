@@ -209,7 +209,7 @@ const EditProfileComponent = ({currentUser}) => {
                     <div className="p-2 position-relative form-group">
                         <label className="form-label" htmlFor="birth-date-textarea">Birth date &nbsp;&#x2022;&nbsp;<span className="text-primary">Edit</span></label>
                         <input id="birth-date-textarea" type="date" className="w-100 h-100 ps-2 form-control form-control-md"
-                               defaultValue={birthdate} onChange={e => setBirthdate(e.target.value)}></input>
+    defaultValue={birthdate} onChange={e => setBirthdate(e.target.value)}/>
                     </div>
                     {/*<div className="form-group pb-2">*/}
                     {/*    <label className="form-label" htmlFor="dob">Date of Birth:</label>*/}

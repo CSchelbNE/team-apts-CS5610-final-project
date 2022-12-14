@@ -1,11 +1,8 @@
 import {
     addFollowerThunk,
-    deleteFollowerThunk,
-    getAllFollowersThunk
 } from "../services/following-thunk";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 
 const FollowingButton = ({currentUser, profileUser, followers}) => {
     const dispatch = useDispatch();
