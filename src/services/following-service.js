@@ -22,8 +22,7 @@ export const getAllFollowed = async (id) => {
     return result.data;
 }
 
-export const deleteFollower = async ({followingUser, followedUser}) => {
-    const result = await api.delete(API_FOLLOWING_PATH+"?followed_user="+
-                                    followedUser.toString()+"&following_user="+followingUser.toString());
+export const deleteFollower = async (followingId) => {
+    const result = await api.delete(API_FOLLOWING_PATH+"/"+followingId);
     return result.data;
 }

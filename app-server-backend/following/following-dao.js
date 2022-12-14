@@ -1,9 +1,10 @@
 import followingModel from "./following-model.js";
 import mongoose from "mongoose";
 
-export const deleteFollower = (followedUser, followingUser) => {
-    return followingModel.deleteOne({following_user: new mongoose.Types.ObjectId(followingUser),
-                                        followed_user: new mongoose.Types.ObjectId(followedUser)})
+export const deleteFollower = async (id) => {
+    const result = await followingModel.findByIdAndDelete(id);
+    console.log(result);
+    return result;
 }
 
 export const createFollower = async (ids) => {

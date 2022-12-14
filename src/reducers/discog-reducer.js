@@ -12,7 +12,7 @@ const initialState = {
     details: null,
     notFound: null,
     listings: [],
-    loading: false
+    suggested: []
 }
 
 
@@ -30,7 +30,6 @@ const discogsSlice = createSlice({
     extraReducers: {
         [getAlbumsThunk.fulfilled]:
             (state, {payload}) => {
-                state.loading = false;
                 const json = JSON.parse(JSON.stringify(payload));
                 state.discogsAlbumQuery = json;
             },
@@ -73,6 +72,10 @@ const discogsSlice = createSlice({
         [editListingThunk.fulfilled]:
             (state, {payload}) => {
                 console.log("Edited: " + payload);
+            },
+        [getRecentListingsThunk.fulfilled]:
+            (state, {payload}) => {
+                state.suggested = payload;
             }
     }
 });
