@@ -5,7 +5,7 @@ import "./index.css";
 const SuggestedComponent = ({suggested}) => {
     return(
         <>
-            <div className="d-flex flex-row">
+            <div className="d-flex d-flex-lg-row">
                 {!suggested ? <></>:
                     suggested.map(record => <RecordGridItem key={record._id} record={record}/>)
                 }
