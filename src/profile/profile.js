@@ -66,7 +66,7 @@ const ProfileScreen = () => {
                     {   currentUser &&
                         <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
 
-                            <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
+                            <ProfileComponent currentUser={currentUser} profileUser={profileUser} followed={followed}/>
 
                         </div>
                     }
@@ -75,7 +75,7 @@ const ProfileScreen = () => {
                         <>
                             <div className="col-xxl-2 col-lg-2 p-0 "></div>
                             <div className="col-xxl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                <ProfileComponent currentUser={currentUser} profileUser={profileUser}/>
+                                <ProfileComponent currentUser={currentUser} profileUser={profileUser} followed={followed}/>
                             </div>
                             <div className="col-xxl-2 col-lg-2 p-0 "></div>
 

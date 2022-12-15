@@ -9,13 +9,16 @@ import FollowingButton from "../following/following-button";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import {addFollowerThunk} from "../services/following-thunk";
+import {useDispatch} from "react-redux";
 
-const ProfileComponent = ({currentUser, profileUser}) => {
+const ProfileComponent = ({currentUser, profileUser, followed}) => {
     let uid = window.location.pathname;
     if (uid.includes("/profile")) {
         let url_parts = uid.split("/").filter(part => part);
         uid = url_parts[url_parts.length - 1];
     }
+    const dispatch = useDispatch();
 
     const formatBirthDate = () => {
         const dateArr = profileUser.dob.split("-")
@@ -35,6 +38,24 @@ const ProfileComponent = ({currentUser, profileUser}) => {
         const month = adjustedDate.toLocaleString('default', {month: 'long'});
         return "Joined " + month + " " + adjustedDate.getFullYear();
     }
+
+    const handleFollowClick = () => {
+        if (followed.length === 0) {
+            dispatch(addFollowerThunk({
+                following_user: currentUser._id,
+                followed_user: profileUser._id
+            }));
+        }
+        else {
+            if (!followed.some(u=> u.followed_user._id === profileUser._id)) {
+                dispatch(addFollowerThunk({
+                    following_user: currentUser._id,
+                    followed_user: profileUser._id
+                }));
+            }
+        }
+    }
+
     const navigate = useNavigate();
     const loginRedirectHandler = () => {
         navigate("/login")
@@ -82,6 +103,15 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                             <Link to="/edit-profile" className="float-end me-2 wd-ep-button-format rounded-pill">
                                 <button id="edit-profile-btn" className="btn text-white">Edit profile</button>
                             </Link>}
+                        {/*follow button*/}
+                        {
+                            currentUser && followed && profileUser.username !== currentUser.username &&
+                            <>
+                                <div className="float-end me-2">
+                                    <button className="btn btn-primary" onClick={handleFollowClick}>Follow</button>
+                                </div>
+                            </>
+                        }
                         {/*avatar*/}
                         <div className="position-relative">
                             <img src={`${profileUser.profilePic}`}
@@ -127,16 +157,16 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                                         <span>{formatJoined()}</span>
                                     </div>
                                 </div>
-                                <div className="row mt-2">
-                                    <div className="d-inline-block text-secondary w-auto">
-                                        <span>{profileUser.numOfReviews}</span>&nbsp;
-                                        <span>Reviews</span>
-                                    </div>
-                                    <div className="d-inline-block text-secondary w-auto">
-                                        <span>{profileUser.numOfWishlist}</span>&nbsp;
-                                        <span>in Wish List</span>
-                                    </div>
-                                </div>
+                                {/*<div className="row mt-2">*/}
+                                {/*    <div className="d-inline-block text-secondary w-auto">*/}
+                                {/*        <span>{profileUser.numOfReviews}</span>&nbsp;*/}
+                                {/*        <span>Reviews</span>*/}
+                                {/*    </div>*/}
+                                {/*    <div className="d-inline-block text-secondary w-auto">*/}
+                                {/*        <span>{profileUser.numOfWishlist}</span>&nbsp;*/}
+                                {/*        <span>in Wish List</span>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                                 {
                                     currentUser && profileUser.username === currentUser.username && profileUser.type === "SELLER" &&
                                     <>
