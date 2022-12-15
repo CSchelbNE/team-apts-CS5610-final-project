@@ -60,7 +60,8 @@ const DetailsScreen = () => {
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const buyerListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 m-2 bg-dark text-white end-0 btn btn-outline-dark";
+    const addToCartButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 m-2 me-sm-3 bg-dark text-white end-0 btn btn-outline-dark";
+    const addToWishlistButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 bg-dark text-white border-dark";
     const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
     const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white" : "d-none";
     const totalStyle = !currentUser || !details ? "d-none" : currentUser._id !== details.record_vendor._id ? "text-dark" : "d-none";
@@ -88,11 +89,14 @@ const DetailsScreen = () => {
              <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
              <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
              <Card className="container p-0">
+                 <h1 className="m-2 mb-3 ms-5">Details</h1>
+                 <img style={{height: "400px"}}
+                      src="https://northgrandmall.com/wp-content/uploads/2021/05/Vintage-Vinyl.jpg"/>
                  <Card.Header>
                      <div className="flex-row d-flex justify-content-between align-items-center">
                          <h2 className="mt-1">{details.record_name}</h2>
                          <div className="p-2">
-                             <button className={buyerListingButtonStyle} onClick={() => handleAddWishList()}>Add to wishlist</button>
+                             <button className={addToWishlistButton} onClick={() => handleAddWishList()}>Add to wishlist</button>
                          </div>
                          <button className={vendorListingButtonStyle} onClick={() => {
                              const params = {
@@ -123,12 +127,12 @@ const DetailsScreen = () => {
                         }
                     </div>
                     <div >
-                        <Card className=" ms-5">
+                        <Card className="ms-5 me-sm-2">
                             <ListGroup variant="flush">
                                 <ListGroup.Item><h2>{"Artist: " +details.record_artist.replace("*","")}</h2></ListGroup.Item>
                                 <ListGroup.Item>  <h4 className="text-dark">Price: ${details.record_price}</h4></ListGroup.Item>
                                 <ListGroup.Item><h4 className="text-dark">Year recorded: {details.record_year}</h4></ListGroup.Item>
-                                <ListGroup.Item><h4 className="text-dark">Genres: {details.record_genre}</h4></ListGroup.Item>
+                                <ListGroup.Item className="d-sm-none d-md-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
                             </ListGroup>
                                 {/*<div className="p-2">*/}
                             {/*    <h3 className="text-dark"></h3>*/}
@@ -153,7 +157,7 @@ const DetailsScreen = () => {
                         {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
                                                                                       === details.record_quantity}}))
                         }}
-                } className={buyerListingButtonStyle}>Add to cart
+                } className={addToCartButton}>Add to cart
                 </button>
              </Card.Body>
                  </div>
