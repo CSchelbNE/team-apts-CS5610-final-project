@@ -99,7 +99,7 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                                     <div className="text-secondary">{profileUser.type === "BUYER" ? "Buyer" :
                                         <div>
                                             Seller
-                                            <FontAwesomeIcon className="ms-1" icon={faCircleCheck} />
+                                            <FontAwesomeIcon className="ms-1 text-primary" icon={faCircleCheck} />
                                         </div>
                                     }</div>
                                 </div>

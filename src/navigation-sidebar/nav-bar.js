@@ -78,7 +78,7 @@ const NavigationSidebar = ({isLoginPage}) => {
                             isLoginPage ?
                                 <></>
                         :
-                        <NavDropdown title="user" id="collasible-nav-dropdown">
+                        <NavDropdown title="User" id="collasible-nav-dropdown">
                             {currentUser ? 
                                <>
                                 <NavDropdown.Item href="/profile">
@@ -89,7 +89,15 @@ const NavigationSidebar = ({isLoginPage}) => {
                             :
                              <></>
                             }
-                            <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
+
+                            {
+                                currentUser ? 
+                                    <></>
+                                :
+                                <NavDropdown.Item href="/login" className="text-primary login-btn">Login</NavDropdown.Item>
+
+                            }
+                           
                             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                             <NavDropdown.Item className={!currentUser || !shoppingCart || currentUser.type === "ADMIN" ? "d-none" : ""}>
                                 {!currentUser || !shoppingCart ? <></> : <CheckoutDrawer currentUser={currentUser} show={show} setShow={setShow} shoppingCart={shoppingCart} dispatch={dispath}/>}
@@ -99,7 +107,12 @@ const NavigationSidebar = ({isLoginPage}) => {
                                 {/*Admin*/}
                                 {/*<AdminPanelModal show ={modalShow} onHide={()=> setModalShow(false)}/>*/}
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/logout" className="text-danger logout-btn">Logout</NavDropdown.Item>
+                            {
+                                currentUser ? 
+                                    <NavDropdown.Item href="/logout" className="text-danger logout-btn">Logout</NavDropdown.Item>
+                                :
+                                <></>
+                            }
                         </NavDropdown>
                         }
                     </Nav>

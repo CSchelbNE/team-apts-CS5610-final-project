@@ -3,6 +3,8 @@ import checkCircleImg from "../images/check-circle.png";
 import "./index.css";
 import {useDispatch} from "react-redux";
 import {addFollowerThunk} from "../services/following-thunk";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
 
 const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
     const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
 
     return(
         <>
-            <li className="list-group-item">
+        <li className="list-group-item">
                 <div className="row">
                     <div  className="col-2 col-xl-2 col-lg-3 col-md-2 col-sm-2 my-auto">
                         <img src={`${user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle"/>
@@ -42,7 +44,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
                         <div className="fs-5 text-dark">
                             {user.firstName} {user.lastName}&nbsp;
-                            <img src={checkCircleImg} className="wd-check-circle-icon-format-follow"/>&nbsp;
+                            <FontAwesomeIcon className="ms-1 text-primary fs-20" icon={faCircleCheck} />&nbsp;
                             <span className="text-secondary">{user.type.toLowerCase()}</span>
                         </div>
                         {/*<div className="text-dark mt-1">{user.bio}</div>*/}
