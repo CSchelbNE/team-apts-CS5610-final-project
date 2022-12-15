@@ -60,7 +60,9 @@ const DetailsScreen = () => {
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const modifyListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
+    const buyerListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn btn-outline-dark";
+    const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
+    const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
     return (
         <>
         {!details 
@@ -93,7 +95,8 @@ const DetailsScreen = () => {
                                 {!currentUser ? "Log in to purchase a record!" :
                                  <>
                                      <div className="mb-2">
-                                         <input value={quantity} onChange={(e) => setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
+                                         <input value={quantity} className={inputStyle} onChange={(e) =>
+                                             setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
                                      </div>
                                     <button onClick={() => {
                                     if (!shoppingCart.shopping_cart || shoppingCart.shopping_cart.some(e => e._id === details._id)){
@@ -104,23 +107,23 @@ const DetailsScreen = () => {
                                 {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
                                                                                                       === details.record_quantity}}))
                                         }}
-                                } className={modifyListingButtonStyle}>Add to cart</button>
+                                } className={buyerListingButtonStyle}>Add to cart</button>
                                     <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
                                     <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
                                      <div className="p-2">
-                                         <button className="btn btn-outline-dark" onClick={() => handleAddWishList()}>Add to wishlist</button>
+                                         <button className={buyerListingButtonStyle} onClick={() => handleAddWishList()}>Add to wishlist</button>
                                      </div>
                                  </>
                                 }
                             </div>
                             <div className="p-2">
-                                <button className={modifyListingButtonStyle} onClick={() => {
-                                    dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))
-                                }}>Edit Listing
-                                </button>
+                                {/*<button className={modifyListingButtonStyle} onClick={() => {*/}
+                                {/*    dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))*/}
+                                {/*}}>Edit Listing*/}
+                                {/*</button>*/}
                             </div>
                             <div className="p-2">
-                                <button className={modifyListingButtonStyle} onClick={() => {
+                                <button className={vendorListingButtonStyle} onClick={() => {
                                     const params = {
                                         'id': details.discogs_id.toString(),
                                         "query": query
