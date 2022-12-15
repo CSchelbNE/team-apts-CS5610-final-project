@@ -7,7 +7,7 @@ import {
     getAllReviewsByAlbumIdThunk,
 } from "../services/review-thunk";
 import {useParams} from "react-router";
-import {editListingThunk, getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
+import {getSingleListingByIdThunk, deleteListingThunk} from "../services/discogs-thunk";
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {addToShoppingCartThunk} from "../services/shopping-cart-thunk";
 import AddToCartToast from "../components/add-to-cart-toast";
@@ -31,9 +31,6 @@ const DetailsScreen = () => {
     const [addShow, setAddShow] = useState(false);
     const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
-    // useEffect(() =>{
-    //     dispatch(findCurrentUserThunk())
-    // }, [])
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -65,6 +62,7 @@ const DetailsScreen = () => {
     const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
     const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white" : "d-none";
     const totalStyle = !currentUser || !details ? "d-none" : currentUser._id !== details.record_vendor._id ? "text-dark" : "d-none";
+    const cardStyle = !currentUser || !details ||  currentUser._id === details.record_vendor._id ? "ms-5 mb-2 me-sm-2" : "ms-5 mt-2 me-sm-2"
     return (
         <>
         {!details 
@@ -88,7 +86,8 @@ const DetailsScreen = () => {
              <NavigationSidebar/>
              <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
              <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
-             <Card className="container p-0">
+             <Card className="container mt-2 p-0">
+
                  <h1 className="m-2 mb-3 ms-5">Details</h1>
                  <img style={{height: "400px"}}
                       src="https://northgrandmall.com/wp-content/uploads/2021/05/Vintage-Vinyl.jpg"/>
@@ -127,27 +126,17 @@ const DetailsScreen = () => {
                         }
                     </div>
                     <div >
-                        <Card className="ms-5 me-sm-2">
+                        <Card className={cardStyle}>
                             <ListGroup variant="flush">
                                 <ListGroup.Item><h2>{"Artist: " +details.record_artist.replace("*","")}</h2></ListGroup.Item>
                                 <ListGroup.Item>  <h4 className="text-dark">Price: ${details.record_price}</h4></ListGroup.Item>
                                 <ListGroup.Item><h4 className="text-dark">Year recorded: {details.record_year}</h4></ListGroup.Item>
-                                <ListGroup.Item className="d-sm-none d-md-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
+                                <ListGroup.Item className="d-none d-md-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
                             </ListGroup>
-                                {/*<div className="p-2">*/}
-                            {/*    <h3 className="text-dark"></h3>*/}
-                            {/*</div>*/}
-                            {/*<div className="p-2">*/}
-                            {/*    <h5 className="text-dark">Genre: {details.record_genre}</h5>*/}
-                            {/*</div>*/}
-                            {/*<div className="p-2">*/}
-                            {/*    <h5 className="text-dark">Year recorded: {details.record_year}</h5>*/}
-                            {/*</div>*/}
-                            {/*<div className="p-2">*/}
-                            {/*    <h5 className="text-dark">Qty available: {details.record_quantity}</h5>*/}
-                            {/*</div>*/}
                         </Card>
-                </div>
+                    </div>
+                    <div >
+                    </div>
                 <button style={{height: "fit-content", width: "fit-content"}} onClick={() => {
                     if (!shoppingCart.shopping_cart || shoppingCart.shopping_cart.some(e => e._id === details._id)){
                     setNegativeShow(true);
