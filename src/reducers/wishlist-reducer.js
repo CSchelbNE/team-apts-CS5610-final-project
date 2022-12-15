@@ -18,6 +18,11 @@ const wishlistSlice = createSlice({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false
     }),
+    reducers: {
+        clearWishlist(state,action) {
+            state.wishlist_records = []
+        }
+    },
     extraReducers: {
         [createEmptyWishlistThunk.fulfilled]:
             (state, {payload}) => {
@@ -41,9 +46,9 @@ const wishlistSlice = createSlice({
         [deleteItemFromWishlistThunk.fulfilled]:
             (state, {payload}) => {
                 state = payload;
-                console.log(state);
             }
     }
 });
 
+export const {clearWishlist} = wishlistSlice.actions;
 export default wishlistSlice.reducer;
