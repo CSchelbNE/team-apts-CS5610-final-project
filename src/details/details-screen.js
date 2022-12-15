@@ -27,7 +27,7 @@ const DetailsScreen = () => {
     const currentUser = useSelector(state => state.users.currentUser);
     const reviews = useSelector(state => state.reviews.reviews);
     const {shoppingCart} = useSelector(state => state.shoppingCart);
-    const [quantity, setQuantity] = useState(!details ? 0 : details.record_quantity);
+    const [quantity, setQuantity] = useState(1);
     const [addShow, setAddShow] = useState(false);
     const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
@@ -51,18 +51,16 @@ const DetailsScreen = () => {
         if(newReview) {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
             setNewReview(false);
-            dispatch(getSingleListingByIdThunk(albumId)).then(e => {
-                if(e.payload) setQuantity(e.payload.record_quantity)
-            });
+            dispatch(getSingleListingByIdThunk(albumId));
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const addToCartButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 me-sm-3 bg-dark text-white end-0 btn btn-outline-dark";
-    const addToWishlistButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 bg-dark text-white border-dark";
+    const addToCartButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 me-2 mb-2 bg-dark text-white end-0 btn btn-outline-dark";
+    const addToWishlistButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 me-2 bg-dark text-white border-dark";
     const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
-    const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white" : "d-none";
+    const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white me-2" : "d-none";
     const totalStyle = !currentUser || !details ? "d-none" : currentUser._id !== details.record_vendor._id ? "text-dark" : "d-none";
-    const cardStyle = !currentUser || !details ||  currentUser._id === details.record_vendor._id ? "ms-5 mb-2 me-sm-2" : "ms-5 mt-2 me-sm-2"
+    const cardStyle = !currentUser || !details ||  currentUser._id === details.record_vendor._id ? "ms-4 mb-2 me-sm-2 ms-2" : "ms-4 mt-2  me-md-0"
     return (
         <>
         {!details 
@@ -86,17 +84,17 @@ const DetailsScreen = () => {
              <NavigationSidebar/>
              <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
              <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
-             <Card className="container mt-2 p-0">
-
+             <Card style={{borderBottomRightRadius:0, borderBottomLeftRadius: 0}} className="container p-0 mt-2">
                  <h3 className="ms-3 mt-1 p-3 center-text">Details</h3>
                  <img style={{height: "400px"}}
                       src="https://northgrandmall.com/wp-content/uploads/2021/05/Vintage-Vinyl.jpg"/>
-                 <Card.Header>
+                 <Card.Header className="pe-0">
                      <div className="flex-row d-flex justify-content-between align-items-center">
-                         <h3 className="ms-3 mt-1">{details.record_name}</h3>
-                         <div className="m-0">
-                             <button className={addToWishlistButton} onClick={() => handleAddWishList()}>Add to wishlist</button>
-                         </div>
+                         {details.record_name.length > 30 ? <h4 className="ms-3 mt-1">{details.record_name}</h4> :
+                          <h3 className="ms-3 mt-1">{details.record_name}</h3>
+                         }
+
+                         <button className={addToWishlistButton} onClick={() => handleAddWishList()}>Add to wishlist</button>
                          <button className={vendorListingButtonStyle} onClick={() => {
                              const params = {
                                  'id': details.discogs_id.toString(),
@@ -126,20 +124,40 @@ const DetailsScreen = () => {
                     </div>
                     <div >
                         <Card className={cardStyle}>
-                            <ListGroup variant="flush">
-                                <ListGroup.Item><h2>{"Artist: " +details.record_artist.replace("*","")}</h2></ListGroup.Item>
+                            <ListGroup  variant="flush">
                                 <ListGroup.Item>
-                                    <div className="d-flex flex-row p-0">
-                                    <h4 className="text-dark">
-                                        {"Price:"}&nbsp;
-                                    </h4>
-                                    <h4 className="text-dark">
-                                        {"$"+details.record_price}
-                                    </h4>
+                                    {details.record_artist.length > 30 ? <h4>{"Artist: " +details.record_artist.replace("*","")}</h4> :
+                                    <h2>{"Artist: " +details.record_artist.replace("*","")}</h2>
+                                    }
+                                    </ListGroup.Item>
+                                {details.record_artist.length > 30 ?   <>
+                                <ListGroup.Item className="d-none d-sm-block">
+                                    <div className="d-flex mb-2 flex-row p-0">
+                                        <h4 className="text-dark">
+                                            {"Price:"}&nbsp;
+                                        </h4>
+                                        <h4 className="text-dark">
+                                            {"$"+details.record_price}
+                                        </h4>
                                     </div>
                                 </ListGroup.Item>
-                                <ListGroup.Item><h4 className="text-dark">Year recorded: {details.record_year}</h4></ListGroup.Item>
-                                <ListGroup.Item className="d-none d-md-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
+                                    <ListGroup.Item className="text-dark d-none d-xl-block"><h4 >Year recorded: {details.record_year}</h4></ListGroup.Item>
+                                    <ListGroup.Item className="d-none d-xxl-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
+                                </> :
+                                 <>
+                                 <ListGroup.Item>
+                                     <div className="d-flex flex-row p-0">
+                                         <h4 className="text-dark">
+                                             {"Price:"}&nbsp;
+                                         </h4>
+                                         <h4 className="text-dark">
+                                             {"$"+details.record_price}
+                                         </h4>
+                                     </div>
+                                 </ListGroup.Item>
+                                <ListGroup.Item className="text-dark d-none d-sm-block"><h4 >Year recorded: {details.record_year}</h4></ListGroup.Item>
+                                <ListGroup.Item className="d-none d-lg-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
+                                </>}
                             </ListGroup>
                         </Card>
                     </div>
@@ -158,18 +176,17 @@ const DetailsScreen = () => {
                 </button>
              </Card.Body>
                  </div>
-                 <Card style={{borderRadius:0}} className="mt-2 d-flex justify-content-center">
-                     <Card.Header>
+             </Card>
+                 <Card style={{borderRadius:0}} className="p-0 d-flex container justify-content-center">
+                     <Card.Header >
                          <h3 className="ms-1 p-2">Reviews</h3>
                      </Card.Header>
-                     <div className="">
+                     <Card.Body className="p-0 m-0">
                                  <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}
                                             reviews={reviews}/>
-
-                     </div>
+                     </Card.Body>
                      <div className="col-3"></div>
                  </Card>
-             </Card>
 
 
              {/*//     {"Reviews: "}*/}
