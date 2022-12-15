@@ -29,6 +29,8 @@ const WishListComponent = ({currentUser}) => {
     }, []);
     return(
         <>
+        { wishlist_records.length === 0 ? <></>:
+            <>
             <div className="d-flex mt-0 flex-row align-items-baseline justify-content-between">
                 <h3 className="font-weight-bold">Wishlist</h3>
                 <div style={{height:"24px"}} className="mb-2 d-flex">
@@ -39,15 +41,13 @@ const WishListComponent = ({currentUser}) => {
             </div>
             <div>
                 <ul className="list-group">
-                    {
-                        wishlist_records.length === 0 &&
-                        <h5 className="p-3">There is nothing currently on your wishlist...</h5>
-                    }
                     {   wishlist_records.length > 0 &&
                         wishlist_records.slice(indexes.lowerIndex, indexes.upperIndex).map(record => <RecordGridItem key={uuid4()} record={record}/>)
                     }
                 </ul>
             </div>
+            </>
+            }
         </>
     );
 }

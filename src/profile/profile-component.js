@@ -71,7 +71,7 @@ const ProfileComponent = ({currentUser, profileUser}) => {
                 : !profileUser ? <></> :
                 <div className="">
                     <div className="rounded-2 bg-white border">
-                        <h1 className="wd-text-margins-profile pt-2">Profile</h1>
+                        <h3 className="m-2">Profile</h3>
                         {/*banner image*/}
                         <div className="p-2">
                             <img src={`${profileUser.bannerPic}`}

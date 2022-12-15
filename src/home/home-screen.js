@@ -44,12 +44,12 @@ const HomeScreen = () => {
                 <div className="mt-3">
                     {
                         !currentUser ?
-                        <div className="mt-3">
-                            <h3 className="font-weight-bold">Suggested Albums</h3>
-                            <div>
-                                <SuggestedComponent suggested={suggested}/>
+                            <div className="mt-3">
+                                <h3 className="font-weight-bold">Suggested Albums</h3>
+                                <div>
+                                    <SuggestedComponent suggested={suggested}/>
+                                </div>
                             </div>
-                        </div>
                         :
                         <div className="mt-3">
                             <WishListComponent key={currentUser._id} currentUser={currentUser}/>
