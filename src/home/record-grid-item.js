@@ -3,7 +3,6 @@ import "./index.css";
 import {useNavigate} from "react-router-dom";
 
 const RecordGridItem = ({record}) => {
-    console.log("record", record)
     const navigate = useNavigate();
     return(
         <>
