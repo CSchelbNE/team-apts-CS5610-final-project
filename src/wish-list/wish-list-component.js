@@ -20,7 +20,7 @@ const WishListComponent = ({currentUser}) => {
             <ul className="list-group">
                 {
                     wishlist_records.length === 0 &&
-                    <h3>No Results</h3>
+                    <p className="p-3">There are no wishlist to show...</p>
                 }
                 {   wishlist_records.length > 0 &&
                     wishlist_records.map(record => <RecordGridItem key={uuid4()} record={record}/>)
