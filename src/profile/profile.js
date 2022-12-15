@@ -32,7 +32,7 @@ const ProfileScreen = () => {
             // getCurrentUserAndFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
         }
 
-    }, [])
+    }, [uid])
     // useEffect( () => {
     //     if (uid==="profile" || uid==="/profile"){
     //         const getProfileUserAndFollowed = async () => {

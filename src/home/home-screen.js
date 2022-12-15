@@ -17,11 +17,11 @@ import {useState} from "react";
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
+    const {suggested} = useSelector(state => state.discogs);
     useEffect(() => {
         dispatch(getRecentListingsThunk());
     }, []);
-    const {currentUser} = useSelector(state => state.users);
-    const {suggested} = useSelector(state => state.discogs);
 
 
 
