@@ -4,7 +4,7 @@ import "./index.css";
 import SuggestedComponent from "./suggested-component";
 import UsersListComponent from "../users/users-list";
 import {useDispatch, useSelector} from "react-redux";
-import WishListComponent from "../wish-list/wish-list-component";
+import WishListComponent from "../wish-list/wish-list-component"
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {getRecentListingsThunk} from "../services/discogs-thunk";
 import homeScreenImg from "../images/home-screen.jpg";
@@ -36,24 +36,10 @@ const HomeScreen = () => {
                         Buy & Sell
                     </div>
                 </div>
-               
                 <div className="mt-3">
-                    <h3 className="font-weight-bold">Suggested Albums</h3>
-                    <div>
-                        <SuggestedComponent suggested={suggested}/>
-                    </div>
-
-                </div>
-                <div className="mt-3">
-                    <h3 className="font-weight-bold">Recent Users</h3>
-                    <div>
-                        <UsersListComponent/>
-                    </div>
-                </div>
-                <div>
                     {
                         currentUser &&
-                        <div className="mt-3  mb-3">
+                        <div className="mt-3">
                             <h3 className="font-weight-bold">Wishlist</h3>
                             <div>
                                 <WishListComponent key={currentUser._id} currentUser={currentUser}/>
@@ -61,6 +47,20 @@ const HomeScreen = () => {
                         </div>
                     }
                 </div>
+                <div className="mt-3  mb-3">
+                    <h3 className="font-weight-bold">Recent Users</h3>
+                    <div>
+                        <UsersListComponent/>
+                    </div>
+                </div>
+                <div className="mt-3">
+                    <h3 className="font-weight-bold">Suggested Albums</h3>
+                    <div>
+                        <SuggestedComponent suggested={suggested}/>
+                    </div>
+
+                </div>
+                
             </div>
         </div>
     );
