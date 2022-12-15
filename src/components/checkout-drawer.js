@@ -20,7 +20,7 @@ function CheckoutDrawer({ currentUser, dispatch, shoppingCart, show, setShow, ..
             <div variant="primary" onClick={handleShow} className="p-0">
                 Checkout
             </div>
-            <Offcanvas  placement={"end"} show={show} onHide={handleClose} {...props}>
+            <Offcanvas style={{zIndex: 9999999}} placement={"end"} show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Checkout</Offcanvas.Title>
                     <ConfirmTransactionToast show={showToast} setShow={setShowToast}/>

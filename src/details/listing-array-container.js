@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleArrowLeft, faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 const ListingArrayContainer = ({listings, albumName}) => {
-    const [lowerIndex, setLowerIndex] = useState(0);
+  const [lowerIndex, setLowerIndex] = useState(0);
     const [upperIndex, setUpperIndex] = useState(3);
     const decrement = () => {
         setLowerIndex(lowerIndex <= 3 ? 0 : lowerIndex-3);
@@ -17,14 +17,15 @@ const ListingArrayContainer = ({listings, albumName}) => {
         setLowerIndex(lowerIndex+3);
         setUpperIndex(upperIndex+3 > listings.length ? listings.length : upperIndex+3);
     }
+
     return (
         <div>
-            <h4>{"Total Results: " +listings.length}</h4>
-            <h5>{"Showing Results: " + (lowerIndex+1).toString() + "-"+ upperIndex.toString()}</h5>
-        <div className="d-flex flex-lg-row flex-column justify-content-center">
+            <h4 className="ms-5 mt-3">{"Total Results: " +listings.length}</h4>
+            {/*<h5 className="ms-5">{"Showing Results: " + (lowerIndex+1).toString() + "-"+ upperIndex.toString()}</h5>*/}
+        <div className="d-flex flex-wrap flex-row ps-4 pb-4 pe-4 justify-content-center">
             {
-            listings.map((e) => {
-            return <ListingArrayComponent query={albumName} listing={e}  key={uuid4()}/>
+            listings.map((e, index) => {
+            return <ListingArrayComponent query={albumName} index={index} listing={e}  key={uuid4()}/>
             })
             }
             {/*<div className="p-0 d-flex flex-row align-items-center">*/}

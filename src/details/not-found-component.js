@@ -31,7 +31,7 @@ const NoListingsFoundScreen = ({details}) => {
                                  <h2 className="text-dark">{details.record_name}</h2>
                              </div>
                              <div className="p-2">
-                                 <h3 className="text-dark">By: {details.record_artist}</h3>
+                                 <h3 className="text-dark">By: {details.record_artist.replace("*","")}</h3>
                              </div>
                              <div className="p-2">
                                  <h5 className="text-dark">Genre: {details.record_genre}</h5>

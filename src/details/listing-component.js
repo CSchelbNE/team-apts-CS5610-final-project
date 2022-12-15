@@ -25,18 +25,16 @@ const ListingComponent = () => {
 
     return(
         <>
-            <div>
+            <div className="mb-2">
                 <NavigationSidebar/>
-
-                <Card style={{height: "inherit"}} className="d-flex p-0 container ">
+                <Card style={{height: "inherit"}} className="d-flex p-0 mt-2 container">
                     <h1 className="m-2 mb-3 ms-5">Results</h1>
                     <img style={{height:"400px"}} src="https://c4.wallpaperflare.com/wallpaper/276/510/467/vinyl-retro-records-wallpaper-preview.jpg"/>
-                    <div className="p-3">
+                    <div className="p-0 m-0">
                 {listings.length === 0 ? <NoListingsFoundScreen details={notFound}/> :
                    <ListingArrayContainer albumName={albumName} listings={listings} />
                     }
                     </div>
-
                 </Card>
             </div>
         </>

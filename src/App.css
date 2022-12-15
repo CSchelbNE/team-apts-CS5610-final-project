@@ -62,13 +62,24 @@
 /*  z-index: 9999;*/
 /*}*/
 
-.wd-search-bar-absolute-pos {
-    position: absolute;
-    right: 27%;
-    top: -8px;
-    z-index: 9999;
-    width: 30%;
+
+
+
+/*xs*/
+@media screen and (min-width: 0px) and (max-width: 991px){
+  .wd-search-content {
+    width: 100%;
   }
+}
+
+
+@media screen and (min-width: 992px){
+  .wd-search-content {
+    width: 50%;
+  }
+}
+
+
 
 /*xs*/
 @media screen and (min-width: 0px) and (max-width: 575px){

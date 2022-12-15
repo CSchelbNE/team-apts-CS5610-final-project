@@ -33,7 +33,6 @@ const NavigationSidebar = ({isLoginPage}) => {
     const {currentUser,profileUser} = useSelector(state => state.users);
     const {shoppingCart} = useSelector(state => state.shoppingCart);
     const adminVisibility = !currentUser || currentUser.type !== "ADMIN" ? "d-none" : "";
-    const searchbarVisibility = show ? "d-none" : "wd-search-bar-absolute-pos"
     return(
         <div className=" position-relative z-index-999999">
             {/* <a className="list-group-item">Vinyl Shop</a>
@@ -57,7 +56,7 @@ const NavigationSidebar = ({isLoginPage}) => {
                 <FaSignOutAlt/>
                 <span className="d-none d-lg-inline-block ms-2">Logout</span>
             </Link> */}
-            <div className={searchbarVisibility}>
+            <div className="wd-search-bar-absolute-pos">
                 {
                     isLoginPage ?
                         <></>
