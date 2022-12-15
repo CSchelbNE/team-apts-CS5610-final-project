@@ -34,16 +34,16 @@ const FollowingListItem = ({followingItem, currentUser}) => {
                             <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format-follow"/>&nbsp;
                             <span>{formatJoined()}</span>
                         </div>
-                        <div className="">
-                            <div className="text-dark ">
-                                <span>{followingItem.followed_user.numOfReviews}</span>&nbsp;
-                                <span>Reviews</span>
-                            </div>
-                            {/*<div className="text-dark d-inline-block ms-3">*/}
-                            {/*    <span>{user.followed_user.numOfWishlist}</span>&nbsp;*/}
-                            {/*    <span>in Wish List</span>*/}
-                            {/*</div>*/}
-                        </div>
+                        {/*<div className="">*/}
+                        {/*    <div className="text-dark ">*/}
+                        {/*        <span>{followingItem.followed_user.numOfReviews}</span>&nbsp;*/}
+                        {/*        <span>Reviews</span>*/}
+                        {/*    </div>*/}
+                        {/*    /!*<div className="text-dark d-inline-block ms-3">*!/*/}
+                        {/*    /!*    <span>{user.followed_user.numOfWishlist}</span>&nbsp;*!/*/}
+                        {/*    /!*    <span>in Wish List</span>*!/*/}
+                        {/*    /!*</div>*!/*/}
+                        {/*</div>*/}
                     </div>
                     <div className="my-auto col-3 col-xxl-3 col-xl-4 col-lg-4 col-md-2 col-sm-3">
                         <button className="btn btn-danger my-auto " onClick={() => {dispatch(deleteFollowerThunk(
