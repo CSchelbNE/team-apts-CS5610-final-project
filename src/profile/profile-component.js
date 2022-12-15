@@ -157,16 +157,16 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
                                         <span>{formatJoined()}</span>
                                     </div>
                                 </div>
-                                <div className="row mt-2">
-                                    <div className="d-inline-block text-secondary w-auto">
-                                        <span>{profileUser.numOfReviews}</span>&nbsp;
-                                        <span>Reviews</span>
-                                    </div>
-                                    <div className="d-inline-block text-secondary w-auto">
-                                        <span>{profileUser.numOfWishlist}</span>&nbsp;
-                                        <span>in Wish List</span>
-                                    </div>
-                                </div>
+                                {/*<div className="row mt-2">*/}
+                                {/*    <div className="d-inline-block text-secondary w-auto">*/}
+                                {/*        <span>{profileUser.numOfReviews}</span>&nbsp;*/}
+                                {/*        <span>Reviews</span>*/}
+                                {/*    </div>*/}
+                                {/*    <div className="d-inline-block text-secondary w-auto">*/}
+                                {/*        <span>{profileUser.numOfWishlist}</span>&nbsp;*/}
+                                {/*        <span>in Wish List</span>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                                 {
                                     currentUser && profileUser.username === currentUser.username && profileUser.type === "SELLER" &&
                                     <>
