@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+#root {
+}
+
 .wd-search-scroll-div {
   overflow-y: scroll;
   height: fit-content;

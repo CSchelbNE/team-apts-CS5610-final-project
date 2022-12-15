@@ -19,17 +19,18 @@ const ListingArrayContainer = ({listings, albumName}) => {
     }
     return (
         <div>
-            {"Total Results: " +listings.length}
-        <div className="d-flex flex-row justify-content-center">
+            <h4>{"Total Results: " +listings.length}</h4>
+            <h5>{"Showing Results: " + (lowerIndex+1).toString() + "-"+ upperIndex.toString()}</h5>
+        <div className="d-flex flex-lg-row flex-column justify-content-center">
             {
-            listings.slice(lowerIndex,upperIndex).map((e) => {
+            listings.map((e) => {
             return <ListingArrayComponent query={albumName} listing={e}  key={uuid4()}/>
             })
             }
-            <div className="p-0 d-flex flex-row align-items-center">
-                <FontAwesomeIcon onClick={decrement} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowLeft}/>
-                <FontAwesomeIcon  onClick={increment} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowRight}/>
-            </div>
+            {/*<div className="p-0 d-flex flex-row align-items-center">*/}
+            {/*    <FontAwesomeIcon onClick={decrement} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowLeft}/>*/}
+            {/*    <FontAwesomeIcon  onClick={increment} className="wd-font-awesome-hover wd-font-awesome-hover-dark me-3" fontSize="1.5rem" icon={faCircleArrowRight}/>*/}
+            {/*</div>*/}
         </div>
         </div>
     )
