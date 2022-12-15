@@ -11,8 +11,19 @@
     color: purple;
     -webkit-text-stroke: 2px yellow;
     opacity: 100%;
-
 }
+
+/*sm*/
+@media screen and (min-width: 576px) and (max-width: 767px){
+    .wd-search-bar-absolute-pos {
+        position: absolute;
+        right: 25%;
+        top: -8px;
+        z-index: 9999;
+        width: 35%;
+    }
+}
+
 .wd-banner-image-format {
     object-fit: cover;
     max-height: 500px;
