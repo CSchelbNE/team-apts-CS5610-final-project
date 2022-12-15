@@ -1,5 +1,5 @@
 .wd-title-format {
-    font-size: 9vw;
+    font-size: 8.9vw;
     font-family: "Art Nuvo";
     display: flex;
     position: absolute;
@@ -23,7 +23,7 @@
     width: 100px;
 }
 .wd-title2-format {
-    font-size: 5vw;
+    font-size: 3.7vw;
     font-family: "Art Nuvo";
     display: flex;
     position: absolute;
@@ -37,7 +37,7 @@
     opacity: 100%;
 }
 .wd-title3-format {
-    font-size: 6vw;
+    font-size: 5vw;
     font-family: "Art Nuvo";
     display: flex;
     position: absolute;
