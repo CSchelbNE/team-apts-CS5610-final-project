@@ -42,13 +42,13 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                         <img src={`${user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle"/>
                     </div>
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
-                        <div className="fs-5 text-dark">
-                            {user.firstName} {user.lastName}&nbsp;
-                            <FontAwesomeIcon className="ms-1 text-primary fs-20" icon={faCircleCheck} />&nbsp;
-                            <span className="text-secondary">{user.type.toLowerCase()}</span>
+                        <div className="fs-5 text-dark fw-bold">
+                            {user.firstName}&nbsp;{user.lastName}&nbsp;
+                            <FontAwesomeIcon className="ms-1 text-primary" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
+                            <span className="text-secondary fw-normal fs-1rem">{user.type.toLowerCase()}</span>
                         </div>
                         {/*<div className="text-dark mt-1">{user.bio}</div>*/}
-                        <div className="text-secondary mt-1">
+                        <div className="text-secondary">
                             <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format-follow"/>&nbsp;
                             <span>{formatJoined()}</span>
                         </div>
@@ -66,7 +66,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                     <div className="col-4 col-xl-3 col-lg-3 col-md-4 col-sm-4 my-auto ">
                         {
                             followedUsers &&
-                                <button className="btn btn-primary float-end" onClick={handleFollowClick}>Follow</button>
+                                <button className="btn btn-primary float-end rounded-pill" onClick={handleFollowClick}>Follow</button>
                         }
                     </div>
                 </div>
