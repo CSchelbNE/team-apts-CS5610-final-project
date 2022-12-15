@@ -50,7 +50,7 @@ const EditProfileScreen = () => {
                                                         <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
                                                     </div>
                                                     <div className="my-auto d-inline-flex flex-nowrap fs-5 ms-3 fw-bold">
-                                                        {currentUser.firstName}&nbsp{currentUser.lastName}
+                                                        {currentUser.firstName}&nbsp;{currentUser.lastName}
                                                     </div>
                                                 </div>
                                             </li>
