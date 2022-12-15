@@ -52,12 +52,12 @@ const DetailsScreen = () => {
             // USED TO REDUCE UNNECESSARY DATABASE CALLBACK ON REFRESH
             setNewReview(false);
             dispatch(getSingleListingByIdThunk(albumId)).then(e => {
-                setQuantity(e.payload.record_quantity)
+                if(e.payload) setQuantity(e.payload.record_quantity)
             });
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const addToCartButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 m-2 me-sm-3 bg-dark text-white end-0 btn btn-outline-dark";
+    const addToCartButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 me-sm-3 bg-dark text-white end-0 btn btn-outline-dark";
     const addToWishlistButton = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 bg-dark text-white border-dark";
     const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
     const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white" : "d-none";
@@ -88,13 +88,13 @@ const DetailsScreen = () => {
              <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
              <Card className="container mt-2 p-0">
 
-                 <h1 className="m-2 mb-3 ms-5">Details</h1>
+                 <h3 className="ms-3 mt-1 p-3 center-text">Details</h3>
                  <img style={{height: "400px"}}
                       src="https://northgrandmall.com/wp-content/uploads/2021/05/Vintage-Vinyl.jpg"/>
                  <Card.Header>
                      <div className="flex-row d-flex justify-content-between align-items-center">
-                         <h2 className="mt-1">{details.record_name}</h2>
-                         <div className="p-2">
+                         <h3 className="ms-3 mt-1">{details.record_name}</h3>
+                         <div className="m-0">
                              <button className={addToWishlistButton} onClick={() => handleAddWishList()}>Add to wishlist</button>
                          </div>
                          <button className={vendorListingButtonStyle} onClick={() => {
@@ -113,15 +113,14 @@ const DetailsScreen = () => {
                  <div className="d-flex justify-content-between flex-row">
                 <Card.Body className="position-relative ps-3 mt-2 d-flex flex-row justify-content-start p-2">
                     <div className="p-2 d-flex flex-column align-items-center justify-content-center">
-                        <img style={{width:"150px", height:"150px"}} src={details.record_image}/>
+                        <img className="ms-2 rounded-3" style={{width:"150px", height:"150px"}} src={details.record_image}/>
                         {!currentUser ? <h5 className="mt-2">{"Log in to purchase this record!"}</h5> :
                          <>
                              <div className="mt-2 mb-2">
                                  <input style={{width:"105px"}} value={quantity} className={inputStyle} onChange={(e) =>
                                      setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
                              </div>
-                             <h5 className={totalStyle}>Total: ${details.record_price*quantity}</h5>
-
+                             <h5 className={totalStyle}>Total: ${(details.record_price*quantity).toFixed(2).toString()}</h5>
                          </>
                         }
                     </div>
@@ -129,7 +128,16 @@ const DetailsScreen = () => {
                         <Card className={cardStyle}>
                             <ListGroup variant="flush">
                                 <ListGroup.Item><h2>{"Artist: " +details.record_artist.replace("*","")}</h2></ListGroup.Item>
-                                <ListGroup.Item>  <h4 className="text-dark">Price: ${details.record_price}</h4></ListGroup.Item>
+                                <ListGroup.Item>
+                                    <div className="d-flex flex-row p-0">
+                                    <h4 className="text-dark">
+                                        {"Price:"}&nbsp;
+                                    </h4>
+                                    <h4 className="text-dark">
+                                        {"$"+details.record_price}
+                                    </h4>
+                                    </div>
+                                </ListGroup.Item>
                                 <ListGroup.Item><h4 className="text-dark">Year recorded: {details.record_year}</h4></ListGroup.Item>
                                 <ListGroup.Item className="d-none d-md-block"><h4 className="text-dark ">Genres: {details.record_genre}</h4></ListGroup.Item>
                             </ListGroup>
@@ -150,9 +158,9 @@ const DetailsScreen = () => {
                 </button>
              </Card.Body>
                  </div>
-                 <Card className="p-0  d-flex justify-content-center">
+                 <Card style={{borderRadius:0}} className="mt-2 d-flex justify-content-center">
                      <Card.Header>
-                         <h3>Reviews</h3>
+                         <h3 className="ms-1 p-2">Reviews</h3>
                      </Card.Header>
                      <div className="">
                                  <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}

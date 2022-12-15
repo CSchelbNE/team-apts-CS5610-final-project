@@ -23,12 +23,12 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
     return(
         <>
 
-            <div className="border p-2 text-start rounded-2">
-                <div className="row ">
+            <div  className="border p-2 text-start rounded-2">
+                <div className="row align-items-center">
                         <div className="ms-0 col-2 col-md-2 col-sm-3 ">
                             <Link to={"/profile/" + currentUser.username}>
                                 <img  src={currentUser.profilePic}
-                                className="wd-create-review-pfp rounded-circle"/>
+                                className="ms-3 wd-create-review-pfp rounded-circle"/>
                             </Link>
 
                         </div>
@@ -48,7 +48,7 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
                             </div>
                             <div className="float-start mt-2">
                                 <textarea value={body} placeholder="Write a review...."
-                                          className="form-control border-0 wd-min-width-100" cols={200}
+                                          className="form-control border-1 wd-min-width-100" cols={200}
                                           onChange={(event) => setBody(event.target.value)}>
                                 </textarea>
                                 <img src={require("../images/profile-icon.jpg")} className="wd-profile-icon-format rounded-circle mt-2"/>
