@@ -8,23 +8,24 @@ const ListingArrayComponent = ({listing, query}) => {
     const params = {query: query.toString()};
 
     return (
-            <Card className="m-2" style={{cursor: "pointer",width:"15rem", height:"37rem"}} onClick ={() =>
+            <Card className="m-2" style={{cursor: "pointer"}} className="m-2 flex-column" onClick ={() =>
                  {navigate({
                              pathname: '/details/' + listing._id,
                              search: `?${createSearchParams(params)}`
                          })}}>
                     <Card.Header>
-                        <h5>{listing.record_name + " - "+ listing.record_artist}</h5>
-                        </Card.Header>
-                    <Card.Body className="text-center mb-0 p-0">
+                        <h5>{listing.record_name + " - "+ listing.record_artist+": $"+listing.record_price}</h5>
+                    </Card.Header>
+                    <div className="d-flex flex-row">
+                    <Card.Body className="align-content-center d-flex text-center mb-0 p-2">
                         <Card.Img variant={"top"} src={listing.record_image} className="rounded"/>
-                        <h5 className="mt-2">{"$"+listing.record_price}</h5>
-                        <h5>{listing.record_quantity + "left in stock!"}</h5>
                     </Card.Body>
-                    <Card.Body>
-                        <Card.Img variant={"bottom"} src={listing.record_vendor.profilePic} className="rounded"/>
-                        <div>{"Vendor: " + listing.record_vendor.firstName + " " + listing.record_vendor.lastName}</div>
+                    <Card.Body className="text-center">
+                        <div>{"Sold By: " + listing.record_vendor.firstName + " " + listing.record_vendor.lastName}</div>
+                        <div>{"Shipped From: "+listing.record_vendor.location}</div>
+                        <Card.Img variant={"top"} style={{height:"120px"}} src={listing.record_vendor.profilePic} className="rounded"/>
                     </Card.Body>
+                    </div>
 
             </Card>
     );
