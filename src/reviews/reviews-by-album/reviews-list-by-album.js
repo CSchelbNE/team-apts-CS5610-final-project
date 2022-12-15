@@ -16,11 +16,11 @@ const ReviewsListByAlbum = ({currentUser, profileUser}) => {
                 {
                     reviews && reviews.length === 0 &&
                     <li className="list-group-item">
-                        <h3>Search to create a review...</h3>
+                        <p className="text-secondary">No reviews yet...</p>
                     </li>
                 }
                 {
-                    reviews &&
+                    reviews && reviews.length > 0 &&
                     reviews.map(review =>
                         <ReviewsListItemByAlbum key={review._id} review={review} currentUser={currentUser} profileUser={profileUser}/>
                     ).reverse()
