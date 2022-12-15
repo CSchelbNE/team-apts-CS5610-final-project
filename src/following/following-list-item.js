@@ -2,6 +2,7 @@ import React from "react";
 import checkCircleImg from "../images/check-circle.png";
 import {useDispatch} from "react-redux";
 import {deleteFollowerThunk} from "../services/following-thunk";
+import "./index.css";
 
 const FollowingListItem = ({followingItem, currentUser}) => {
     const dispatch = useDispatch();
@@ -18,11 +19,11 @@ const FollowingListItem = ({followingItem, currentUser}) => {
 
         <>
             <li className="list-group-item">
-                <div className="d-flex justify-content-between">
-                    <div  className="flex-inline my-auto">
-                        <img src={`${followingItem.followed_user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle"/>
+                <div className="row p-2">
+                    <div  className="my-auto col-2 col-xxl-2 col-xl-2 col-lg-3 col-md-2 col-sm-2 wd-float-start-follow">
+                        <img src={`${followingItem.followed_user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle wd-float-start-follow"/>
                     </div>
-                    <div className="flex-inline ms-1 my-auto">
+                    <div className="my-auto col-7 col-xxl-7 col-xl-6 col-lg-5 col-md-8 col-sm-7">
                         <div className="fs-5 text-dark">
                             {followingItem.followed_user.firstName} {followingItem.followed_user.lastName}&nbsp;
                             <img src={checkCircleImg} className="wd-check-circle-icon-format-follow"/>&nbsp;
@@ -34,7 +35,7 @@ const FollowingListItem = ({followingItem, currentUser}) => {
                             <span>{formatJoined()}</span>
                         </div>
                         <div className="">
-                            <div className="text-dark d-inline-block ">
+                            <div className="text-dark ">
                                 <span>{followingItem.followed_user.numOfReviews}</span>&nbsp;
                                 <span>Reviews</span>
                             </div>
@@ -44,7 +45,7 @@ const FollowingListItem = ({followingItem, currentUser}) => {
                             {/*</div>*/}
                         </div>
                     </div>
-                    <div className="my-auto ms-1">
+                    <div className="my-auto col-3 col-xxl-3 col-xl-4 col-lg-4 col-md-2 col-sm-3">
                         <button className="btn btn-danger my-auto " onClick={() => {dispatch(deleteFollowerThunk(
                             followingItem._id
                         ))}}>Unfollow</button>

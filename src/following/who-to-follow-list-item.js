@@ -35,11 +35,11 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
     return(
         <>
             <li className="list-group-item">
-                <div className="d-flex justify-content-between">
-                    <div  className="flex-inline my-auto">
+                <div className="row">
+                    <div  className="col-2 col-xl-2 col-lg-3 col-md-2 col-sm-2 my-auto">
                         <img src={`${user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle"/>
                     </div>
-                    <div className="flex-inline ms-1 my-auto">
+                    <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
                         <div className="fs-5 text-dark">
                             {user.firstName} {user.lastName}&nbsp;
                             <img src={checkCircleImg} className="wd-check-circle-icon-format-follow"/>&nbsp;
@@ -61,10 +61,10 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                             {/*</div>*/}
                         </div>
                     </div>
-                    <div className="my-auto ms-1">
+                    <div className="col-4 col-xl-3 col-lg-3 col-md-4 col-sm-4 my-auto ">
                         {
                             followedUsers &&
-                            <button className="btn btn-primary my-auto " onClick={handleFollowClick}>Follow</button>
+                                <button className="btn btn-primary float-end" onClick={handleFollowClick}>Follow</button>
                         }
                     </div>
                 </div>

@@ -8,3 +8,7 @@
 .wd-calendar-icon-format-follow {
     width: 15px;
 }
+.wd-float-start-follow {
+    justify-content: left;
+    justify-self: left;
+}
