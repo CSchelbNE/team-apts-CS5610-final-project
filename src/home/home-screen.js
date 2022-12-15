@@ -7,7 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import WishListComponent from "../wish-list/wish-list-component";
 import ModalWrapperButton from "../components/modal-wrapper-button";
 import {getRecentListingsThunk} from "../services/discogs-thunk";
-import homeScreenImg from "../images/home-screen.jpg"
+import homeScreenImg from "../images/home-screen.jpg";
+import recordCollageImg from "../images/record_collage.jpg";
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
@@ -24,7 +25,7 @@ const HomeScreen = () => {
             <NavigationSidebar/>
             <div className="container mt-2">
                 <div className="position-relative">
-                    <img src={homeScreenImg} className="w-100 wd-banner-image-format"/>
+                    <img src={recordCollageImg} className="w-100 wd-banner-image-format"/>
                     <div className="wd-title-format">
                         Vintage Vinyl
                     </div>
