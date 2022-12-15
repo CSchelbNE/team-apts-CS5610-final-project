@@ -25,6 +25,7 @@ const ProfileScreen = () => {
             const getCurrentUserAndFollowed = async () => {
                 await dispatch(findCurrentUserThunk())
                     .then((e) => {if (e.payload) dispatch(getAllFollowedThunk(e.payload_id))})
+
             }
             getCurrentUserAndFollowed().then(r => {dispatch(findUserByUsernameThunk(uid))})
         }
