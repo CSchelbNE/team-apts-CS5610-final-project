@@ -12,3 +12,10 @@
     justify-content: left;
     justify-self: left;
 }
+.fs-1rem {
+    font-size: 1rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

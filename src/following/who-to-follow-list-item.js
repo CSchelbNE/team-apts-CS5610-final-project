@@ -3,10 +3,13 @@ import checkCircleImg from "../images/check-circle.png";
 import "./index.css";
 import {useDispatch} from "react-redux";
 import {addFollowerThunk} from "../services/following-thunk";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router";
 
 const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const formatJoined = () => {
         const joinDate = new Date(user.dateJoined);
         const timeDiff = joinDate.getTimezoneOffset() * 60000;
@@ -34,19 +37,19 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
 
     return(
         <>
-            <li className="list-group-item">
+        <li className="list-group-item">
                 <div className="row">
                     <div  className="col-2 col-xl-2 col-lg-3 col-md-2 col-sm-2 my-auto">
-                        <img src={`${user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle"/>
+                        <img src={`${user.profilePic}`} className="wd-profile-pic-format-follow rounded-circle cursor-pointer" onClick={() => {navigate("/profile/" + user.username);}}/>
                     </div>
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
-                        <div className="fs-5 text-dark">
-                            {user.firstName} {user.lastName}&nbsp;
-                            <img src={checkCircleImg} className="wd-check-circle-icon-format-follow"/>&nbsp;
-                            <span className="text-secondary">{user.type.toLowerCase()}</span>
+                        <div className="fs-5 text-dark fw-bold cursor-pointer" onClick={() => {navigate("/profile/" + user.username);}}>
+                            {user.firstName}&nbsp;{user.lastName}&nbsp;
+                            <FontAwesomeIcon className="ms-1 text-primary" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
+                            <span className="text-secondary fw-normal fs-1rem">{user.type.toLowerCase()}</span>
                         </div>
                         {/*<div className="text-dark mt-1">{user.bio}</div>*/}
-                        <div className="text-secondary mt-1">
+                        <div className="text-secondary">
                             <img src={require("../images/calendar-outline.png")} className="my-auto wd-calendar-icon-format-follow"/>&nbsp;
                             <span>{formatJoined()}</span>
                         </div>
@@ -64,7 +67,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                     <div className="col-4 col-xl-3 col-lg-3 col-md-4 col-sm-4 my-auto ">
                         {
                             followedUsers &&
-                                <button className="btn btn-primary float-end" onClick={handleFollowClick}>Follow</button>
+                                <button className="btn btn-primary float-end rounded-pill" onClick={handleFollowClick}>Follow</button>
                         }
                     </div>
                 </div>

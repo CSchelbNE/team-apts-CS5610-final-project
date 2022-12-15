@@ -92,7 +92,7 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
                 : !profileUser ? <></> :
                 <div className="">
                     <div className="rounded-2 bg-white border">
-                        <h1 className="wd-text-margins-profile pt-2">Profile</h1>
+                        <h3 className="m-2">Profile</h3>
                         {/*banner image*/}
                         <div className="p-2">
                             <img src={`${profileUser.bannerPic}`}
@@ -129,7 +129,7 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
                                     <div className="text-secondary">{profileUser.type === "BUYER" ? "Buyer" :
                                         <div>
                                             Seller
-                                            <FontAwesomeIcon className="ms-1" icon={faCircleCheck} />
+                                            <FontAwesomeIcon className="ms-1 text-primary" icon={faCircleCheck} />
                                         </div>
                                     }</div>
                                 </div>

@@ -17,11 +17,11 @@ import {useState} from "react";
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
     const dispatch = useDispatch();
+    const {currentUser} = useSelector(state => state.users);
+    const {suggested} = useSelector(state => state.discogs);
     useEffect(() => {
         dispatch(getRecentListingsThunk());
     }, []);
-    const {currentUser} = useSelector(state => state.users);
-    const {suggested} = useSelector(state => state.discogs);
 
 
 
@@ -44,12 +44,12 @@ const HomeScreen = () => {
                 <div className="mt-3">
                     {
                         !currentUser ?
-                        <div className="mt-3">
-                            <h3 className="font-weight-bold">Suggested Albums</h3>
-                            <div>
-                                <SuggestedComponent suggested={suggested}/>
+                            <div className="mt-3">
+                                <h3 className="font-weight-bold">Suggested Albums</h3>
+                                <div>
+                                    <SuggestedComponent suggested={suggested}/>
+                                </div>
                             </div>
-                        </div>
                         :
                         <div className="mt-3">
                             <WishListComponent key={currentUser._id} currentUser={currentUser}/>

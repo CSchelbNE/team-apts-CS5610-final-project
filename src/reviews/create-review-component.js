@@ -25,14 +25,14 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
 
             <div  className="border p-2 text-start rounded-2">
                 <div className="row align-items-center">
-                        <div className="ms-0 col-2 col-md-2 col-sm-3 ">
+                        <div className="ms-0 col-3 col-md-2 col-sm-3 ">
                             <Link to={"/profile/" + currentUser.username}>
                                 <img  src={currentUser.profilePic}
                                 className="ms-3 wd-create-review-pfp rounded-circle"/>
                             </Link>
 
                         </div>
-                        <div className="col-10 col-lg-10 col-md-10 col-sm-9">
+                        <div className="col-9 col-lg-10 col-md-10 col-sm-9">
                             <div className="float-end">
                                 {/*5 stars*/}
                                 <img src={require(rating >= 1 ? "../images/gold-star-icon.png" : "../images/gray-star-icon.jpg")}
