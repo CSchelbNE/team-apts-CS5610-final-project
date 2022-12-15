@@ -9,6 +9,10 @@ import ModalWrapperButton from "../components/modal-wrapper-button";
 import {getRecentListingsThunk} from "../services/discogs-thunk";
 import homeScreenImg from "../images/home-screen.jpg";
 import recordCollageImg from "../images/record_collage.jpg";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleArrowLeft, faCircleArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {getAllOpenApprovalsThunk} from "../services/admin-thunk";
+import {useState} from "react";
 // http://www.vinylstyl.com/wp-content/uploads/sites/4/2016/02/LPcollage-1.jpg
 // https://townsquare.media/site/295/files/2021/01/psych.jpg
 const HomeScreen = () => {
@@ -18,6 +22,7 @@ const HomeScreen = () => {
     }, []);
     const {currentUser} = useSelector(state => state.users);
     const {suggested} = useSelector(state => state.discogs);
+
 
 
     return (
@@ -38,12 +43,16 @@ const HomeScreen = () => {
                 </div>
                 <div className="mt-3">
                     {
-                        currentUser &&
+                        !currentUser ?
                         <div className="mt-3">
-                            <h3 className="font-weight-bold">Wishlist</h3>
+                            <h3 className="font-weight-bold">Suggested Albums</h3>
                             <div>
-                                <WishListComponent key={currentUser._id} currentUser={currentUser}/>
+                                <SuggestedComponent suggested={suggested}/>
                             </div>
+                        </div>
+                        :
+                        <div className="mt-3">
+                            <WishListComponent key={currentUser._id} currentUser={currentUser}/>
                         </div>
                     }
                 </div>
@@ -53,14 +62,6 @@ const HomeScreen = () => {
                         <UsersListComponent/>
                     </div>
                 </div>
-                <div className="mt-3">
-                    <h3 className="font-weight-bold">Suggested Albums</h3>
-                    <div>
-                        <SuggestedComponent suggested={suggested}/>
-                    </div>
-
-                </div>
-                
             </div>
         </div>
     );

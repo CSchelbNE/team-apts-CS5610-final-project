@@ -3,8 +3,9 @@ import "../index.css";
 import {useDispatch} from "react-redux";
 import {deleteReviewByIdThunk} from "../../services/review-thunk";
 import {Link} from "react-router-dom";
+import bigXImg from "../../images/big_x.png";
 
-const ReviewsListItemByAlbum = ({review}) => {
+const ReviewsListItemByAlbum = ({review, currentUser, profileUser}) => {
     const dispatch = useDispatch();
     const deleteReview = () => {
         dispatch(deleteReviewByIdThunk(review._id));
@@ -18,9 +19,13 @@ const ReviewsListItemByAlbum = ({review}) => {
                 <li className="list-group-item">
                     <div className="text-start">
                         <div className="row ">
-                            <div className="text-end ">
-                                <img src={require("../../images/big_x.png")} style={{cursor: "pointer"}} className="wd-big-x-format" onClick={deleteReview}/>
-                            </div>
+                            {
+                                currentUser && profileUser && currentUser.username === profileUser.username &&
+                                <div className="text-end ">
+                                    <img src={bigXImg} className="wd-big-x-format" onClick={deleteReview}/>
+                                </div>
+                            }
+
                             <div className="text-center">
                                 <Link to={"/details/" + review.listing._id + "?query=" + review.listing.record_name.split(' ')[0]}>
                                     <div className="d-inline-flex">

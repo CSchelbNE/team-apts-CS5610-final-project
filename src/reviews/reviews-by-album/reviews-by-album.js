@@ -1,10 +1,10 @@
 import React from "react";
 import ReviewsListByAlbum from "./reviews-list-by-album";
 
-const ReviewsByAlbum = ({profileUser}) => {
+const ReviewsByAlbum = ({currentUser, profileUser}) => {
     return(
         <>
-            <ReviewsListByAlbum profileUser={profileUser}/>
+            <ReviewsListByAlbum currentUser={currentUser} profileUser={profileUser}/>
         </>
     );
 }
