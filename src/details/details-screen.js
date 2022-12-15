@@ -14,7 +14,7 @@ import AddToCartToast from "../components/add-to-cart-toast";
 import AlreadyInCartToast from "../components/already-in-cart-toast";
 import {createEmptyWishlistThunk, postToWishlistThunk} from "../services/wishlist-thunk"
 import Toast from 'react-bootstrap/Toast';
-import {ToastContainer} from "react-bootstrap";
+import {Card, ListGroup, ToastContainer} from "react-bootstrap";
 
 const DetailsScreen = () => {
     const dispatch = useDispatch();
@@ -60,9 +60,10 @@ const DetailsScreen = () => {
             dispatch(getAllReviewsByAlbumIdThunk(albumId));
         }
     },[])
-    const buyerListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn btn-outline-dark";
+    const buyerListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "position-absolute bottom-0 m-2 bg-dark text-white end-0 btn btn-outline-dark";
     const inputStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "d-none" : "btn border-1 border-dark";
-    const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn btn-outline-dark" : "d-none";
+    const vendorListingButtonStyle = !currentUser || !details ? "d-none" : currentUser._id === details.record_vendor._id ? "btn bg-dark text-white" : "d-none";
+    const totalStyle = !currentUser || !details ? "d-none" : currentUser._id !== details.record_vendor._id ? "text-dark" : "d-none";
     return (
         <>
         {!details 
@@ -84,100 +85,90 @@ const DetailsScreen = () => {
                 </Toast>
             </ToastContainer>
              <NavigationSidebar/>
-             <div className="text-center">
-                <div className="row">
-                    <div className="d-grid col-4 m-5">
-                        <div className="row">
-                            <div className="p-2">
-                                <img src={details.record_image}/>
-                            </div>
-                            <div className="mt-2">
-                                {!currentUser ? "Log in to purchase a record!" :
-                                 <>
-                                     <div className="mb-2">
-                                         <input value={quantity} className={inputStyle} onChange={(e) =>
-                                             setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
-                                     </div>
-                                    <button onClick={() => {
-                                    if (!shoppingCart.shopping_cart || shoppingCart.shopping_cart.some(e => e._id === details._id)){
-                                    setNegativeShow(true);
-                                }else {
-                                    setAddShow(true);
-                                    dispatch(addToShoppingCartThunk(
-                                {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
-                                                                                                      === details.record_quantity}}))
-                                        }}
-                                } className={buyerListingButtonStyle}>Add to cart</button>
-                                    <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
-                                    <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
-                                     <div className="p-2">
-                                         <button className={buyerListingButtonStyle} onClick={() => handleAddWishList()}>Add to wishlist</button>
-                                     </div>
-                                 </>
-                                }
-                            </div>
-                            <div className="p-2">
-                                {/*<button className={modifyListingButtonStyle} onClick={() => {*/}
-                                {/*    dispatch(editListingThunk({...details, record_vendor: details.record_vendor._id, record_quanity: 223332, record_price: 122.22}))*/}
-                                {/*}}>Edit Listing*/}
-                                {/*</button>*/}
-                            </div>
-                            <div className="p-2">
-                                <button className={vendorListingButtonStyle} onClick={() => {
-                                    const params = {
-                                        'id': details.discogs_id.toString(),
-                                        "query": query
-                                    };
-                                    dispatch(deleteListingThunk(details._id));
-                                    navigation({
-                                                   pathname: "/search",
-                                                   search: `?${createSearchParams(params)}`
-                                               });
-                                }}>Delete Listing</button>
-                            </div>
+             <AddToCartToast thumb={details.record_image} setShow={setAddShow} show={addShow}/>
+             <AlreadyInCartToast thumb={details.record_image} setShow={setNegativeShow} show={negativeShow}/>
+             <Card className="container p-0">
+                 <Card.Header>
+                     <div className="flex-row d-flex justify-content-between align-items-center">
+                         <h2 className="mt-1">{details.record_name}</h2>
+                         <div className="p-2">
+                             <button className={buyerListingButtonStyle} onClick={() => handleAddWishList()}>Add to wishlist</button>
+                         </div>
+                         <button className={vendorListingButtonStyle} onClick={() => {
+                             const params = {
+                                 'id': details.discogs_id.toString(),
+                                 "query": query
+                             };
+                             dispatch(deleteListingThunk(details._id));
+                             navigation({
+                                            pathname: "/search",
+                                            search: `?${createSearchParams(params)}`
+                                        });
+                         }}>Delete Listing</button>
+                     </div>
+                 </Card.Header>
+                 <div className="d-flex justify-content-between flex-row">
+                <Card.Body className="position-relative ps-3 mt-2 d-flex flex-row justify-content-start p-2">
+                    <div className="p-2 d-flex flex-column align-items-center justify-content-center">
+                        <img style={{width:"150px", height:"150px"}} src={details.record_image}/>
+                        {!currentUser ? <h5 className="mt-2">{"Log in to purchase this record!"}</h5> :
+                         <>
+                             <div className="mt-2 mb-2">
+                                 <input style={{width:"105px"}} value={quantity} className={inputStyle} onChange={(e) =>
+                                     setQuantity(e.target.value)} type="number" max={details.record_quantity} min={"1"}/>
+                             </div>
+                             <h5 className={totalStyle}>Total: ${details.record_price*quantity}</h5>
 
-
-
-                        </div>
+                         </>
+                        }
                     </div>
-
-                    <div className="d-grid col-5 m-2">
-                        <div className="row">
-                            <div className="p-2">
-                                <h2 className="text-dark">{details.record_name}</h2>
-                            </div>
-                            <div className="p-2">
-                                <h3 className="text-dark">By: {details.record_artist.replace("*","")}</h3>
-                            </div>
-                            <div className="p-2">
-                                <h5 className="text-dark">Genre: {details.record_genre}</h5>
-                            </div>
-                            <div className="p-2">
-                                <h5 className="text-dark">Year recorded: {details.record_year}</h5>
-                            </div>
-                            <div className="p-2">
-                                <h5 className="text-dark">Qty available: {details.record_quantity}</h5>
-                            </div>
-                            <div className="p-2">
-                                <h5 className="text-dark">Price: ${details.record_price}</h5>
-                            </div>
-                        </div>
-                    </div>
-
-             </div>
-                 <div className="row ">
-                     <div className="col-3"></div>
-                     <div className="col-6">
-
-
+                    <div >
+                        <Card className=" ms-5">
+                            <ListGroup variant="flush">
+                                <ListGroup.Item><h2>{"Artist: " +details.record_artist.replace("*","")}</h2></ListGroup.Item>
+                                <ListGroup.Item>  <h4 className="text-dark">Price: ${details.record_price}</h4></ListGroup.Item>
+                                <ListGroup.Item><h4 className="text-dark">Year recorded: {details.record_year}</h4></ListGroup.Item>
+                                <ListGroup.Item><h4 className="text-dark">Genres: {details.record_genre}</h4></ListGroup.Item>
+                            </ListGroup>
+                                {/*<div className="p-2">*/}
+                            {/*    <h3 className="text-dark"></h3>*/}
+                            {/*</div>*/}
+                            {/*<div className="p-2">*/}
+                            {/*    <h5 className="text-dark">Genre: {details.record_genre}</h5>*/}
+                            {/*</div>*/}
+                            {/*<div className="p-2">*/}
+                            {/*    <h5 className="text-dark">Year recorded: {details.record_year}</h5>*/}
+                            {/*</div>*/}
+                            {/*<div className="p-2">*/}
+                            {/*    <h5 className="text-dark">Qty available: {details.record_quantity}</h5>*/}
+                            {/*</div>*/}
+                        </Card>
+                </div>
+                <button style={{height: "fit-content", width: "fit-content"}} onClick={() => {
+                    if (!shoppingCart.shopping_cart || shoppingCart.shopping_cart.some(e => e._id === details._id)){
+                    setNegativeShow(true);
+                        }else {
+                            setAddShow(true);
+                            dispatch(addToShoppingCartThunk(
+                        {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
+                                                                                      === details.record_quantity}}))
+                        }}
+                } className={buyerListingButtonStyle}>Add to cart
+                </button>
+             </Card.Body>
+                 </div>
+                 <Card className="p-0  d-flex justify-content-center">
+                     <Card.Header>
+                         <h3>Reviews</h3>
+                     </Card.Header>
+                     <div className="">
                                  <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}
                                             reviews={reviews}/>
 
                      </div>
                      <div className="col-3"></div>
-                 </div>
-
-             </div>
+                 </Card>
+             </Card>
 
 
              {/*//     {"Reviews: "}*/}

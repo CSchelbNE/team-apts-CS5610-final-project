@@ -23,8 +23,6 @@ const ListingArrayComponent = ({listing, index, query}) => {
             <div className="d-flex align-content-center flex-row">
                 <Card.Body className=" d-flex mb-0 p-2">
                     <Card.Img style={{height:"100px", width:"100px"}} variant={"top"} src={listing.record_image} className="rounded"/>
-                {/*</Card.Body>*/}
-                {/*<Card.Body className="d-flex flex-column justify-content-between p-3">*/}
                     <div className="d-flex ms-4 mt-2 flex-column align-content-start">
                         <h5>{"Vendor: " + listing.record_vendor.firstName + " "
                              + listing.record_vendor.lastName}</h5>

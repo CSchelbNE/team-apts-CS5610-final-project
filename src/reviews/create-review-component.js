@@ -27,9 +27,8 @@ const CreateReviewComponent = ({setNewReview, details, currentUser}) => {
                 <div className="row ">
                         <div className="ms-0 col-2 col-md-2 col-sm-3 ">
                             <Link to={"/profile/" + currentUser.username}>
-
-                                <img src={currentUser.profilePic}
-                                className="wd-profile-pic-format rounded-circle "/>
+                                <img  src={currentUser.profilePic}
+                                className="wd-create-review-pfp rounded-circle"/>
                             </Link>
 
                         </div>

@@ -2,6 +2,30 @@
     width: 45px;
     height: 45px;
 }
+
+
+@media screen and (max-width: 575px){
+    .wd-create-review-pfp {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+
+@media screen and (min-width: 576px) and (max-width: 991px){
+    .wd-create-review-pfp {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media screen and (min-width: 992px){
+.wd-create-review-pfp {
+    width: 100px;
+    height: 100px;
+}
+}
+
 .wd-margin-body {
     left: 55px;
 }
