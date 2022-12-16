@@ -28,9 +28,15 @@ const FollowingListItem = ({followingItem, currentUser}) => {
                     </div>
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
                         <div className="fs-5 text-dark fw-bold cursor-pointer" onClick={() => {navigate("/profile/" + followingItem.followed_user.username);}}>
-                            {followingItem.followed_user.firstName}&nbsp;{followingItem.followed_user.lastName}&nbsp;
-                            <FontAwesomeIcon className="ms-1 text-primary" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
-                            <span className="text-secondary fw-normal fs-1rem">{followingItem.followed_user.type.toLowerCase()}</span>
+                            <span className="text-wrap">
+                                <span className="d-inline-block">{followingItem.followed_user.firstName}</span>&nbsp;
+                                <span className="d-inline-block">{followingItem.followed_user.lastName}</span>&nbsp;
+                            </span>
+                            {/*{followingItem.followed_user.firstName}&nbsp;{followingItem.followed_user.lastName}&nbsp;*/}
+                            <span className="d-inline-block">
+                                <FontAwesomeIcon className="text-primary d-inline-block" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
+                                <span className="text-secondary fw-normal fs-1rem d-inline-block">{followingItem.followed_user.type.toLowerCase()}</span>
+                            </span>
                         </div>
                         {/*<div className="text-dark mt-1">{user.followed_user.bio}</div>*/}
                         <div className="text-secondary">

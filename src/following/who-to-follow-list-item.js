@@ -44,10 +44,15 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                     </div>
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
                         <div className="fs-5 text-dark fw-bold cursor-pointer" onClick={() => {navigate("/profile/" + user.username);}}>
-                            <span>{user.firstName}</span>&nbsp;
-                            <span>{user.lastName}</span>&nbsp;
-                            <FontAwesomeIcon className="text-primary" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
-                            <span className="text-secondary fw-normal fs-1rem">{user.type.toLowerCase()}</span>
+                            <span>
+                                <span className="d-inline-block">{user.firstName}</span>&nbsp;
+                                <span className="d-inline-block">{user.lastName}</span>&nbsp;
+                            </span>
+                            <span className="d-inline-block">
+                                <FontAwesomeIcon className="text-primary d-inline-block" style={{fontSize:"15px"}} icon={faCircleCheck} />&nbsp;
+                                <span className="text-secondary fw-normal fs-1rem d-inline-block">{user.type.toLowerCase()}</span>
+                            </span>
+
                         </div>
                         {/*<div className="text-dark mt-1">{user.bio}</div>*/}
                         <div className="text-secondary">
