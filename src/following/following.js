@@ -9,7 +9,7 @@ const FollowingComponent = ({currentUser, followed}) => {
         <>
             <ul className="list-group">
                 <li className="list-group-item">
-                    <h5 className="m-0">Following</h5>
+                    <h5 className="m-0 p-2 fw-bold">Following</h5>
                 </li>
                 {
                     !currentUser &&
