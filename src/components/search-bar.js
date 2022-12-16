@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 import {createSearchParams, Link, useNavigate} from "react-router-dom";
 import {clearListings} from "../reducers/discog-reducer";
+import notfound from "../images/not-found.jpg";
 
 function SearchBar(noBlur) {
     const dispatch = useDispatch();
@@ -74,7 +75,7 @@ function SearchBar(noBlur) {
                             if (e.title.split("-").length === 2){
                         return <Card onClick={findListings(e)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="wd-on-hover border-1 d-flex flex-row ">
                             <Link className="text-dark text-decoration-none w-100 p-0 m-0 d-flex flex-row">
-                            <img style={{height: "100px", width: "100px"}} src={e.thumb}/>
+                            <img style={{height: "100px", width: "100px"}} src={!e.thumb?  notfound : e.thumb}/>
                                 <div className="p-0 ms-3 d-flex flex-column justify-content-center"
                                      style={{height: "100px", width: "75%"}}>
                                     <div className="p-1 fw-bold" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
