@@ -75,7 +75,7 @@ function SearchBarCreate({callback}) {
                         {
                             if (e.title.split("-").length === 2){
                                 return <Card onClick={fillFormControl(e)} style={{borderRadius: 0, height: "fit-content"}} key={uuid4()} className="border-1 wd-on-hover d-flex flex-row row-cols-4">
-                                    <img style={{height: "100px"}} src={e.thumb}/>
+                                    <img style={{height: "100px"}} src={!e.thumb? notfound : e.thumb }/>
                                     <div className="p-0 d-flex flex-column justify-content-center"
                                          style={{height: "100px", width: "75%"}}>
                                         <div className="p-1 fw-bold" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
