@@ -24,7 +24,7 @@ const ReviewsListItemByAlbum = ({review, currentUser, profileUser}) => {
                                 <img src={review.listing.record_image} className="rounded-3" width="70px" height="70px"/>
                             </Link>
                         </div>
-                        <div className="d-flex flex-column ms-3">
+                        <div className="d-flex w-100 flex-column ms-3">
                                 <div className="d-flex">
                                         <div className="flex-grow-1">
                                             <img src={review.user.profilePic}className="rounded-pill" width="30px" height="30px"/>
