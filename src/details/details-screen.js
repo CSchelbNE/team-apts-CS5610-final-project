@@ -28,6 +28,7 @@ const DetailsScreen = () => {
     const reviews = useSelector(state => state.reviews.reviews);
     const {shoppingCart} = useSelector(state => state.shoppingCart);
     const [quantity, setQuantity] = useState(1);
+    console.log(quantity);
     const [addShow, setAddShow] = useState(false);
     const [negativeShow, setNegativeShow] = useState(false);
     const [newReview, setNewReview] = useState(true);
@@ -169,7 +170,7 @@ const DetailsScreen = () => {
                         }else {
                             setAddShow(true);
                             dispatch(addToShoppingCartThunk(
-                        {userId: currentUser._id, listing: {...details, scheduled_for_delete: quantity
+                        {userId: currentUser._id, listing: {...details, record_quantity: quantity, scheduled_for_delete: quantity
                                                                                       === details.record_quantity}}))
                         }}
                 } className={addToCartButton}>Add to cart
