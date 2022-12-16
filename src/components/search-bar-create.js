@@ -10,6 +10,7 @@ import {uuid4} from "uuid4"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons/faSearch";
 import {useNavigate} from "react-router-dom";
+import notfound from "../images/not-found.jpg";
 
 function SearchBarCreate({callback}) {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function SearchBarCreate({callback}) {
             "record_artist": listing.title.split("-")[0].trim(),
             "record_genre": !listing.genre ? [] : listing.genre,
             "record_year": !listing.year ? "N/A" : listing.year,
-            "record_image": !listing.thumb ? "N/A" : listing.thumb,
+            "record_image": !listing.thumb ? notfound : listing.thumb
         }
         console.log(data);
         setVisibility("d-none");
@@ -67,7 +68,7 @@ function SearchBarCreate({callback}) {
                 <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute end-0 top-50 d-none d-none-sm d-block-md translate-middle-y"/>
             </div>
             <div className="p-0">
-                <div className="wd-create-search-div wd-art-nuvo  p-0">
+                <div className="wd-create-search-div   p-0">
                     {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
@@ -77,7 +78,7 @@ function SearchBarCreate({callback}) {
                                     <img style={{height: "100px"}} src={e.thumb}/>
                                     <div className="p-0 d-flex flex-column justify-content-center"
                                          style={{height: "100px", width: "75%"}}>
-                                        <div className="p-1" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
+                                        <div className="p-1 fw-bold" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
                                         <div className="p-1">{e.title.split("-")[0]}</div>
                                     </div>
                                 </Card>
