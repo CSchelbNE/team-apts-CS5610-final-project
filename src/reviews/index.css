@@ -56,3 +56,6 @@
 .wd-big-x-format {
     width: 25px;
 }
+.word-break-all {
+    word-break: break-all;
+}
