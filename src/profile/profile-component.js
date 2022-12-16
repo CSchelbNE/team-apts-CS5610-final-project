@@ -92,7 +92,7 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
                 : !profileUser ? <></> :
                 <div className="">
                     <div className="rounded-2 bg-white border">
-                        <h3 className="m-2">Profile</h3>
+                        <h3 className="m-2 ps-4">Profile</h3>
                         {/*banner image*/}
                         <div className="p-2">
                             <img src={`${profileUser.bannerPic}`}
@@ -122,7 +122,7 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
 
                         </div>
                         {/*profile info*/}
-                        <div className="wd-text-margins-profile">
+                        <div className="m-5">
                             <div className="wd-leave-extra-space-below-avatar-profile">
                                 <div className="row">
                                     <h5 className="fw-bold m-0">{profileUser.firstName} {profileUser.lastName}</h5>
@@ -176,12 +176,10 @@ const ProfileComponent = ({currentUser, profileUser, followed}) => {
                                     </>
                                 }
 
-                                <>
-                                    <h1 className="mt-3">Reviews</h1>
-                                    <div className="border border-2  p-2 m-2">
-                                        <ReviewsByAlbum key={profileUser._id} currentUser={currentUser} profileUser={profileUser}/>
-                                    </div>
-                                </>
+                                <div className="mt-3">
+                                    <h4 className="fw-bold">Reviews</h4>
+                                    <ReviewsByAlbum key={profileUser._id} currentUser={currentUser} profileUser={profileUser}/>
+                                </div>
 
                             </div>
                         </div>

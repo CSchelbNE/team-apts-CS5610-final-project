@@ -26,7 +26,7 @@ const WhoToFollowComponent = ({currentUser}) => {
             <ul className="list-group">
 
                 <li className="list-group-item">
-                    <h5>Who To Follow</h5>
+                    <h5 className="m-0">Who To Follow</h5>
                 </li>
 
             {
