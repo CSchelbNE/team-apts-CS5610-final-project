@@ -30,7 +30,7 @@ const ReviewsListItemByAlbum = ({review, currentUser, profileUser}) => {
                                             <img src={review.user.profilePic}className="rounded-pill" width="30px" height="30px"/>
                                             <span className="ps-2">{review.user.username}</span>
                                         </div>
-                                        <div>
+                                        <div className="cursor-pointer">
                                             <img src={bigXImg} className="wd-big-x-format" onClick={deleteReview}/>
                                         </div>
                                 </div>
