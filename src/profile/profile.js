@@ -94,7 +94,10 @@ const ProfileScreen = () => {
                                                     <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
                                                 </div>
                                                 <div className="my-auto word-break-all d-inline-flex flex-nowrap fs-5 ms-3 fw-bold">
-                                                    {currentUser.firstName}&nbsp;{currentUser.lastName}
+                                                    <span className="text-wrap">
+                                                        <span className="d-inline-block">{currentUser.firstName}</span>&nbsp;
+                                                        <span className="d-inline-block">{currentUser.lastName}</span>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </li>

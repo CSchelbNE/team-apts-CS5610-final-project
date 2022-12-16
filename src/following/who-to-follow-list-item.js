@@ -44,7 +44,7 @@ const WhoToFollowListItem = ({user, currentUser, followedUsers}) => {
                     </div>
                     <div className="col-6 col-xl-7 col-lg-6 col-md-6 col-sm-6">
                         <div className="fs-5 text-dark fw-bold cursor-pointer" onClick={() => {navigate("/profile/" + user.username);}}>
-                            <span>
+                            <span className="text-wrap">
                                 <span className="d-inline-block">{user.firstName}</span>&nbsp;
                                 <span className="d-inline-block">{user.lastName}</span>&nbsp;
                             </span>
