@@ -68,7 +68,7 @@ const DetailsScreen = () => {
             :
          <>
               <ToastContainer className="mt-5 me-5" position="top-end">
-                <Toast onClose={() => setShow(false)} show={show}  delay={1500} autohide>
+                <Toast onClose={() => setShow(false)} show={show} bg={"success"} delay={1500} autohide>
                     <Toast.Header>
                         <img
                             style={{width:"30px", height: "30px"}}
@@ -78,7 +78,7 @@ const DetailsScreen = () => {
                         />
                         <strong className="me-auto">Vintage Vinyl</strong>
                     </Toast.Header>
-                    <Toast.Body>Successfully added to your cart!</Toast.Body>
+                    <Toast.Body className="text-white">Successfully added to wishlist!</Toast.Body>
                 </Toast>
             </ToastContainer>
              <NavigationSidebar/>
@@ -179,7 +179,7 @@ const DetailsScreen = () => {
              </Card>
                  <Card style={{borderRadius:0}} className="p-0 d-flex container justify-content-center">
                      <Card.Header >
-                         <h3 className="ms-1 p-2">Reviews</h3>
+                         <h3 className="ms-1 p-1">Reviews</h3>
                      </Card.Header>
                      <Card.Body className="p-0 m-0">
                                  <ReviewsByUser setNewReview={setNewReview} details={details} currentUser={currentUser}

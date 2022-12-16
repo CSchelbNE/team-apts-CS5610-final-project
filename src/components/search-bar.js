@@ -66,7 +66,7 @@ function SearchBar(noBlur) {
                 <FontAwesomeIcon  icon={faSearch} className="me-3 position-absolute d-none d-none-sm d-md-block end-0 d-none top-50 translate-middle-y"/>
             </div>
             <div className={visibility}>
-                <div className="wd-search-scroll-div wd-art-nuvo  p-0">
+                <div className="wd-search-scroll-div  p-0">
                     {
                         // Test if there's a title and an artist
                         query.discogsAlbumQuery.map(e =>
@@ -77,7 +77,7 @@ function SearchBar(noBlur) {
                             <img style={{height: "100px", width: "100px"}} src={e.thumb}/>
                                 <div className="p-0 ms-3 d-flex flex-column justify-content-center"
                                      style={{height: "100px", width: "75%"}}>
-                                    <div className="p-1" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
+                                    <div className="p-1 fw-bold" style={{width: "fit-content"}}>{e.title.split("-")[1]}</div>
                                     <div className="p-1">{e.title.split("-")[0]}</div>
                                 </div>
                             </Link>

@@ -86,15 +86,14 @@ const ProfileScreen = () => {
                         {
                             currentUser &&
                             <div className="col-xxl-4 col-lg-4 p-0 ">
-
-                                <div className="border p-2 rounded-2">
+                                <div className=" p-2 rounded-2">
                                     <ul className="list-group">
                                         <li className="list-group-item">
                                             <div className="d-flex">
                                                 <div className="my-auto d-inline-flex">
                                                     <img src={currentUser.profilePic} className="wd-format-profile-pic-ps rounded-circle"/>
                                                 </div>
-                                                <div className="my-auto d-inline-flex flex-nowrap fs-5 ms-3 fw-bold">
+                                                <div className="my-auto word-break-all d-inline-flex flex-nowrap fs-5 ms-3 fw-bold">
                                                     {currentUser.firstName}&nbsp;{currentUser.lastName}
                                                 </div>
                                             </div>

@@ -30,9 +30,15 @@ const ReviewsListItemByAlbum = ({review, currentUser, profileUser}) => {
                                             <img src={review.user.profilePic}className="rounded-pill" width="30px" height="30px"/>
                                             <span className="ps-2">{review.user.username}</span>
                                         </div>
+                                        {/*<div className="cursor-pointer">*/}
+                                        {/*    <img src={bigXImg} className="wd-big-x-format" onClick={deleteReview}/>*/}
+                                        {/*</div>*/}
+                                    {
+                                        currentUser && profileUser && currentUser.username === profileUser.username &&
                                         <div className="cursor-pointer">
                                             <img src={bigXImg} className="wd-big-x-format" onClick={deleteReview}/>
                                         </div>
+                                    }
                                 </div>
                                     <div className="mt-2 d-flex">
                                         <img src={require(review.rating >= 1 ? "../../images/gold-star-icon.png" : "../../images/gray-star-icon.jpg")}

@@ -33,6 +33,7 @@ const usersReducer = createSlice({
         [findUserThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;
             state.currentUser = payload;
+            console.log(state.currentUser);
         },
         [findUserByUsernameThunk.fulfilled]: (state, {payload}) => {
             state.profileUser = payload;
@@ -42,7 +43,7 @@ const usersReducer = createSlice({
             state.error = null;
         },
         [registerThunk.rejected]: (state) => {
-            state.error = "Unable to register, please check the information once!";
+            state.error = "Unable to register, your username is already taken!";
             state.currentUser = null;
         },
         [loginThunk.fulfilled]: (state, {payload}) => {
